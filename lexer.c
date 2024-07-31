@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/30 19:12:51 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:43:46 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	lexer(t_stack *stack, char *line, int start)
 	int		i;
 
 	i = 0;
+	if (!line)
+		return;
 	while (line[i])
 	{
 		while (line[i] && (line[i] == 32 || line[i] == '	'))

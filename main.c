@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/30 19:04:01 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/07/31 17:41:25 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	printf_node(t_stack *stack)
 	node = stack->up;
 	while (node != NULL)
 	{
-		ft_printf("// %s //\n", node->content);
+		printf("// %s //\n", node->content);
 		node = node->next;
 	}
 }
@@ -57,12 +57,21 @@ int	main(void)
 {
 	char	*line;
 	t_stack	*stack;
+	t_sign *flag;
 
 	stack = NULL;
 	stack = ft_init_dl(stack);
+	flag = malloc(sizeof(t_sign));
+	ft_control();
 	while (1)
 	{
 		line = readline("minishell$ ");
+		if  (line == NULL)
+		{
+			rl_on_new_line();
+			printf("exit");
+			exit(1);
+		}
 		lexer(stack, line, 0);
 		add_history(line);
 		printf_node(stack);

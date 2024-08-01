@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
+#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by nicolive          #+#    #+#              #
-#    Updated: 2024/08/01 15:49:41 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/01 16:25:23 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ NC=\033[0m
 
 CC = cc
 
-MY_SOURCES = src/lexer.c  src/main.c   src/signal.c src/parser/parcer.c
+MY_SOURCES = src/lexer.c  src/main.c   src/signal.c src/parser/parcer.c src/echo.c
 
 CFLAGS = -c -Wall -Werror -Wextra
 
-LINK = -L/Users/najeuneh/.brew/opt/readline/lib -I/Users/najeuneh/.brew/opt/readline/include -lreadline
+LINK = -L/Users/sadegrae/.brew/opt/readline/lib -I/Users/sadegrae/.brew/opt/readline/include -lreadline
 
 OBJS_DIR = obj/
 
@@ -52,17 +52,17 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME) : $(MY_OBJECTS)
-	@$(MAKE) -C $(LIBFT)
+	@make -C $(LIBFT)
 	@printf "                                               \r"
 	@echo "																					 "
-	@echo "			  _       _     _          _ _ 
-	@echo "          (_)     (_)   | |        | | |
+	@echo "           _       _     _          _ _ "
+	@echo "          (_)     (_)   | |        | | |"
 	@echo " _ __ ___  _ _ __  _ ___| |__   ___| | |"
-	@echo "| '_ ` _ \| | '_ \| / __| '_ \ / _ \ | |"
+	@echo "| '_   _ \| |  _ \| / __| '_ \ / _ \ | |"
 	@echo "| | | | | | | | | | \__ \ | | |  __/ | |"
 	@echo "|_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|"
 	@echo "                                                                                  "    	
-	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME)
+	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME) -fsanitize=address -g
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
@@ -70,12 +70,12 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@$(CC) -o $@ -c $<
 
 clean:
-	@$(MAKE) clean -C $(LIBFT)
+	@make clean -C $(LIBFT)
 	@${RM} ${MY_OBJECTS}
 
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIBFT)
+	@make fclean -C $(LIBFT)
 	@${RM} ${NAME}
 
 re: fclean all

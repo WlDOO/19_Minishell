@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 15:11:32 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:53:48 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	lexer(t_stack *stack, char *line, char **env, int start)
 		else
 			i = lexer_suite(stack, line, start, i);
 	}
-	ft_parser(stack, env);
+	ft_parser(stack);
 }
 
 int	lexer_suite(t_stack *stack, char *line, int start, int i)

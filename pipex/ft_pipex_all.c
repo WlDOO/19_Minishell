@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:20:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/06/18 14:41:11 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:30:10 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 int	ft_check(char **str)
 {

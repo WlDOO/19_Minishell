@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:00:05 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/06/18 14:44:05 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:31:17 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../inc/pipex.h"
 
 int	ft_first_process(char **av, char *cmd1, t_fd *cmdfd, char **env)
 {

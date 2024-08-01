@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 15:04:04 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 16:29:52 by najeuneh         ###   ########.fr       */
+/*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
+/*   Updated: 2024/08/01 17:43:33 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/pipex.h"
+#include "../../inc/minishell.h"
 
-void	free_all(char **str)
+void	ft_free_all(char **str)
 {
 	int	i;
 

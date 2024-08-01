@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 14:20:05 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/31 13:58:58 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:44:43 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "../pipex/ft_printf/ft_printf.h"
 
 typedef struct s_fd
 {

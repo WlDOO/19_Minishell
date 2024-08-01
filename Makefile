@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by nicolive          #+#    #+#              #
-#    Updated: 2024/08/01 15:49:41 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/01 17:44:41 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NC=\033[0m
 
 CC = cc
 
-MY_SOURCES = src/lexer.c  src/main.c   src/signal.c src/parser/parcer.c
+MY_SOURCES = src/lexer.c  src/main.c   src/signal.c src/parser/parcer.c src/parser/parser_utils.c \
 
 CFLAGS = -c -Wall -Werror -Wextra
 
@@ -52,30 +52,25 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME) : $(MY_OBJECTS)
-	@$(MAKE) -C $(LIBFT)
+	@make -C $(LIBFT)
+	@make -C $(PIPEX)
 	@printf "                                               \r"
-	@echo "																					 "
-	@echo "			  _       _     _          _ _ 
-	@echo "          (_)     (_)   | |        | | |
-	@echo " _ __ ___  _ _ __  _ ___| |__   ___| | |"
-	@echo "| '_ ` _ \| | '_ \| / __| '_ \ / _ \ | |"
-	@echo "| | | | | | | | | | \__ \ | | |  __/ | |"
-	@echo "|_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|"
-	@echo "                                                                                  "    	
-	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME)
+	cc $(MY_OBJECTS) $(PIPEX.A) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)/parser
-	@$(CC) -o $@ -c $<
+	@$(CC) -I/inc/ -o $@ -c $<
 
 clean:
-	@$(MAKE) clean -C $(LIBFT)
+	@make clean -C $(LIBFT)
+	@make fclean -C $(PIPEX)
 	@${RM} ${MY_OBJECTS}
 
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIBFT)
+	@make fclean -C $(LIBFT)
+	@make fclean -C $(PIPEX)
 	@${RM} ${NAME}
 
 re: fclean all

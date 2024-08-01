@@ -6,11 +6,11 @@
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:21:22 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/29 19:06:40 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:49:18 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/pipex.h"
+#include "pipex.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

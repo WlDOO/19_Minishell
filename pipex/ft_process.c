@@ -6,11 +6,11 @@
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:00:05 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/29 19:06:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:44:05 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/pipex.h"
+#include "pipex.h"
 
 int	ft_first_process(char **av, char *cmd1, t_fd *cmdfd, char **env)
 {

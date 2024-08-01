@@ -6,11 +6,11 @@
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:20:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/29 19:06:22 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:41:11 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/pipex.h"
+#include "pipex.h"
 
 int	ft_check(char **str)
 {

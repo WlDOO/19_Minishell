@@ -6,11 +6,11 @@
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 14:13:10 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/29 19:06:48 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:09:29 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/pipex.h"
+#include "pipex.h"
 
 int	main(int ac, char **av, char **env)
 {

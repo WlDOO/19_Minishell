@@ -28,6 +28,8 @@ typedef struct s_list
 typedef struct s_node
 {
 	char			*content;
+	int				flag;
+	char			*cmd;
 	struct s_node	*next;
 	struct s_node	*prev;
 }				t_node;

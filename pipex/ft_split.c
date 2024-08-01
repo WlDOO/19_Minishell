@@ -6,11 +6,11 @@
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 16:39:17 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/07/29 19:06:33 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:27:12 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/pipex.h"
+#include "pipex.h"
 
 static int	ft_count_word(const char *str, char sep)
 {

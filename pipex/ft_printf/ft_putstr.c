@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 13:11:03 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/06/13 18:15:55 by najeuneh         ###   ########.fr       */
+/*   Created: 2024/04/19 15:26:30 by najeuneh          #+#    #+#             */
+/*   Updated: 2024/06/13 15:59:06 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "ft_printf.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_putstr(char *s)
 {
-	int		i;
-	char	*str;
-	char	*cpy;
+	int	i;
+	int	j;
 
+	j = 0;
 	i = 0;
-	str = (char *)s1;
-	cpy = malloc((ft_strlen(str)) * sizeof(char *) + 1);
-	while (str[i])
+	if (s == NULL)
 	{
-		cpy[i] = str[i];
+		return (ft_putstr("(null)"));
+	}
+	while (s[i])
+	{
+		j += write (2, &s[i], 1);
 		i++;
 	}
-	cpy[i] = '\0';
-	return (cpy);
+	return (j);
 }

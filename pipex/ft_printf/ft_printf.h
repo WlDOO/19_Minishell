@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: najeuneh <najeuneh@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 13:11:03 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/06/13 18:15:55 by najeuneh         ###   ########.fr       */
+/*   Created: 2024/04/22 18:24:13 by najeuneh          #+#    #+#             */
+/*   Updated: 2024/06/13 15:56:38 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*str;
-	char	*cpy;
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-	i = 0;
-	str = (char *)s1;
-	cpy = malloc((ft_strlen(str)) * sizeof(char *) + 1);
-	while (str[i])
-	{
-		cpy[i] = str[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
-}
+int				ft_printf(const char *arg, ...);
+int				ft_putstr(char *s);
+int				ft_putchar(char c);
+int				ft_putnbr(int n);
+int				ft_puthexamin(unsigned int nbr);
+int				ft_puthexamaj(unsigned int nbr);
+int				ft_voidhexa(unsigned long nb);
+int				ft_putnbru(unsigned int n);
+
+#endif

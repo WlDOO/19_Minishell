@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 17:45:42 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:14:36 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdio.h>
 # include <termios.h>
 # include "libft.h"
-# include "pipex.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -48,6 +47,8 @@ char	*ft_path(char *line, char **env);
 char	*ft_path2(char **str, char *str2);
 t_node	*ft_flagcheck(t_node *node);
 void	ft_free_all(char **str);
+void	ft_bultincheck(t_node *node);
+void	ft_parser2(t_stack *stack);
 
 /*-------*/
 

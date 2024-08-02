@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 18:21:25 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:16:08 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,17 +113,19 @@ void	ft_parser(t_stack *stack, char **env)
 		}
 		node = node->next;
 	}
-	ft_parser2(t_stack *stack, char **env);
+	ft_parser2(stack);
 }
 
-void	ft_parser2(t_stack *stack, char **env)
+void	ft_parser2(t_stack *stack)
 {
 	t_node	*node;
 
 	node = stack->up;
 	while (node != NULL)
 	{
-		
+		if (node->flag == 8)
+			ft_bultincheck(node);
+		node = node->next;
 	}
 }
 

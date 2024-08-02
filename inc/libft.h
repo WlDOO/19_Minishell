@@ -29,6 +29,7 @@ typedef struct s_node
 {
 	char			*content;
 	int				flag;
+	int				bultin;
 	char			*cmd;
 	struct s_node	*next;
 	struct s_node	*prev;

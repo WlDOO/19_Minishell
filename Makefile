@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by nicolive          #+#    #+#              #
-#    Updated: 2024/08/01 17:44:41 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/02 14:01:04 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS_DIR = src/
 
 NAME = minishell
 
+
 INCLUDE = ./inc/minishell.h
 
 INCLUDE2 = ./inc/pipex.h
@@ -53,9 +54,9 @@ all: $(NAME)
 
 $(NAME) : $(MY_OBJECTS)
 	@make -C $(LIBFT)
-	@make -C $(PIPEX)
 	@printf "                                               \r"
-	cc $(MY_OBJECTS) $(PIPEX.A) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
+	@echo "Linking..."
+	@cc $(MY_OBJECTS) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
@@ -64,13 +65,11 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 
 clean:
 	@make clean -C $(LIBFT)
-	@make fclean -C $(PIPEX)
 	@${RM} ${MY_OBJECTS}
 
 
 fclean: clean
 	@make fclean -C $(LIBFT)
-	@make fclean -C $(PIPEX)
 	@${RM} ${NAME}
 
 re: fclean all

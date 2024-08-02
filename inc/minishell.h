@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 18:59:59 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:56:25 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,24 @@ void	rl_replace_line(const char *text, int clear_undo);
 
 /*-------*/
 
-/*commande*/
+/*=======BULTINS=======*/
 
 void	ft_echo(t_stack *stack);
 void 	ft_cd(t_stack *stack);
 void	ft_pwd(t_stack *stack);
 void	ft_exit(t_stack *stack);
-void ft_export(t_env *env, t_stack *stack);
+void	ft_export(t_env *env, t_stack *stack);
+void	printf_export(t_env *list_env);
+void	printf_env(t_env *list_env);
+void	ft_unset(t_env *env, t_stack *stack);
 
-/*-------*/
+/*bultins utils*/
+int		ft_strcmp(char *st1, char *st2);
+int		check_egal(char *str);
+char	*ft_strchr2(const char *s, int c);
+char	*ft_strcpy2(char *str, char c);
+/*-------------*/
+
+/*======================*/
+
 #endif

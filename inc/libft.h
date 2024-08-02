@@ -28,7 +28,7 @@ typedef struct s_list
 typedef struct s_node
 {
 	char			*content;
-	int				flag; /*1 si il a une valeur 0 si non*/
+	int				flag;
 	char			*cmd;
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -37,7 +37,8 @@ typedef struct s_node
 typedef struct s_env
 {
 	char			*content;
-	int				flag;
+	char			*attribut;
+	int				flag;/*1 si il a une valeur 0 si non*/
 	struct s_env	*next;
 }				t_env;
 

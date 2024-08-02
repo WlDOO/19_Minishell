@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 16:11:06 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/01 19:14:10 by sadegrae         ###   ########.fr       */
+/*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
+/*   Updated: 2024/08/02 14:57:49 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-
-void	ft_echo(t_stack *stack)
-{
-	t_node	*node;
-
-	node = stack->up;
-	node = node->next;
-	if (node != NULL)
-		printf("%s", node->content);
-	printf("\n");
-}
+#include "../../inc/minishell.h"
 
 void ft_cd(t_stack *stack)
 {
@@ -63,41 +52,5 @@ void ft_cd(t_stack *stack)
 		chdir(dst);
 		pwd = getcwd(NULL, 0);
 		printf("pwd after chdir: %s\n", pwd);
-	}
-}
-
-void	ft_pwd(t_stack *stack)
-{
-	char *pwd;
-	
-	pwd = getcwd(NULL, 0);
-	printf("%s\n", pwd);
-}
-
-void	ft_exit(t_stack *stack)
-{
-	printf("exit\n");
-	exit(0);
-}
-
-void ft_export(t_env *env, t_stack *stack)
-{
-	t_node	*node;
-	t_env *tmp;
-
-	tmp = malloc(sizeof(t_env*));
-	node = stack->up;
-	node = node->next;
-	while (env->next != NULL)
-		env = env->next;
-	tmp->content = node->content;
-	tmp->flag = 0;
-	tmp->next = NULL;
-	env->next = tmp;
-
-	while (list_env != NULL)
-	{
-		printf("%s\n", list_env->content);
-		list_env = list_env->next;
 	}
 }

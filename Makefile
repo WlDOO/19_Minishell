@@ -6,7 +6,7 @@
 #    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by nicolive          #+#    #+#              #
-#    Updated: 2024/08/01 16:25:23 by sadegrae         ###   ########.fr        #
+#    Updated: 2024/08/02 14:57:12 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ NC=\033[0m
 
 CC = cc
 
-MY_SOURCES = src/lexer.c  src/main.c   src/signal.c src/parser/parcer.c src/echo.c
+MY_SOURCES = src/lexer.c  src/main.c   src/signal.c src/parser/parcer.c src/bultins/echo.c src/bultins/bultins_utils.c \
+				src/bultins/cd.c src/bultins/env.c src/bultins/exit.c src/bultins/export.c src/bultins/pwd.c src/bultins/unset.c \
 
 CFLAGS = -c -Wall -Werror -Wextra
 
@@ -66,6 +67,7 @@ $(NAME) : $(MY_OBJECTS)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)/bultins
 	@mkdir -p $(OBJS_DIR)/parser
 	@$(CC) -o $@ -c $<
 

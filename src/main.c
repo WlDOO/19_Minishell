@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 19:12:32 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:47:39 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,43 @@ t_stack	*ft_init_dl(t_stack *stack)
 	return (stack);
 }
 
+char	*ft_strchr2(const char *s, int c)
+{
+	size_t		i;
+	char		*str;
+
+	str = (char *)s;
+	i = 0;
+	while (i <= ft_strlen(s))
+	{
+		if (str[i] == (unsigned char)c)
+			return (&str[i + 1]);
+		i++;
+	}
+	return (NULL);
+}
+
+char	*ft_strcpy2(char *str, char c)
+{
+	int	i;
+	char *dst;
+	
+	i = 0;
+	while (str[i] != c)
+		i++;	
+	dst = malloc(sizeof(char) * (i + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (str[i] != c)
+	{
+		dst[i] = str[i];
+		i++;	
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
 t_env	*list_new(char **matrix)
 {
 	t_env	*new;
@@ -39,7 +76,8 @@ t_env	*list_new(char **matrix)
 		new = malloc(sizeof(*new));
 		if (!new)
 			return (free(tmp), NULL);
-		new->content = matrix[i];
+		new->content = ft_strchr2(matrix[i], '=');
+		new->attribut = ft_strcpy2(matrix[i], '=');
 		new->flag = 1;
 		new->next = NULL;
 		if (!tmp)
@@ -109,13 +147,12 @@ int	main(int ac, char **av, char **env)
 		//ft_cd(stack);
 		//ft_pwd(stack);
 		//ft_exit(stack);
-		ft_export(list_env, stack);
-		while (list_env != NULL)
-		{
-			if (list_env->flag == 1)
-				printf("%s\n", list_env->content);
-			list_env = list_env->next;
-		}
+		// printf_export(list_env);
+		// ft_export(list_env, stack);
+		// printf_export(list_env);
+		// ft_unset(list_env, stack);
+		// printf_env(list_env);
+		//printf_env(list_env);
 		free_stack(stack);
 	}
 }

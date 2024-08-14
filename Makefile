@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
+#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/08/14 16:38:55 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/14 17:01:39 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/
 
 CFLAGS = -c -Wall -Werror -Wextra
 
-LINK = -L/Users/najeuneh/.brew/opt/readline/lib -I/Users/najeuneh/.brew/opt/readline/include -lreadline
+LINK = -L/Users/$(shell whoami)/.brew/opt/readline/lib -I/Users/$(shell whoami)/.brew/opt/readline/include -lreadline
 
 OBJS_DIR = obj/
 

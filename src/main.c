@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:36:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:43:19 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,25 +144,6 @@ int	main(int ac, char **av, char **env)
 		lexer(stack, line, env, 0);
 		add_history(line);
 		printf_node(stack);
-		ft_expend(stack);
-		//ft_echo(stack);
-		//ft_cd(list_env, stack);
-		//ft_pwd(stack);
-		//ft_exit(stack);
-		// printf_export(list_env);
-			// ft_export(list_env, stack);
-			// matrix = list_to_matrix(list_env);
-			// matrix = trie_asci(matrix);
-			// i = 0;
-			// while (matrix[i])
-			// {
-			// 	printf("%s\n", matrix[i]);
-			// 	i++;
-			// }
-		//printf_export(list_env);
-		// ft_unset(list_env, stack);
-		// printf_env(list_env);
-		//printf_env(list_env);
 		free_stack(stack);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/13 16:52:38 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:44:41 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ t_node	*ft_flagcheck(t_node *node)
 void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 {
 	t_node *node;
-	char	*tmp;
 
 	node = stack->up;
 	if (in == NULL && out == NULL)

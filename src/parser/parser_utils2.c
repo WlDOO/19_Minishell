@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 13:33:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:24:22 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	ft_clear_all(t_stack *stack)
 {
 	t_node	*node;
-	char *tmp;
+	char 	*tmp;
 	char	*tmp2;
+	t_node *tmp3;
 
 	node = stack->up;
 	while (node != NULL)
@@ -25,13 +26,20 @@ void	ft_clear_all(t_stack *stack)
 		{
 			tmp2 = ft_strdup(node->content);
 			tmp = ft_strjoin(tmp2, " ");
-			if (node->next->content != NULL)
-				tmp = ft_strjoin(tmp, node->next->content);
+			tmp3 = node->next;
+			while (tmp3 != NULL && tmp3->flag != 1)
+			{
+				tmp = ft_strjoin(tmp, tmp3->content);
+				tmp = ft_strjoin(tmp, " ");
+				tmp3 = tmp3->next;
+			}
+			free (tmp3);
 			node->full_cmd = ft_split(tmp, ' ');
 		}
 		else if (node->flag == 8 && node->next == NULL)
 			node->full_cmd = ft_split(node->content, ' ');
-		node = node->next;
+		if (node != NULL)
+			node = node->next;
 	}
 	node = stack->up;
 	while (node != NULL)

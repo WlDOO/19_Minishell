@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 15:11:32 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:32:33 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	lexer(t_stack *stack, char *line, char **env, int start)
 			i = lexer_suite(stack, line, start, i);
 	}
 	ft_parser(stack, env);
+	
+	exec(stack, env);
 }
 
 int	lexer_suite(t_stack *stack, char *line, int start, int i)

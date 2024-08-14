@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/02 14:16:08 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:36:52 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,6 @@ flag 6 = )
 flag 7 = $
 flag 8 = cmd
 */
-
-t_node	*ft_flagcheck(t_node *node)
-{
-	if (node->content[0] == '|')
-		node->flag = 1;
-	else if (node->content[0] == '&')
-		node->flag = 2;
-	else if (node->content[0] == '<')
-		node->flag = 3;
-	else if (node->content[0] == '>')
-		node->flag = 4;
-	else if (node->content[0] == '(')
-		node->flag = 5;
-	else if (node->content[0] == ')')
-		node->flag = 6;
-	else if (node->content[0] == '$')
-		node->flag = 7;
-	else if (node->content[0] == ' ')
-		node->flag = -1;
-	return (node);
-}
-
 
 char	*ft_path2(char **str, char *str2)
 {
@@ -123,9 +101,41 @@ void	ft_parser2(t_stack *stack)
 	node = stack->up;
 	while (node != NULL)
 	{
+		node->in = NULL;
+		node->out = NULL;
+		node->bultin = 0;
 		if (node->flag == 8)
 			ft_bultincheck(node);
 		node = node->next;
 	}
+	ft_finish_node(stack, NULL, NULL, -1);
+}
+
+void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
+{
+	t_node	*node;
+	node = stack->up;
+
+	while (node != NULL)
+	{
+		in = NULL;
+		out = NULL;
+		while (node != NULL && node->content && node->flag != 1)
+		{
+			if(node->flag == 3 || node->flag == 4)
+			{
+				if (node->flag == 3)
+					in = ft_strdup(node->next->content);
+				else if (node->flag == 4)
+					out = ft_strdup(node->next->content);
+			}
+				if (node != NULL)
+				node = node->next;
+		}
+		ft_suite_node(stack, in, out, ++i);
+		if (node != NULL)
+			node = node->next;
+	}
+	ft_clear_all(stack);
 }
 

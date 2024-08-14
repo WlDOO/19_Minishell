@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/02 14:14:36 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:05:49 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <termios.h>
+#include <fcntl.h>
 # include "libft.h"
+# include "ft_printf.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -30,6 +32,7 @@ typedef struct s_sign
 
 /* lexer */
 
+int		heredoc(t_node *node);
 char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
 void	printf_node(t_stack *stack);
@@ -49,6 +52,20 @@ t_node	*ft_flagcheck(t_node *node);
 void	ft_free_all(char **str);
 void	ft_bultincheck(t_node *node);
 void	ft_parser2(t_stack *stack);
+void	ft_finish_node(t_stack *stack, char *in, char *out, int i);
+void	ft_suite_node(t_stack *stack, char *in, char *out, int i);
+void	ft_clear_all(t_stack *stack);
+
+/*-------*/
+
+/* exec */
+
+int		ft_countcmd(t_stack *stack);
+int		exec(t_stack *stack, char **env);
+void	ft_check_fd(t_node *node);
+int		multi_cmd(t_stack *stack, char ** env);
+int		simple_cmd(t_node *node,int in_pipe, int out_pipe, char **env);
+
 
 /*-------*/
 

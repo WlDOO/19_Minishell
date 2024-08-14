@@ -31,6 +31,11 @@ typedef struct s_node
 	int				flag;
 	int				bultin;
 	char			*cmd;
+	char			*in;
+	char			*out;
+	int				in_fd;
+	int				out_fd;
+	char			**full_cmd;
 	struct s_node	*next;
 	struct s_node	*prev;
 }				t_node;
@@ -88,12 +93,14 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(void *content);
+
 //DOUBLE LISTE CHAINER
 t_node		*dl_lstnew(char *line, int start, int end);
 void		dl_lstadd_front(t_stack *a, char *line, int start, int end);
 void		dl_lstdelfront(t_stack *a);
 void		dl_lstdelback(t_stack *a);
 void		dl_lstadd_back(t_stack *a, char *line, int start, int end);
+void		dl_lstdelnode(t_node *node, t_stack *stack);
 int			dl_lstsize(t_stack *stack);
 
 #endif

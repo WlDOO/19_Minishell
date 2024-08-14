@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/02 14:47:39 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:46:50 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strchr2(const char *s, int c)
 	while (i <= ft_strlen(s))
 	{
 		if (str[i] == (unsigned char)c)
-			return (&str[i + 1]);
+			return (ft_strdup(&str[i + 1]));
 		i++;
 	}
 	return (NULL);
@@ -124,6 +124,8 @@ int	main(int ac, char **av, char **env)
 	t_stack	*stack;
 	t_env	*list_env;
 	t_sign *flag;
+	int i;
+	char **matrix;
 
 	(void)av;
 	(void)ac;
@@ -143,13 +145,22 @@ int	main(int ac, char **av, char **env)
 		lexer(stack, line, env, 0);
 		add_history(line);
 		printf_node(stack);
+		ft_expend(stack);
 		//ft_echo(stack);
-		//ft_cd(stack);
+		//ft_cd(list_env, stack);
 		//ft_pwd(stack);
 		//ft_exit(stack);
 		// printf_export(list_env);
-		// ft_export(list_env, stack);
-		// printf_export(list_env);
+			// ft_export(list_env, stack);
+			// matrix = list_to_matrix(list_env);
+			// matrix = trie_asci(matrix);
+			// i = 0;
+			// while (matrix[i])
+			// {
+			// 	printf("%s\n", matrix[i]);
+			// 	i++;
+			// }
+		//printf_export(list_env);
 		// ft_unset(list_env, stack);
 		// printf_env(list_env);
 		//printf_env(list_env);

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/01 15:53:48 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:12:48 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	lexer(t_stack *stack, char *line, char **env, int start)
 		{
 			start = i;
 			i++;
-			while (line[i] && line[i] != '"')
+			while (line[i] && line[i] != ' ')
 			{
 				i++;
 				if (line[i] == '"' && line[i + 1] == '"')

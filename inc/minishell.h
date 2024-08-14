@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/02 14:56:25 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:48:05 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 /*=======BULTINS=======*/
 
 void	ft_echo(t_stack *stack);
-void 	ft_cd(t_stack *stack);
+void 	ft_cd(t_env *env, t_stack *stack);
 void	ft_pwd(t_stack *stack);
 void	ft_exit(t_stack *stack);
 void	ft_export(t_env *env, t_stack *stack);
@@ -70,10 +70,15 @@ void	ft_unset(t_env *env, t_stack *stack);
 
 /*bultins utils*/
 int		ft_strcmp(char *st1, char *st2);
-int		check_egal(char *str);
+int		check_char(char *str, char c);
 char	*ft_strchr2(const char *s, int c);
 char	*ft_strcpy2(char *str, char c);
+int	ft_strcmp_before_char(char *st1, char *st2, char c);
+char	**list_to_matrix(t_env *env);
+char	**trie_asci(char **matrix);
 /*-------------*/
+
+void	ft_expend(t_stack *stack);
 
 /*======================*/
 

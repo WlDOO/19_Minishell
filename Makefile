@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/08/14 15:44:32 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/14 16:38:55 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ NC=\033[0m
 CC = cc
 
 MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/parser_utils.c src/heredoc.c src/parser/parser_utils2.c \
-			src/exec/exec.c src/exec/exec_utils.c \
+			src/exec/exec.c src/exec/exec_utils.c src/bultins/echo.c src/bultins/bultins_utils.c \
+			src/bultins/cd.c src/bultins/env.c src/bultins/exit.c src/bultins/export.c src/bultins/pwd.c src/bultins/unset.c \
 
 CFLAGS = -c -Wall -Werror -Wextra
 
@@ -58,13 +59,20 @@ all: $(NAME)
 
 $(NAME) : $(MY_OBJECTS)
 	@make -C $(LIBFT)
-	@make -C $(PRINTF)
 	@printf "                                               \r"
-	@echo "Linking..."
-	@cc $(MY_OBJECTS) $(LIBFT.A) $(PRINTF.A) -I/inc/ $(LINK) -o $(NAME)
+	@echo "																					 "
+	@echo "           _       _     _          _ _ "
+	@echo "          (_)     (_)   | |        | | |"
+	@echo " _ __ ___  _ _ __  _ ___| |__   ___| | |"
+	@echo "| '_   _ \| |  _ \| / __| '_ \ / _ \ | |"
+	@echo "| | | | | | | | | | \__ \ | | |  __/ | |"
+	@echo "|_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|"
+	@echo "                                                                                  "    	
+	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME) -fsanitize=address -g
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)/bultins
 	@mkdir -p $(OBJS_DIR)/parser
 	@mkdir -p $(OBJS_DIR)/exec
 	$(CC) $(CFLAGS) -I/inc/ -o $@ -c $<

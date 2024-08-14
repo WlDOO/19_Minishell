@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 14:47:56 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:31:27 by najeuneh         ###   ########.fr       */
+/*   Created: 2024/08/02 14:49:18 by sadegrae          #+#    #+#             */
+/*   Updated: 2024/08/02 14:57:47 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../../inc/minishell.h"
 
-size_t	ft_strlen(const char *s)
+void printf_env(t_env *list_env)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (s == NULL)
-		return (0);
-	str = (char *)s;
-	if (!str)
-		return (i);
-	while (str[i])
+	while (list_env != NULL)
 	{
-		i++;
+		if (list_env->flag == 1)
+		{
+			printf("%s=", list_env->attribut);
+			printf("%s\n", list_env->content);
+		}
+		list_env = list_env->next;
 	}
-	return (i);
 }

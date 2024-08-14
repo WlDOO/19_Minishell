@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 13:05:49 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:38:29 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <termios.h>
 #include <fcntl.h>
+# include <sys/stat.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include <readline/history.h>
@@ -77,4 +78,30 @@ void 	sig_for_ctrl_back_slash(int signal);
 void	rl_replace_line(const char *text, int clear_undo);
 
 /*-------*/
+
+/*=======BULTINS=======*/
+
+void	ft_echo(t_stack *stack);
+void 	ft_cd(t_env *env, t_stack *stack);
+void	ft_pwd(void);
+void	ft_exit(void);
+void	ft_export(t_env *env, t_stack *stack);
+void	printf_export(t_env *list_env);
+void	printf_env(t_env *list_env);
+void	ft_unset(t_env *env, t_stack *stack);
+
+/*bultins utils*/
+int		ft_strcmp(char *st1, char *st2);
+int		check_char(char *str, char c);
+char	*ft_strchr2(const char *s, int c);
+char	*ft_strcpy2(char *str, char c);
+int	ft_strcmp_before_char(char *st1, char *st2, char c);
+char	**list_to_matrix(t_env *env);
+char	**trie_asci(char **matrix);
+/*-------------*/
+
+void	ft_expend(t_stack *stack);
+
+/*======================*/
+
 #endif

@@ -40,6 +40,14 @@ typedef struct s_node
 	struct s_node	*prev;
 }				t_node;
 
+typedef struct s_env
+{
+	char			*content;
+	char			*attribut;
+	int				flag;/*1 si il a une valeur 0 si non*/
+	struct s_env	*next;
+}				t_env;
+
 typedef struct s_stack
 {
 	t_node	*up;

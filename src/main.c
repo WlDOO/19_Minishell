@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 12:39:46 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:36:53 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,71 @@ t_stack	*ft_init_dl(t_stack *stack)
 	stack->up = NULL;
 	stack->low = NULL;
 	return (stack);
+}
+
+char	*ft_strchr2(const char *s, int c)
+{
+	size_t		i;
+	char		*str;
+
+	str = (char *)s;
+	i = 0;
+	while (i <= ft_strlen(s))
+	{
+		if (str[i] == (unsigned char)c)
+			return (ft_strdup(&str[i + 1]));
+		i++;
+	}
+	return (NULL);
+}
+
+char	*ft_strcpy2(char *str, char c)
+{
+	int	i;
+	char *dst;
+	
+	i = 0;
+	while (str[i] != c)
+		i++;	
+	dst = malloc(sizeof(char) * (i + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (str[i] != c)
+	{
+		dst[i] = str[i];
+		i++;	
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+t_env	*list_new(char **matrix)
+{
+	t_env	*new;
+	t_env	*node;
+	t_env	*tmp;
+	int		i;
+
+	tmp = NULL;
+	i = 0;
+	while (matrix[i])
+	{
+		new = malloc(sizeof(*new));
+		if (!new)
+			return (free(tmp), NULL);
+		new->content = ft_strchr2(matrix[i], '=');
+		new->attribut = ft_strcpy2(matrix[i], '=');
+		new->flag = 1;
+		new->next = NULL;
+		if (!tmp)
+			tmp = new;
+		else
+			node->next = new;
+		node = new;
+		i++;
+	}
+	return (tmp);
 }
 
 void	printf_node(t_stack *stack)
@@ -58,11 +123,13 @@ int	main(int ac, char **av, char **env)
 {
 	char	*line;
 	t_stack	*stack;
+	t_env	*list_env;
 	t_sign *flag;
 
 	(void)av;
 	(void)ac;
 	stack = NULL;
+	list_env = list_new(env);
 	stack = ft_init_dl(stack);
 	flag = malloc(sizeof(t_sign));
 	ft_control();
@@ -77,6 +144,25 @@ int	main(int ac, char **av, char **env)
 		lexer(stack, line, env, 0);
 		add_history(line);
 		printf_node(stack);
+		ft_expend(stack);
+		//ft_echo(stack);
+		//ft_cd(list_env, stack);
+		//ft_pwd(stack);
+		//ft_exit(stack);
+		// printf_export(list_env);
+			// ft_export(list_env, stack);
+			// matrix = list_to_matrix(list_env);
+			// matrix = trie_asci(matrix);
+			// i = 0;
+			// while (matrix[i])
+			// {
+			// 	printf("%s\n", matrix[i]);
+			// 	i++;
+			// }
+		//printf_export(list_env);
+		// ft_unset(list_env, stack);
+		// printf_env(list_env);
+		//printf_env(list_env);
 		free_stack(stack);
 	}
 }

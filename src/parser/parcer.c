@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:33:03 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:43:02 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_path2(char **str, char *str2)
 	{
 		str[j] = ft_strjoin(str[j], "/");
 		str[j] = ft_strjoin(str[j], str2);
-		if (access(str[j], F_OK | X_OK) == 0)
+		if (access(str[j], X_OK) == 0)
 		{
 			cmp = ft_strdup(str[j]);
 			ft_free_all(str);
@@ -52,11 +52,6 @@ char	*ft_path(char *line, char **env)
 	char	*cmp;
 
 	cmp = NULL;
-	if (access(line, F_OK | X_OK) == 0)
-	{
-		cmp = ft_strdup(line);
-		return (cmp);
-	}
 	i = ft_checkpath(env);
 	if (i == -1)
 		return (0);
@@ -75,7 +70,7 @@ void	ft_parser(t_stack *stack, char **env)
 	while (node != NULL)
 	{
 		node->flag = 0;
-		if (check_sep(node->content[0], "|&<>()$`") == 0)
+		if (check_sep(node->content[0], "|<>") == 0)
 			node = ft_flagcheck(node);
 		node = node->next;
 	}
@@ -88,7 +83,13 @@ void	ft_parser(t_stack *stack, char **env)
 			node->cmd = ft_path(node->content, env);
 			if (node->cmd != NULL)
 				node->flag = 8;
+			if (node->flag == 8)
+			{
+				while (node != NULL && node->flag != 1)
+					node = node->next;
+			}
 		}
+		if (node != NULL)
 		node = node->next;
 	}
 	ft_parser2(stack);
@@ -132,6 +133,7 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 			if (node != NULL)
 				node = node->next;
 		}
+		ft_checkcmd(stack);
 		ft_suite_node(stack, in, out, ++i);
 		if (node != NULL)
 			node = node->next;

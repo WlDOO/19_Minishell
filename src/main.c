@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:43:19 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:09:32 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	printf_node(t_stack *stack)
 	node = stack->up;
 	while (node != NULL)
 	{
-		printf("|| %s || %s ||\n", node->cmd, node->in);
 		printf("// %s %d %d//\n", node->content, node->flag, node->bultin);
 		node = node->next;
 	}
@@ -138,10 +137,11 @@ int	main(int ac, char **av, char **env)
 		line = readline("minishell$ ");
 		if  (line == NULL || ft_strncmp(line, "exit", 4) == 0)
 		{
+			free_stack(stack);
 			printf("\rexit\n");
 			exit(1);
 		}
-		lexer(stack, line, env, 0);
+		lexer(stack, line, env, 0,list_env);
 		add_history(line);
 		printf_node(stack);
 		free_stack(stack);

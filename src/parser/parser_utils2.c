@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:24:22 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:36:00 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ void	ft_clear_all(t_stack *stack)
 				tmp = ft_strjoin(tmp, " ");
 				tmp3 = tmp3->next;
 			}
-			free (tmp3);
 			node->full_cmd = ft_split(tmp, ' ');
+			while (node != NULL && node->flag != 1)
+				node = node->next;
 		}
-		else if (node->flag == 8 && node->next == NULL)
+		else if (node->flag)
+		{
 			node->full_cmd = ft_split(node->content, ' ');
+		}
 		if (node != NULL)
 			node = node->next;
 	}
@@ -46,6 +49,54 @@ void	ft_clear_all(t_stack *stack)
 	{
 		if (node->flag != 8 && node->flag != 1)
 			dl_lstdelnode(node, stack);
+		if (node != NULL)
+			node = node->next;
+	}
+}
+
+void	ft_checkcmd(t_stack *stack)
+{
+	int		count;
+	t_node *node;
+	int	i = 0;
+	count = 0;
+	node = stack->up;
+	while (node != NULL)
+	{
+		count = 0;
+		while (node != NULL && node->flag != 1)
+		{
+			if (node->flag == 8)
+				count++;
+			node = node->next;
+		}
+		if (node != NULL && node->flag == 1)
+			i++;
+		if (count == 0)
+			ft_checkflag0(stack, i);
+		if (node != NULL)
+			node = node->next;
+	}
+}
+
+void	ft_checkflag0(t_stack *stack, int i)
+{
+	t_node *node;
+
+	node = stack->up;
+	while (node != NULL && i != 0)
+	{
+		if (node->flag == 1)
+			i--;
 		node = node->next;
+	}
+	while (node != NULL && node->flag != 1)
+	{
+		if ((node->flag == 0 && node->prev == NULL) || (node->flag == 0 && node->prev->flag != 3 && node->prev->flag != 4))
+		{
+			node->flag = 8;
+			break ;
+		}
+		node = node->next;	
 	}
 }

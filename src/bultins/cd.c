@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/14 16:37:34 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/14 20:00:30 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,15 @@ void ft_cd_secur(char *next_pwd, char *pwd)
 		copy_pwd(next_pwd, pwd, dst);
 }
 
-void ft_cd(t_env *env, t_stack *stack)
+void ft_cd(t_env *env, t_node *node)
 {
-	t_node	*node;
 	char 	*pwd;
 
-	node = stack->up;
-	if (node->next != NULL)
+	printf("node;%s\n", node->content);
+	if (node->full_cmd[1] != NULL)
 	{
 		pwd = getcwd(NULL, 0);
-		node = node->next;
-		ft_cd_secur(node->content, pwd);
+		ft_cd_secur(node->full_cmd[1], pwd);
 	}
 	else
 	{

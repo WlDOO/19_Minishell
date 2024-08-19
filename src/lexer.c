@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:33:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:40:53 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	check_sep(char c, char *charset)
 	return (1);
 }
 
-void	lexer(t_stack *stack, char *line, char **env, int start)
+void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 {
 	int		i;
 
@@ -55,20 +55,20 @@ void	lexer(t_stack *stack, char *line, char **env, int start)
 	}
 	ft_parser(stack, env);
 	
-	exec(stack, env);
+	exec(stack, envp);
 }
 
 int	lexer_suite(t_stack *stack, char *line, int start, int i)
 {
-	if (line[i] && check_sep(line[i], "|&<>()$`") == 1)
+	if (line[i] && check_sep(line[i], "|&<>()`") == 1)
 	{
 		start = i;
-		while (line[i] && check_sep(line[i], "|&<>()$` ") == 1
+		while (line[i] && check_sep(line[i], "|&<>()` ") == 1
 			&& line[i] != '"')
 		{
 			i++;
 			if (line[i] == '"' && line[i] != 32
-				&& check_sep(line[i], "|&<>()$`") == 1)
+				&& check_sep(line[i], "|&<>()`") == 1)
 			{
 				while (line[i] && line[i] != 34)
 				{

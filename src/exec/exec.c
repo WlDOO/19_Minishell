@@ -6,13 +6,13 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 15:45:15 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:54:12 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	exec(t_stack *stack, char **env)
+int	exec(t_stack *stack, t_env *env)
 {
 	t_node	*node;
 	int		count;
@@ -22,16 +22,10 @@ int	exec(t_stack *stack, char **env)
 	count = ft_countcmd(stack);
 	if (count == 1)
 	{
-		ft_check_fd(node);
 		pid = fork();
-		if (node->in_fd != -1 && node->out_fd != -1 && pid == 0)
-			simple_cmd(node, node->in_fd, node->out_fd, env);
-		else if(node->in_fd == -1 && node->out_fd == -1 && pid == 0)
+		if (pid == 0)
 			simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
-		else if(node->in_fd == -1 && pid == 0)
-			simple_cmd(node, STDIN_FILENO, node->out_fd, env);
-		else if(node->out_fd == -1 && pid == 0)
-			simple_cmd(node, node->in_fd, STDOUT_FILENO, env);
+		
 	}
 	else if (count > 1)
 		multi_cmd(stack, env);
@@ -40,7 +34,7 @@ int	exec(t_stack *stack, char **env)
 	return (0);
 }
 
-int	multi_cmd(t_stack *stack, char **env)
+int	multi_cmd(t_stack *stack, t_env *env)
 {
 	t_node	*node;
 	int	pipee[2];
@@ -68,6 +62,7 @@ int	multi_cmd(t_stack *stack, char **env)
 			{
 				close(prev_fd);
 				prev_fd = pipee[0];
+				close(pipee[1]);
 			}
 		}
 		node = node->next;
@@ -75,10 +70,9 @@ int	multi_cmd(t_stack *stack, char **env)
 	return (0);
 }
 
-int	simple_cmd(t_node *node,int in_pipe, int out_pipe, char **env)
+int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 {
 	ft_check_fd(node);
-	(void)env;
 	if (node->in_fd != -1)
 	{
 		if (dup2(node->in_fd, STDIN_FILENO) == -1)
@@ -86,6 +80,7 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, char **env)
 			perror("Error\n");
 			exit(1);
 		}
+		close(node->in_fd);
 	}
 	else if (dup2(in_pipe, STDIN_FILENO) == -1)
 	{
@@ -99,17 +94,17 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, char **env)
 			perror("Error\n");
 			exit(1);
 		}
+		close(node->out_fd);
 	}
 	else if (dup2(out_pipe, STDOUT_FILENO) == -1)
 	{
-		perror("AAAAA\n");
 		perror("Error\n");
 		exit(1);
 	}
-	if (out_pipe > 1)
-		close (out_pipe);
-	if (execve(node->cmd, node->full_cmd, NULL) == -1)
-		return (0);
+	// if (node->bultin == 1)
+	// 	ft_use_bultin(node, env);
+	if (execve(node->cmd, node->full_cmd, list_to_matrix(env)) == -1)
+		return (printf("minishell: %s: command not found\n", node->content), 0);
 	return (1);
 }
 
@@ -121,7 +116,6 @@ void	ft_check_fd(t_node *node)
 		if (node->in_fd == -1)
 		{
 			printf("zsh: no such file or directory: %s\n", node->in);
-			return ;
 		}
 	}
 	else
@@ -132,7 +126,6 @@ void	ft_check_fd(t_node *node)
 		if (node->out_fd == -1)
 		{
 			printf("zsh: no such file or directory: %s\n", node->out);
-			return ;
 		}
 	}
 	else

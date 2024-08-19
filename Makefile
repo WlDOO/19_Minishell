@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/08/14 16:38:55 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/19 15:59:10 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(NAME) : $(MY_OBJECTS)
 	@echo "| | | | | | | | | | \__ \ | | |  __/ | |"
 	@echo "|_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|"
 	@echo "                                                                                  "    	
-	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME) -fsanitize=address -g
+	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)

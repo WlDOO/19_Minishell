@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:38:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:31:28 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		heredoc(t_node *node);
 char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
 void	printf_node(t_stack *stack);
-void	lexer(t_stack *stack, char *line, char **env, int start);
+void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp);
 int		lexer_suite(t_stack *stack, char *line, int start, int i);
 int		lexer_suite2(t_stack *stack, char *line, int start, int i);
 
@@ -56,16 +56,19 @@ void	ft_parser2(t_stack *stack);
 void	ft_finish_node(t_stack *stack, char *in, char *out, int i);
 void	ft_suite_node(t_stack *stack, char *in, char *out, int i);
 void	ft_clear_all(t_stack *stack);
+void	ft_checkflag0(t_stack *stack, int i);
+void	ft_checkcmd(t_stack *stack);
 
 /*-------*/
 
 /* exec */
 
 int		ft_countcmd(t_stack *stack);
-int		exec(t_stack *stack, char **env);
+int		exec(t_stack *stack, t_env *envp);
 void	ft_check_fd(t_node *node);
-int		multi_cmd(t_stack *stack, char ** env);
-int		simple_cmd(t_node *node,int in_pipe, int out_pipe, char **env);
+int		multi_cmd(t_stack *stack, t_env *env);
+void	ft_use_bultin(t_node *node, t_env *env);
+int		simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env);
 
 
 /*-------*/
@@ -81,8 +84,8 @@ void	rl_replace_line(const char *text, int clear_undo);
 
 /*=======BULTINS=======*/
 
-void	ft_echo(t_stack *stack);
-void 	ft_cd(t_env *env, t_stack *stack);
+void	ft_echo(t_node *node);
+void 	ft_cd(t_env *env, t_node *node);
 void	ft_pwd(void);
 void	ft_exit(void);
 void	ft_export(t_env *env, t_stack *stack);

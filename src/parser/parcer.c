@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/19 16:43:02 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:20:37 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ char	*ft_path2(char **str, char *str2)
 	return (ft_free_all(str), NULL);
 }
 
-char	*ft_path(char *line, char **env)
+char	*ft_path(char *line, t_env *lst_env)
 {
 	int		i;
 	char	**str;
 	char	*cmp;
-
+	char	**env;
 	cmp = NULL;
+
+	env = list_to_matrix(lst_env);
 	i = ft_checkpath(env);
 	if (i == -1)
 		return (0);
@@ -62,7 +64,7 @@ char	*ft_path(char *line, char **env)
 	return (cmp);
 }
 
-void	ft_parser(t_stack *stack, char **env)
+void	ft_parser(t_stack *stack, t_env *env)
 {
 	t_node	*node;
 
@@ -100,6 +102,7 @@ void	ft_parser2(t_stack *stack)
 	t_node	*node;
 
 	node = stack->up;
+	ft_checkcmd(stack);
 	while (node != NULL)
 	{
 		node->in = NULL;
@@ -133,11 +136,11 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 			if (node != NULL)
 				node = node->next;
 		}
-		ft_checkcmd(stack);
 		ft_suite_node(stack, in, out, ++i);
 		if (node != NULL)
 			node = node->next;
 	}
+	printf_node(stack);
 	ft_clear_all(stack);
 }
 

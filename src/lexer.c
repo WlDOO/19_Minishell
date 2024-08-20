@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/19 16:40:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:12:02 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 {
 	int		i;
 
+	(void)env;
 	i = 0;
 	if (!line)
 		return;
@@ -53,7 +54,7 @@ void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 		else
 			i = lexer_suite(stack, line, start, i);
 	}
-	ft_parser(stack, env);
+	ft_parser(stack, envp);
 	
 	exec(stack, envp);
 }

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/15 14:09:32 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:21:15 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,13 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		line = readline("minishell$ ");
-		if  (line == NULL || ft_strncmp(line, "exit", 4) == 0)
+		if  (line == NULL)
 		{
 			free_stack(stack);
 			printf("\rexit\n");
-			exit(1);
+			exit(0);
 		}
-		lexer(stack, line, env, 0,list_env);
+		lexer(stack, line, env, 0, list_env);
 		add_history(line);
 		printf_node(stack);
 		free_stack(stack);

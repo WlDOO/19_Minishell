@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:51:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/14 16:38:17 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/20 18:54:50 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_pwd(void)
 {
 	char *pwd;
 	
+	printf("aa\n");
 	pwd = getcwd(NULL, 0);
 	printf("%s\n", pwd);
 }

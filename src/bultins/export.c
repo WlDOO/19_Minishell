@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/05 19:15:47 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:59:28 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,16 +174,17 @@ char	*add_one_line_to_matrix(char *str, char *str2, int flag)
 }
 
 
-void ft_export(t_env *env, t_stack *stack)
+void ft_export(t_env *env, t_node *node)
 {
-	t_node	*node;
 	t_env *tmp;
 	// char **matrix;
 
-	//printf("fefefefefefefefefefef\n\n");
 	//matrix = list_to_matrix(env);
-	node = stack->up;
-	node = node->next;
+	if (node->full_cmd[1] == NULL)
+	{
+		printf_export(env);
+		return ;
+	}
 	if (!node)
 	{
 		return ;	
@@ -194,8 +195,7 @@ void ft_export(t_env *env, t_stack *stack)
 	}
 	while (env->next != NULL)
 		env = env->next;
-	tmp = malloc(sizeof(t_env*));
-	if (check_char(node->content, '=') == 1)
+	tmp = malloc(sizeof(t_env*));	if (check_char(node->content, '=') == 1)
 	{	
 		tmp->content = ft_strchr2(node->content, '=');
 		tmp->attribut = ft_strcpy2(node->content, '=');

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 14:20:53 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:46:26 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,6 +298,22 @@ char *check_first_sep(char *str)
 	return (dest);
 }
 
+char *check_dollar_interrogation(char *str)
+{
+	int i;
+	char *dest;
+	
+	i = 0;
+	while (str[i] != '$')
+		i++;
+	i++;
+	if (str[i] == '?')
+	{
+		dest = ft_itoa(g_exit_code);
+		return (dest);
+	}
+	return (str);
+}
 
 void	ft_expend(t_stack *stack, t_env *env)
 {
@@ -336,7 +352,6 @@ void	ft_expend(t_stack *stack, t_env *env)
 		{
 			while (env != NULL)
 			{
-
 				if (ft_strcmp(str->content + 1 + count, env->attribut) == 0)
 				{
 					printf("str 1: %s\n", env->content);
@@ -345,10 +360,13 @@ void	ft_expend(t_stack *stack, t_env *env)
 				}
 				env = env->next;
 			}
+			str->content = check_dollar_interrogation(str->content);
 			printf("str 2: %s\n", str->content);
 			return ;
 		}
+		//str->content = check_dollar_interrogation(str->content);
 		printf("str 3: %s\n", str->content);
+		str->content = dest;
 		return ;
 	}
 	else
@@ -368,6 +386,7 @@ void	ft_expend(t_stack *stack, t_env *env)
 			}
 			env = env->next;
 		}
+		str->content = check_dollar_interrogation(str->content);
 	}
 	return ;
 }

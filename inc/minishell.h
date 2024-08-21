@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/19 18:40:18 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:33:57 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_sign
 	int g_control;
 	char *tmp;
 }				t_sign;
+
+int g_exit_code;
 
 /* lexer */
 

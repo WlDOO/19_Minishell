@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 15:28:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:20:02 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,6 +311,7 @@ char *check_dollar_interrogation(char *str)
 	if (str[i] == '?')
 	{
 		dest = ft_itoa(g_exit_code);
+		g_exit_code = 0;
 		return (dest);
 	}
 	return (str);
@@ -324,15 +325,21 @@ void	ft_expend(t_stack *stack, t_env *env)
 	char *first_sep;
 	t_node	*str;
 
+	if (stack->up->next == NULL)
+		return ;
 	str = stack->up;
 	str = str->next;
 	count = count_guillmet(str->content);
 	first_sep = check_first_sep(str->content);
 	if (count == -2) /*il y a que des guillmet donc doit rien faire*/
+	{
+		g_exit_code = 0;
 		return ;
+	}
 	if (count == -1) /*doit retourner une nouvelle ligne avec >*/
 	{
 		printf("minishell: syntax error: unexpected end of file\n");
+		g_exit_code = 1;
 		return ;
 	}
 	if (count != 0)
@@ -355,21 +362,25 @@ void	ft_expend(t_stack *stack, t_env *env)
 				if (ft_strcmp(str->content + 1 + count, env->attribut) == 0)
 				{
 					str->content = env->content;
+					g_exit_code = 0;
 					return ;
 				}
 				env = env->next;
 			}
 			str->content = check_dollar_interrogation(str->content);
+			g_exit_code = 0;
 			return ;
 		}
 		//str->content = check_dollar_interrogation(str->content);
 		str->content = dest;
+		g_exit_code = 0;
 		return ;
 	}
 	else
 	{
 		if (str->content[0] != '$')
 		{
+			g_exit_code = 0;
 			return ;
 		}
 		while (env != NULL)
@@ -377,11 +388,13 @@ void	ft_expend(t_stack *stack, t_env *env)
 			if (ft_strcmp(str->content + 1, env->attribut) == 0)
 			{
 				str->content = env->content;
+				g_exit_code = 0;
 				return ;
 			}
 			env = env->next;
 		}
 		str->content = check_dollar_interrogation(str->content);
 	}
+	g_exit_code = 0;
 	return ;
 }

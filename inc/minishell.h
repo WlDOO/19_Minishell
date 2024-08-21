@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:13:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:40:08 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	ft_echo(t_node *node);
 void 	ft_cd(t_env *env, t_node *node);
 void	ft_pwd(void);
-void	ft_exit(void);
+void    ft_exit(char **str);
 void	ft_export(t_env *env, t_node *node);
 void	printf_export(t_env *list_env);
 void	printf_env(t_env *list_env);

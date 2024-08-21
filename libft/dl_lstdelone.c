@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dl_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:56:26 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:10:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:31:51 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	dl_lstdelback(t_stack *a)
 void	dl_lstdelnode(t_node *node, t_stack *stack)
 {
 	t_node	*tmp;
-	
+
 	tmp = node;
 	if (!node)
 		return ;
@@ -51,5 +51,4 @@ void	dl_lstdelnode(t_node *node, t_stack *stack)
 		dl_lstdelback(stack);
 	else
 		tmp->next->prev = node->prev;
-	// free(tmp);
 }

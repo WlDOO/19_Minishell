@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:20:23 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:18:20 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	exec(t_stack *stack, t_env *env)
 		if (node->bultin == 1)
 		{
 			if (pid == 0)
+			{
+				g_exit_code = 1;
 				exit (1);
+			}
 			else
 				ft_use_bultin(node, env);
 		}
@@ -85,6 +88,7 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 		if (dup2(node->in_fd, STDIN_FILENO) == -1)
 		{
 			perror("Error\n");
+			g_exit_code = 1;
 			exit(1);
 		}
 		close(node->in_fd);
@@ -92,6 +96,7 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 	else if (dup2(in_pipe, STDIN_FILENO) == -1)
 	{
 		perror("Error\n");
+		g_exit_code = 1;
 		exit(1);
 	}
 	if (node->out_fd != -1)
@@ -99,6 +104,7 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 		if (dup2(node->out_fd, STDOUT_FILENO) == -1)
 		{
 			perror("Error\n");
+			g_exit_code = 1;
 			exit(1);
 		}
 		close(node->out_fd);
@@ -106,6 +112,7 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 	else if (dup2(out_pipe, STDOUT_FILENO) == -1)
 	{
 		perror("Error\n");
+		g_exit_code = 1;
 		exit(1);
 	}
 	if (node->bultin == 1)
@@ -113,6 +120,7 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 	else if (execve(node->cmd, node->full_cmd, list_to_matrix(env)) == -1)
 	{
 		printf("minishell: %s: command not found\n", node->content);
+		g_exit_code = 127;
 		exit(127);
 	}
 	return (0);
@@ -126,6 +134,7 @@ void	ft_check_fd(t_node *node)
 		if (node->in_fd == -1)
 		{
 			printf("zsh: no such file or directory: %s\n", node->in);
+			g_exit_code = 1;
 			exit(1);
 		}
 	}
@@ -137,6 +146,7 @@ void	ft_check_fd(t_node *node)
 		if (node->out_fd == -1)
 		{
 			printf("zsh: no such file or directory: %s\n", node->out);
+			g_exit_code = 1;
 			exit(1);
 		}
 	}

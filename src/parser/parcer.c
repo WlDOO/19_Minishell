@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:08:02 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:39:13 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	ft_parser2(t_stack *stack, t_env *list_env)
 {
 	t_node	*node;
 
+	(void)list_env;
 	node = stack->up;
 	ft_checkcmd(stack);
 	while (node != NULL)
@@ -109,7 +110,7 @@ void	ft_parser2(t_stack *stack, t_env *list_env)
 		node->out = NULL;
 		node->bultin = 0;
 		if (node->flag == 8)
-			ft_bultincheck(node, list_env);
+			ft_bultincheck(node);
 		node = node->next;
 	}
 	

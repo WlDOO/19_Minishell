@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/20 14:59:28 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:08:15 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,7 @@ char	**list_to_matrix(t_env *env)
 			j++;
 		}
 		if (env->flag == 0)
-		{
 			matrix[i][j] = '\0';
-		}
 		while (env->flag == 1 && env->content[k] != '\0')
 		{
 			if (k == 0)
@@ -121,7 +119,6 @@ char	**list_to_matrix(t_env *env)
 		k = 0;
 		j = 0;
 	}
-	//printf("\n\n\n\ncou\n\n");
 	matrix[i] = NULL;
 	return (matrix);
 }
@@ -177,25 +174,24 @@ char	*add_one_line_to_matrix(char *str, char *str2, int flag)
 void ft_export(t_env *env, t_node *node)
 {
 	t_env *tmp;
-	// char **matrix;
 
-	//matrix = list_to_matrix(env);
 	if (node->full_cmd[1] == NULL)
 	{
 		printf_export(env);
+		g_exit_code = 0;
 		return ;
 	}
-	if (!node)
+	if (!node || verif(env, node->content) == 1)
 	{
-		return ;	
-	}
-	if (verif(env, node->content) == 1)
-	{
+		g_exit_code = 1;
 		return ;
 	}
 	while (env->next != NULL)
 		env = env->next;
-	tmp = malloc(sizeof(t_env*));	if (check_char(node->content, '=') == 1)
+	tmp = malloc(sizeof(t_env*));
+	if (!tmp)
+		return ;
+	if (check_char(node->content, '=') == 1)
 	{	
 		tmp->content = ft_strchr2(node->content, '=');
 		tmp->attribut = ft_strcpy2(node->content, '=');
@@ -209,4 +205,5 @@ void ft_export(t_env *env, t_node *node)
 	tmp->next = NULL;
 	env->next = tmp;
 	env = env->next;
+	g_exit_code = 0;
 }

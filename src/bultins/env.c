@@ -6,13 +6,13 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/14 17:43:25 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:24:47 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void printf_env(t_env *list_env)
+void	printf_env(t_env *list_env)
 {
 	while (list_env != NULL)
 	{
@@ -23,4 +23,5 @@ void printf_env(t_env *list_env)
 		}
 		list_env = list_env->next;
 	}
+	g_exit_code = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/20 14:21:12 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:24:03 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ void	ft_unset(t_env *env, t_node *node)
 			if (env->next->next == NULL)
 			{
 				env->next = NULL;
-				break;
+				break ;
 			}
 			free(env->next);
 			env->next = env->next->next;
 		}
 		env = env->next;
 	}
+	g_exit_code = 0;
 }

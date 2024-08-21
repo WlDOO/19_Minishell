@@ -6,13 +6,12 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:52:01 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/06 14:36:29 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:26:09 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/*return 1 si il a trouver le charactere sion return 0*/
 int	check_char(char *str, char c)
 {
 	int	i;
@@ -61,13 +60,12 @@ char	**trie_asci(char **matrix)
 {
 	int		i;
 	char	*swp;
-	int len;
-	
+	int		len;
+
 	i = 0;
 	len = 0;
 	while (matrix[len])
 		len++;
-	//printf("matrix1:%s\nmatrix2:%s\n", matrix[i], matrix[i + 1]);
 	while (i < len - 1)
 	{
 		if (ft_strcmp(matrix[i], matrix[i + 1]) > 0)

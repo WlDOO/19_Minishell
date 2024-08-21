@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 16:38:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:40:18 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		heredoc(t_node *node);
 char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
 void	printf_node(t_stack *stack);
-void	lexer(t_stack *stack, char *line, char **env, int start);
+void	lexer(t_stack *stack, char *line, char **env, int start, t_env *env2);
 int		lexer_suite(t_stack *stack, char *line, int start, int i);
 int		lexer_suite2(t_stack *stack, char *line, int start, int i);
 
@@ -45,14 +45,14 @@ int		lexer_suite2(t_stack *stack, char *line, int start, int i);
 
 /* parser */
 
-void	ft_parser(t_stack *stack, char **env);
+void	ft_parser(t_stack *stack, char **env, t_env *list_env);
 int		ft_checkpath(char **str);
 char	*ft_path(char *line, char **env);
 char	*ft_path2(char **str, char *str2);
 t_node	*ft_flagcheck(t_node *node);
 void	ft_free_all(char **str);
-void	ft_bultincheck(t_node *node);
-void	ft_parser2(t_stack *stack);
+void	ft_bultincheck(t_node *node, t_env *list_env);
+void	ft_parser2(t_stack *stack, t_env *list_env);
 void	ft_finish_node(t_stack *stack, char *in, char *out, int i);
 void	ft_suite_node(t_stack *stack, char *in, char *out, int i);
 void	ft_clear_all(t_stack *stack);
@@ -81,7 +81,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 
 /*=======BULTINS=======*/
 
-void	ft_echo(t_stack *stack);
+void	ft_echo(t_node *node);
 void 	ft_cd(t_env *env, t_stack *stack);
 void	ft_pwd(void);
 void	ft_exit(void);
@@ -100,7 +100,7 @@ char	**list_to_matrix(t_env *env);
 char	**trie_asci(char **matrix);
 /*-------------*/
 
-void	ft_expend(t_stack *stack);
+void	ft_expend(t_stack *stack, t_env *env);
 
 /*======================*/
 

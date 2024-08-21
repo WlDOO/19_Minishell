@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/14 15:44:41 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/19 19:28:10 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ int	ft_checkpath(char **str)
 	return (-1);
 }
 
-void	ft_bultincheck(t_node *node)
+void	ft_bultincheck(t_node *node, t_env *list_env)
 {
 	node->bultin = 0;
 	if (ft_strncmp(node->content, "echo", 4) == 0)
+	{
 		node->bultin = 1;
+		//ft_echo(node);
+	}
 	else if (ft_strncmp(node->content, "cd", 2) == 0)
 		node->bultin = 1;
 	else if (ft_strncmp(node->content, "pwd", 3) == 0)
@@ -53,7 +56,10 @@ void	ft_bultincheck(t_node *node)
 	else if (ft_strncmp(node->content, "unset", 5) == 0)
 		node->bultin = 1;
 	else if (ft_strncmp(node->content, "env", 3) == 0)
+	{
 		node->bultin = 1;
+		printf_env(list_env);
+	}
 	else if (ft_strncmp(node->content, "exit", 4) == 0)
 		node->bultin = 1;
 }

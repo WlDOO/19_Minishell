@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
+#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/08/19 15:59:10 by najeuneh         ###   ########.fr        #
-=======
-#    Updated: 2024/08/14 18:51:16 by sadegrae         ###   ########.fr        #
->>>>>>> suite_expender
+#    Updated: 2024/08/21 15:10:12 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

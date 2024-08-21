@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/20 15:19:14 by najeuneh         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/21 14:33:57 by sadegrae         ###   ########.fr       */
->>>>>>> suite_expender
+/*   Updated: 2024/08/21 15:13:16 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +31,7 @@ typedef struct s_sign
 	char *tmp;
 }				t_sign;
 
-<<<<<<< HEAD
 int	g_exit_code;
-=======
-int g_exit_code;
->>>>>>> suite_expender
 
 /* lexer */
 
@@ -47,11 +39,7 @@ int		heredoc(t_node *node);
 char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
 void	printf_node(t_stack *stack);
-<<<<<<< HEAD
 void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp);
-=======
-void	lexer(t_stack *stack, char *line, char **env, int start, t_env *env2);
->>>>>>> suite_expender
 int		lexer_suite(t_stack *stack, char *line, int start, int i);
 int		lexer_suite2(t_stack *stack, char *line, int start, int i);
 
@@ -59,17 +47,13 @@ int		lexer_suite2(t_stack *stack, char *line, int start, int i);
 
 /* parser */
 
-<<<<<<< HEAD
 void	ft_parser(t_stack *stack, t_env *env);
-=======
-void	ft_parser(t_stack *stack, char **env, t_env *list_env);
->>>>>>> suite_expender
 int		ft_checkpath(char **str);
 char	*ft_path(char *line, t_env *lst_env);
 char	*ft_path2(char **str, char *str2);
 t_node	*ft_flagcheck(t_node *node);
 void	ft_free_all(char **str);
-void	ft_bultincheck(t_node *node, t_env *list_env);
+void	ft_bultincheck(t_node *node);
 void	ft_parser2(t_stack *stack, t_env *list_env);
 void	ft_finish_node(t_stack *stack, char *in, char *out, int i);
 void	ft_suite_node(t_stack *stack, char *in, char *out, int i);
@@ -103,11 +87,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 /*=======BULTINS=======*/
 
 void	ft_echo(t_node *node);
-<<<<<<< HEAD
 void 	ft_cd(t_env *env, t_node *node);
-=======
-void 	ft_cd(t_env *env, t_stack *stack);
->>>>>>> suite_expender
 void	ft_pwd(void);
 void	ft_exit(void);
 void	ft_export(t_env *env, t_node *node);

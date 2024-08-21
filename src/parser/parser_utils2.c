@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/19 18:36:00 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:27:48 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_clear_all(t_stack *stack)
 	}
 	node = stack->up;
 	if (node->flag == 3 && node->prev == NULL && node->next->next == NULL)
+		return ;
+	if (node->flag == 5 && node->prev == NULL && node->next->next == NULL)
 		return ;
 	else if (node->flag == 4 && node->prev == NULL && node->next->next == NULL)
 	{

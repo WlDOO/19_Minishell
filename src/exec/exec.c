@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/20 19:05:26 by najeuneh         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/16 18:03:56 by sadegrae         ###   ########.fr       */
->>>>>>> suite_expender
+/*   Updated: 2024/08/21 15:20:23 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +24,12 @@ int	exec(t_stack *stack, t_env *env)
 	{
 		pid = fork();
 		if (node->bultin == 1)
-			ft_use_bultin(node, env);
+		{
+			if (pid == 0)
+				exit (1);
+			else
+				ft_use_bultin(node, env);
+		}
 		else if (pid == 0)
 			g_exit_code = simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
 		

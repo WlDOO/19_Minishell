@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/20 19:03:18 by najeuneh         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/16 16:00:48 by sadegrae         ###   ########.fr       */
->>>>>>> suite_expender
+/*   Updated: 2024/08/21 15:09:52 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,28 +144,6 @@ int	main(int ac, char **av, char **env)
 		lexer(stack, line, env, 0, list_env);
 		add_history(line);
 		printf_node(stack);
-<<<<<<< HEAD
-=======
-		//ft_expend(stack);
-		//ft_echo(stack);
-		//ft_cd(list_env, stack);
-		//ft_pwd(stack);
-		//ft_exit(stack);
-		// printf_export(list_env);
-			// ft_export(list_env, stack);
-			// matrix = list_to_matrix(list_env);
-			// matrix = trie_asci(matrix);
-			// i = 0;
-			// while (matrix[i])
-			// {
-			// 	printf("%s\n", matrix[i]);
-			// 	i++;
-			// }
-		//printf_export(list_env);
-		// ft_unset(list_env, stack);
-		// printf_env(list_env);
-		//printf_env(list_env);
->>>>>>> suite_expender
 		free_stack(stack);
 	}
 }

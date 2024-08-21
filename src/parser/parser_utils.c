@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/20 17:11:04 by najeuneh         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/19 19:28:10 by sadegrae         ###   ########.fr       */
->>>>>>> suite_expender
+/*   Updated: 2024/08/21 15:19:01 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +39,12 @@ int	ft_checkpath(char **str)
 	return (-1);
 }
 
-void	ft_bultincheck(t_node *node, t_env *list_env)
+void	ft_bultincheck(t_node *node)
 {
 	node->bultin = 0;
 	if (ft_strncmp(node->content, "echo", 4) == 0)
 	{
 		node->bultin = 1;
-		//ft_echo(node);
 	}
 	else if (ft_strncmp(node->content, "cd", 2) == 0)
 		node->bultin = 1;
@@ -62,7 +57,6 @@ void	ft_bultincheck(t_node *node, t_env *list_env)
 	else if (ft_strncmp(node->content, "env", 3) == 0)
 	{
 		node->bultin = 1;
-		printf_env(list_env);
 	}
 	else if (ft_strncmp(node->content, "exit", 4) == 0)
 		node->bultin = 1;
@@ -74,12 +68,12 @@ t_node	*ft_flagcheck(t_node *node)
 		node->flag = 1;
 	else if (node->content[0] == '&')
 		node->flag = 2;
+	else if (ft_strcmp(node->content, "<<") == 0)
+		node->flag = 5;
 	else if (node->content[0] == '<')
 		node->flag = 3;
 	else if (node->content[0] == '>')
 		node->flag = 4;
-	else if (ft_strcmp(node->content, "<<") == 0)
-		node->flag = 5;
 	else if (node->content[0] == ' ')
 		node->flag = -1;
 	return (node);

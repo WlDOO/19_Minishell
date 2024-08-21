@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/20 17:12:02 by najeuneh         ###   ########.fr       */
-=======
-/*   Updated: 2024/08/19 19:10:28 by sadegrae         ###   ########.fr       */
->>>>>>> suite_expender
+/*   Updated: 2024/08/21 15:10:39 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +26,11 @@ char	check_sep(char c, char *charset)
 	return (1);
 }
 
-<<<<<<< HEAD
 void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 {
 	int		i;
 
 	(void)env;
-=======
-void	lexer(t_stack *stack, char *line, char **env, int start, t_env *env2)
-{
-	int		i;
-	t_node *node;
-	
-	node = stack->up;
->>>>>>> suite_expender
 	i = 0;
 	if (!line)
 		return;
@@ -67,22 +54,9 @@ void	lexer(t_stack *stack, char *line, char **env, int start, t_env *env2)
 		else
 			i = lexer_suite(stack, line, start, i);
 	}
-<<<<<<< HEAD
+	ft_expend(stack, envp);
 	ft_parser(stack, envp);
-	
 	exec(stack, envp);
-=======
-	//(void)env2;
-	//printf("%s\n", node->full_cmd[0]);
-	// if (execve(node->cmd, node->full_cmd, NULL) == -1)
-	// {
-	// 	printf("okeyyyy\n");
-	// 	return ;
-	// }
-	ft_expend(stack, env2);
-	ft_parser(stack, env, env2);
-	exec(stack, env);
->>>>>>> suite_expender
 }
 
 int	lexer_suite(t_stack *stack, char *line, int start, int i)

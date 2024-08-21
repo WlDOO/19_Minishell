@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 14:46:26 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:28:50 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int count_guillmet(char *str)
 		}
 		else if ((ft_isalnum(str[i]) == 1 || str[i] == '$') &&  ft_isalnum(str[len]) == 1)
 			return (i);
+		else if (str[i] == '-')
+			return (-2);
 		else 
 			return (-1);
 	}
@@ -128,7 +130,6 @@ char	*check_sort_guillmet(char *str)
 				else
 				{
 					dest = ft_strjoin_expend(dest, "\"");
-					//printf("\ndest:%s\n", dest);
 				}
 				i++;
 			}
@@ -327,12 +328,11 @@ void	ft_expend(t_stack *stack, t_env *env)
 	str = str->next;
 	count = count_guillmet(str->content);
 	first_sep = check_first_sep(str->content);
-	//printf("first sep = %s\n", first_sep);
 	if (count == -2) /*il y a que des guillmet donc doit rien faire*/
 		return ;
 	if (count == -1) /*doit retourner une nouvelle ligne avec >*/
 	{
-		printf("erreur syntax\n");
+		printf("minishell: syntax error: unexpected end of file\n");
 		return ;
 	}
 	if (count != 0)
@@ -354,18 +354,15 @@ void	ft_expend(t_stack *stack, t_env *env)
 			{
 				if (ft_strcmp(str->content + 1 + count, env->attribut) == 0)
 				{
-					printf("str 1: %s\n", env->content);
 					str->content = env->content;
 					return ;
 				}
 				env = env->next;
 			}
 			str->content = check_dollar_interrogation(str->content);
-			printf("str 2: %s\n", str->content);
 			return ;
 		}
 		//str->content = check_dollar_interrogation(str->content);
-		printf("str 3: %s\n", str->content);
 		str->content = dest;
 		return ;
 	}
@@ -373,15 +370,13 @@ void	ft_expend(t_stack *stack, t_env *env)
 	{
 		if (str->content[0] != '$')
 		{
-			printf("str 4: %s\n", str->content);
 			return ;
 		}
 		while (env != NULL)
 		{
 			if (ft_strcmp(str->content + 1, env->attribut) == 0)
 			{
-				free(str->content);
-				printf("str 6: %s\n", env->content);
+				str->content = env->content;
 				return ;
 			}
 			env = env->next;

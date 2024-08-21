@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:56:26 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/13 17:52:14 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:10:50 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	dl_lstdelnode(t_node *node, t_stack *stack)
 	
 	tmp = node;
 	if (!node)
-		return (0);
+		return ;
 	if (node->prev == NULL)
 		dl_lstdelfront(stack);
 	else

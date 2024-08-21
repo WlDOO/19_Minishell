@@ -41,6 +41,8 @@ void	dl_lstdelnode(t_node *node, t_stack *stack)
 	t_node	*tmp;
 	
 	tmp = node;
+	if (!node)
+		return (0);
 	if (node->prev == NULL)
 		dl_lstdelfront(stack);
 	else

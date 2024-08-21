@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/20 16:22:03 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:05:26 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ int	simple_cmd(t_node *node,int in_pipe, int out_pipe, t_env *env)
 	if (node->bultin == 1)
 		ft_use_bultin(node, env);
 	else if (execve(node->cmd, node->full_cmd, list_to_matrix(env)) == -1)
-		return (printf("minishell: %s: command not found\n", node->content), 127);
+	{
+		printf("minishell: %s: command not found\n", node->content);
+		exit(127);
+	}
 	return (0);
 }
 

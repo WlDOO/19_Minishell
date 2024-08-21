@@ -45,9 +45,18 @@ void	ft_clear_all(t_stack *stack)
 			node = node->next;
 	}
 	node = stack->up;
+	if (node->flag == 3 && node->prev == NULL && node->next->next == NULL)
+		return ;
+	else if (node->flag == 4 && node->prev == NULL && node->next->next == NULL)
+	{
+		node->next->out_fd = open(node->next->content, O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (node->out_fd == -1)
+			printf("zsh: no such file or directory: %s\n", node->next->content);
+		return ;
+	}
 	while (node != NULL)
 	{
-		if (node->flag != 8 && node->flag != 1)
+		if (node != NULL && node->flag != 8 && node->flag != 1)
 			dl_lstdelnode(node, stack);
 		if (node != NULL)
 			node = node->next;

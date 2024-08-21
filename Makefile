@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
+#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/08/19 15:59:10 by najeuneh         ###   ########.fr        #
+=======
+#    Updated: 2024/08/14 18:51:16 by sadegrae         ###   ########.fr        #
+>>>>>>> suite_expender
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +26,11 @@ CC = cc
 MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/parser_utils.c src/heredoc.c src/parser/parser_utils2.c \
 			src/exec/exec.c src/exec/exec_utils.c src/bultins/echo.c src/bultins/bultins_utils.c \
 			src/bultins/cd.c src/bultins/env.c src/bultins/exit.c src/bultins/export.c src/bultins/pwd.c src/bultins/unset.c \
+			src/expender/expender.c \
 
 CFLAGS = -c -Wall -Werror -Wextra
 
-LINK = -L/Users/najeuneh/.brew/opt/readline/lib -I/Users/najeuneh/.brew/opt/readline/include -lreadline
+LINK = -L/Users/$(shell whoami)/.brew/opt/readline/lib -I/Users/$(shell whoami)/.brew/opt/readline/include -lreadline
 
 OBJS_DIR = obj/
 
@@ -73,6 +78,7 @@ $(NAME) : $(MY_OBJECTS)
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)/bultins
+	@mkdir -p $(OBJS_DIR)/expender
 	@mkdir -p $(OBJS_DIR)/parser
 	@mkdir -p $(OBJS_DIR)/exec
 	$(CC) $(CFLAGS) -I/inc/ -o $@ -c $<

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/08/20 17:12:02 by najeuneh         ###   ########.fr       */
+=======
+/*   Updated: 2024/08/19 19:10:28 by sadegrae         ###   ########.fr       */
+>>>>>>> suite_expender
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +30,20 @@ char	check_sep(char c, char *charset)
 	return (1);
 }
 
+<<<<<<< HEAD
 void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 {
 	int		i;
 
 	(void)env;
+=======
+void	lexer(t_stack *stack, char *line, char **env, int start, t_env *env2)
+{
+	int		i;
+	t_node *node;
+	
+	node = stack->up;
+>>>>>>> suite_expender
 	i = 0;
 	if (!line)
 		return;
@@ -54,9 +67,22 @@ void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 		else
 			i = lexer_suite(stack, line, start, i);
 	}
+<<<<<<< HEAD
 	ft_parser(stack, envp);
 	
 	exec(stack, envp);
+=======
+	//(void)env2;
+	//printf("%s\n", node->full_cmd[0]);
+	// if (execve(node->cmd, node->full_cmd, NULL) == -1)
+	// {
+	// 	printf("okeyyyy\n");
+	// 	return ;
+	// }
+	ft_expend(stack, env2);
+	ft_parser(stack, env, env2);
+	exec(stack, env);
+>>>>>>> suite_expender
 }
 
 int	lexer_suite(t_stack *stack, char *line, int start, int i)
@@ -80,7 +106,7 @@ int	lexer_suite(t_stack *stack, char *line, int start, int i)
 		}
 		dl_lstadd_back(stack, line, start, i);
 	}
-	else if (line[i] && check_sep(line[i], "|&<>()$`") == 0)
+	else if (line[i] && check_sep(line[i], "|&<>()`") == 0)
 		i = lexer_suite2(stack, line, start, i);
 	else
 		i++;
@@ -90,7 +116,7 @@ int	lexer_suite(t_stack *stack, char *line, int start, int i)
 int	lexer_suite2(t_stack *stack, char *line, int start, int i)
 {
 	start = i;
-	while (line[i] && check_sep(line[i], "|&<>()$`") == 0 && line[i] != '"')
+	while (line[i] && check_sep(line[i], "|&<>()`") == 0 && line[i] != '"')
 		i++;
 	dl_lstadd_back(stack, line, start, i);
 	return (i);

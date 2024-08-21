@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parcer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/08/20 17:20:37 by najeuneh         ###   ########.fr       */
+=======
+/*   Updated: 2024/08/19 18:39:28 by sadegrae         ###   ########.fr       */
+>>>>>>> suite_expender
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +68,11 @@ char	*ft_path(char *line, t_env *lst_env)
 	return (cmp);
 }
 
+<<<<<<< HEAD
 void	ft_parser(t_stack *stack, t_env *env)
+=======
+void	ft_parser(t_stack *stack, char **env, t_env *list_env)
+>>>>>>> suite_expender
 {
 	t_node	*node;
 
@@ -94,10 +102,10 @@ void	ft_parser(t_stack *stack, t_env *env)
 		if (node != NULL)
 		node = node->next;
 	}
-	ft_parser2(stack);
+	ft_parser2(stack, list_env);
 }
 
-void	ft_parser2(t_stack *stack)
+void	ft_parser2(t_stack *stack, t_env *list_env)
 {
 	t_node	*node;
 
@@ -109,9 +117,10 @@ void	ft_parser2(t_stack *stack)
 		node->out = NULL;
 		node->bultin = 0;
 		if (node->flag == 8)
-			ft_bultincheck(node);
+			ft_bultincheck(node, list_env);
 		node = node->next;
 	}
+	
 	ft_finish_node(stack, NULL, NULL, -1);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
+#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/08/21 15:10:12 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/26 18:15:35 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ CC = cc
 MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/parser_utils.c src/heredoc.c src/parser/parser_utils2.c \
 			src/exec/exec.c src/exec/exec_utils.c src/bultins/echo.c src/bultins/bultins_utils.c \
 			src/bultins/cd.c src/bultins/env.c src/bultins/exit.c src/bultins/export.c src/bultins/pwd.c src/bultins/unset.c \
-			src/expender/expender.c \
+			src/expender/expender.c src/expender/expender_utils.c src/expender/expender_utils2.c src/bultins/export_utils.c \
+			src/expender/expender_utils3.c src/bultins/export_utils2.c\
 
-CFLAGS = -c -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 LINK = -L/Users/$(shell whoami)/.brew/opt/readline/lib -I/Users/$(shell whoami)/.brew/opt/readline/include -lreadline
 
@@ -69,7 +70,7 @@ $(NAME) : $(MY_OBJECTS)
 	@echo "| | | | | | | | | | \__ \ | | |  __/ | |"
 	@echo "|_| |_| |_|_|_| |_|_|___/_| |_|\___|_|_|"
 	@echo "                                                                                  "    	
-	cc $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME)
+	cc $(CFLAGS) $(MY_OBJECTS) $(LIBFT.A) $(LINK) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
@@ -77,11 +78,11 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)/expender
 	@mkdir -p $(OBJS_DIR)/parser
 	@mkdir -p $(OBJS_DIR)/exec
-	$(CC) $(CFLAGS) -I/inc/ -o $@ -c $<
+	$(CC) -g3 -I/inc/ -o $@ -c $<
 
 debug: $(MY_OBJECTS)
 	@make -C $(LIBFT)
-	@cc -fsanitize=address -g3 $(MY_OBJECTS) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
+	@cc $(MY_OBJECTS) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
 	
 clean:
 	@make clean -C $(LIBFT)

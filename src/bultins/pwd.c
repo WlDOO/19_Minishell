@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:51:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 18:24:25 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:50:12 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_pwd(void)
 {
 	char	*pwd;
 
-	printf("aa\n");
 	pwd = getcwd(NULL, 0);
 	printf("%s\n", pwd);
 	g_exit_code = 0;

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 18:05:18 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:15:53 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	not_alpha(char *str)
 		if (ft_isalpha(str[i]) == 1)
 		{
 			g_exit_code = 255;
-			printf("exit\n");
+			printf("exit\nminishell: exit: %s: numeric argument required\n",
+				str);
 			exit(g_exit_code);
 		}
 		i++;

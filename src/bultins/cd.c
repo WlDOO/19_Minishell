@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 18:25:45 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:16:10 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 
 	i = 0;
 	j = 0;
-	printf("pwd: %s\n", pwd);
 	while (pwd != NULL && pwd[j])
 	{
 		dst[j] = pwd[j];
@@ -46,7 +45,6 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 	dst[j] = '\0';
 	chdir(dst);
 	pwd = getcwd(NULL, 0);
-	printf("pwd after chdir: %s\n", pwd);
 }
 
 void	ft_cd_secur(char *next_pwd, char *pwd)
@@ -64,7 +62,6 @@ void	ft_cd(t_env *env, t_node *node)
 {
 	char	*pwd;
 
-	printf("node;%s\n", node->content);
 	if (node->full_cmd[1] != NULL)
 	{
 		pwd = getcwd(NULL, 0);

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 17:40:08 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:19:02 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,40 @@ int		ft_strcmp(char *st1, char *st2);
 int		check_char(char *str, char c);
 char	*ft_strchr2(const char *s, int c);
 char	*ft_strcpy2(char *str, char c);
-int	ft_strcmp_before_char(char *st1, char *st2, char c);
+int		ft_strcmp_before_char(char *st1, char *st2, char c);
 char	**list_to_matrix(t_env *env);
 char	**trie_asci(char **matrix);
+int	isaldigit(int c);
+int	verif_not_aldigit(char *str);
 /*-------------*/
 
+/*======================*/
+
+
+/*=======EXPENDER=======*/
+
 void	ft_expend(t_stack *stack, t_env *env);
+void expend_verif(t_env *env, int count, t_node	*str, char *first_sep);
+void	expend_if_dollard(t_env *env, t_node *str, char *first_sep, int count);
+void	expend_ifnot_dollard(t_env *env, t_node *str);
+
+char	*ft_strjoin_expend(char *st1, char *st2);
+char	*ft_strcpy3(char *str);
+char	*ft_strrev(char *str);
+int		count_guillmet(char *str, int i, int len);
+int		last_compare(char *sep);
+
+t_env	*list_new(char **matrix);
+
+int sort_single_quote(char **dest, char *str, int *i, int *first);
+int sort_double_quote(char **dest, char *str, int *i, int *first);
+char *return_for_sort(int result, char *dest);
+char	*check_sort_guillmet(char *str, int i, int first, int result);
+
+char  *check_dollar(char *str, t_env *env, char *first_sep, int i);
+char *return_env_if_dollar(char *str2, char *str, char *sep, int i);
+char *check_dollar_interrogation(char *str);
+char *check_first_sep(char *str);
 
 /*======================*/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:36:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:18:32 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:17:06 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,24 @@ char	*check_sort_guillmet(char *str, int i, int first, int result)
 	if (first == 0)
 		return (NULL);
 	return (dest);
+}
+
+int	verif_char_special2(char *str, t_node *next)
+{
+	if (ft_strncmp(str, ">>>", 3) == 0)
+	{
+		printf("minishell: syntax error near unexpected token `>'\n");
+		return (0);
+	}
+	if (ft_strncmp(str, "<", 1) == 0 && next == NULL)
+	{
+		printf("minishell: syntax error near unexpected token `newline'\n");
+		return (0);
+	}
+	if (ft_strncmp(str, ">", 1) == 0 && next == NULL)
+	{
+		printf("minishell: syntax error near unexpected token `newline'\n");
+		return (0);
+	}
+	return (1);
 }

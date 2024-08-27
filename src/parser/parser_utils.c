@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 16:47:25 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:32:46 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,39 @@ void	ft_bultincheck(t_node *node)
 	node->bultin = 0;
 	if (ft_strncmp(node->content, "echo", 4) == 0)
 	{
+		node->flag = 8;
 		node->bultin = 1;
 	}
 	else if (ft_strncmp(node->content, "cd", 2) == 0)
+	{
+		node->flag = 8;
 		node->bultin = 1;
+	}
 	else if (ft_strncmp(node->content, "pwd", 3) == 0)
+	{
+		node->flag = 8;
 		node->bultin = 1;
+	}
 	else if (ft_strncmp(node->content, "export", 6) == 0)
+	{
+		node->flag = 8;
 		node->bultin = 1;
+	}
 	else if (ft_strncmp(node->content, "unset", 5) == 0)
+	{
+		node->flag = 8;
 		node->bultin = 1;
+	}
 	else if (ft_strncmp(node->content, "env", 3) == 0)
 	{
+		node->flag = 8;
 		node->bultin = 1;
 	}
 	else if (ft_strncmp(node->content, "exit", 4) == 0)
+	{
+		node->flag = 8;
 		node->bultin = 1;
+	}
 }
 
 t_node	*ft_flagcheck(t_node *node)

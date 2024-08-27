@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 17:00:11 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:22:19 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ char	check_sep(char c, char *charset)
 void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 {
 	int		i;
+	t_node	*node;
 
 	i = 0;
-	if (!line)
-		return ;
-	while (line[i])
+	while (line && line[i])
 	{
 		while (line[i] && (line[i] == 32 || line[i] == '	'))
 			i++;
@@ -53,20 +52,7 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 		else
 			i = lexer_suite(stack, line, start, i);
 	}
-	if (stack->up == NULL)
-		return ;
-	t_node *node;
-
-	node = stack->up;
-	while (node != NULL)
-	{
-		if (verif_char_special(node->content, node->next) == 0)
-			return ;
-		node = node->next;
-	}
-	ft_expend(stack, envp);
-	ft_parser(stack, envp);
-	exec(stack, envp);
+	ft_lexer2(line, stack, node, envp);
 }
 
 int	lexer_suite(t_stack *stack, char *line, int start, int i)
@@ -104,4 +90,20 @@ int	lexer_suite2(t_stack *stack, char *line, int start, int i)
 		i++;
 	dl_lstadd_back(stack, line, start, i);
 	return (i);
+}
+
+void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
+{
+	if (!line || stack->up == NULL)
+		return ;
+	node = stack->up;
+	while (node != NULL)
+	{
+		if (verif_char_special(node->content, node->next) == 0)
+			return ;
+		node = node->next;
+	}
+	ft_expend(stack, envp);
+	ft_parser(stack, envp);
+	exec(stack, envp);
 }

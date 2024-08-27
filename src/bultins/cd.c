@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:16:10 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:43:42 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_cd(t_env *env, t_node *node)
 {
 	char	*pwd;
 
+	printf("look here %s\n", node->full_cmd[1]);
 	if (node->full_cmd[1] != NULL)
 	{
 		pwd = getcwd(NULL, 0);

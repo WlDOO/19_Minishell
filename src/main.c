@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/26 16:12:18 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:53:37 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,17 @@ t_env	*list_new(char **matrix)
 	return (tmp);
 }
 
-// void	printf_node(t_stack *stack)
-// {
-// 	t_node	*node;
+void	printf_node(t_stack *stack)
+{
+	t_node	*node;
 
-// 	node = stack->up;
-// 	while (node != NULL)
-// 	{
-// 		printf("// %s %d %d %s//\n", node->content,
-// 			node->flag, node->bultin, node->in);
-// 		node = node->next;
-// 	}
-// }
+	node = stack->up;
+	while (node != NULL)
+	{
+		printf("// %s %d %d %s || %s//\n", node->content, node->flag, node->bultin, node->out, node->full_cmd[1]);
+		node = node->next;
+	}
+}
 
 int	main(int ac, char **av, char **env)
 {

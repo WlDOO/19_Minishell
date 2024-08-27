@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 17:08:32 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:16:59 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,33 +118,14 @@ int	verif_char_special(char *str, t_node *next)
 	if (ft_strncmp(str, "<<<", 3) == 0)
 	{
 		printf("minishell: syntax error near unexpected token `<<<'\n");
-		return (0);	
+		return (0);
 	}
 	if (ft_strncmp(str, ">>>>", 4) == 0)
 	{
 		printf("minishell: syntax error near unexpected token `>>'\n");
-		return (0);	
+		return (0);
 	}
 	if (verif_char_special2(str, next) == 0)
 		return (0);
-	return (1);
-}
-int	verif_char_special2(char *str, t_node *next)
-{
-	if (ft_strncmp(str, ">>>", 3) == 0)
-	{
-		printf("minishell: syntax error near unexpected token `>'\n");
-		return (0);	
-	}
-	if (ft_strncmp(str, "<", 1) == 0 && next == NULL)
-	{
-		printf("minishell: syntax error near unexpected token `newline'\n");
-		return (0);	
-	}
-	if (ft_strncmp(str, ">", 1) == 0 && next == NULL)
-	{
-		printf("minishell: syntax error near unexpected token `newline'\n");
-		return (0);	
-	}
 	return (1);
 }

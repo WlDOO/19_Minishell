@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:16:36 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:49:40 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,18 @@ char	*check_dollar(char *str, t_env *env, char *first_sep, int i)
 		return (str);
 	}
 	return (str);
+}
+
+int verif_char_special(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (str[i - 1] == '/')
+		return (0);
+	if (ft_strcmp(str, "..") == 0)
+		return (0);
+	return (1);
 }

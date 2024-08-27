@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/26 18:19:02 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:48:01 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ char  *check_dollar(char *str, t_env *env, char *first_sep, int i);
 char *return_env_if_dollar(char *str2, char *str, char *sep, int i);
 char *check_dollar_interrogation(char *str);
 char *check_first_sep(char *str);
+int verif_char_special(char *str);
 
 /*======================*/
 

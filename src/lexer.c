@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:10:39 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:00:17 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@ char	check_sep(char c, char *charset)
 	return (1);
 }
 
-void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
+void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 {
 	int		i;
 
-	(void)env;
 	i = 0;
 	if (!line)
-		return;
+		return ;
 	while (line[i])
 	{
 		while (line[i] && (line[i] == 32 || line[i] == '	'))
@@ -54,6 +53,8 @@ void	lexer(t_stack *stack, char *line, char **env, int start, t_env *envp)
 		else
 			i = lexer_suite(stack, line, start, i);
 	}
+	if (stack->up == NULL)
+		return ;
 	ft_expend(stack, envp);
 	ft_parser(stack, envp);
 	exec(stack, envp);

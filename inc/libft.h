@@ -36,6 +36,7 @@ typedef struct s_node
 	int				in_fd;
 	int				out_fd;
 	char			**full_cmd;
+	int				heredoc;
 	struct s_node	*next;
 	struct s_node	*prev;
 }				t_node;

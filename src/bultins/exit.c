@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/14 16:37:45 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:14:50 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_exit(void)
 {
+	g_exit_code =
 	printf("exit\n");
-	exit(0);
+	exit(255);
 }

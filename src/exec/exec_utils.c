@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/20 14:51:43 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:14:58 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,7 @@ void	ft_use_bultin(t_node *node, t_env *env)
 		ft_exit();
 }
 
+void	ft_perror(void)
+{
+	exit(1);
+}

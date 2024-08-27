@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 15:28:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:53:43 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,6 +324,8 @@ void	ft_expend(t_stack *stack, t_env *env)
 	char *first_sep;
 	t_node	*str;
 
+	if (stack->up->next == NULL)
+		return ;
 	str = stack->up;
 	str = str->next;
 	count = count_guillmet(str->content);

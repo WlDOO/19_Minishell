@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/08/21 15:10:12 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/26 17:13:11 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC = cc
 MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/parser_utils.c src/heredoc.c src/parser/parser_utils2.c \
 			src/exec/exec.c src/exec/exec_utils.c src/bultins/echo.c src/bultins/bultins_utils.c \
 			src/bultins/cd.c src/bultins/env.c src/bultins/exit.c src/bultins/export.c src/bultins/pwd.c src/bultins/unset.c \
-			src/expender/expender.c \
+			src/expender/expender.c src/heredoc2.c src/parser/parser_utils3.c \
 
 CFLAGS = -c -Wall -Werror -Wextra
 

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/21 15:09:52 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:12:18 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ char	*ft_strchr2(const char *s, int c)
 
 char	*ft_strcpy2(char *str, char c)
 {
-	int	i;
-	char *dst;
-	
+	int		i;
+	char	*dst;
+
 	i = 0;
 	while (str[i] != c)
-		i++;	
+		i++;
 	dst = malloc(sizeof(char) * (i + 1));
 	if (!dst)
 		return (NULL);
@@ -56,7 +56,7 @@ char	*ft_strcpy2(char *str, char c)
 	while (str[i] != c)
 	{
 		dst[i] = str[i];
-		i++;	
+		i++;
 	}
 	dst[i] = '\0';
 	return (dst);
@@ -90,40 +90,25 @@ t_env	*list_new(char **matrix)
 	return (tmp);
 }
 
-void	printf_node(t_stack *stack)
-{
-	t_node	*node;
+// void	printf_node(t_stack *stack)
+// {
+// 	t_node	*node;
 
-	node = stack->up;
-	while (node != NULL)
-	{
-		printf("// %s %d %d//\n", node->content, node->flag, node->bultin);
-		node = node->next;
-	}
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_node	*temp;
-
-	{
-		while (stack->up != NULL)
-		{
-			temp = stack->up->next;
-			free(stack->up);
-			stack->up = temp;
-		}
-		stack->up = NULL;
-		stack->low = NULL;
-	}
-}
+// 	node = stack->up;
+// 	while (node != NULL)
+// 	{
+// 		printf("// %s %d %d %s//\n", node->content,
+// 			node->flag, node->bultin, node->in);
+// 		node = node->next;
+// 	}
+// }
 
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
 	t_stack	*stack;
 	t_env	*list_env;
-	t_sign *flag;
+	t_sign	*flag;
 
 	(void)av;
 	(void)ac;
@@ -135,15 +120,14 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		line = readline("minishell$ ");
-		if  (line == NULL)
+		if (line == NULL)
 		{
 			free_stack(stack);
 			printf("\rexit\n");
 			exit(0);
 		}
-		lexer(stack, line, env, 0, list_env);
+		lexer(stack, line, 0, list_env);
 		add_history(line);
-		printf_node(stack);
 		free_stack(stack);
 	}
 }

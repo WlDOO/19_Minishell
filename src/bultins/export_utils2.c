@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   export_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 13:11:03 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/25 17:03:30 by sadegrae         ###   ########.fr       */
+/*   Created: 2024/08/26 18:14:39 by sadegrae          #+#    #+#             */
+/*   Updated: 2024/08/26 18:15:46 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../../inc/minishell.h"
 
-char	*ft_strdup(const char *s1)
+int	isaldigit(int c)
 {
-	int		i;
-	char	*str;
-	char	*cpy;
+	if (c >= '0' && c <= '9')
+		return (1);
+	else if (c >= 'A' && c <= 'Z')
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
+	return (0);
+}
+
+int	verif_not_aldigit(char *str)
+{
+	int	i;
 
 	i = 0;
-	if (s1 == NULL)
-		return (NULL);
-	str = (char *)s1;
-	cpy = malloc((ft_strlen(str)) * sizeof(char) + 1);
-	while (str[i])
+	while (str[i] && str[i] != '=')
 	{
-		cpy[i] = str[i];
+		if (isaldigit(str[i]) == 0)
+			return (1);
 		i++;
 	}
-	cpy[i] = '\0';
-	return (cpy);
+	return (0);
 }

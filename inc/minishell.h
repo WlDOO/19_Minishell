@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 14:10:36 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:07:38 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	ft_clear_all(t_stack *stack);
 void	ft_checkflag0(t_stack *stack, int i);
 void	ft_checkcmd(t_stack *stack);
 void	ft_clear_all_suite(t_stack *stack);
-void	ft_clear_all_annexe(t_stack *stack, char *tmp, t_node *tmp3, t_node *node);
+void	ft_clear_all_annexe(t_stack *stack, char *tmp, t_node *tmp3,
+			t_node *node);
 
 /*-------*/
 
@@ -104,7 +105,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	ft_echo(t_node *node);
 void	ft_cd(t_env *env, t_node *node);
 void	ft_pwd(void);
-void	ft_exit(void);
+void	ft_exit(char **str);
 void	ft_export(t_env *env, t_node *node);
 void	printf_export(t_env *list_env);
 void	printf_env(t_env *list_env);
@@ -118,9 +119,33 @@ char	*ft_strcpy2(char *str, char c);
 int		ft_strcmp_before_char(char *st1, char *st2, char c);
 char	**list_to_matrix(t_env *env);
 char	**trie_asci(char **matrix);
+int		isaldigit(int c);
+int		verif_not_aldigit(char *str);
 /*-------------*/
 
+/*=======EXPENDER=======*/
+
 void	ft_expend(t_stack *stack, t_env *env);
+void	expend_verif(t_env *env, int count, t_node	*str, char *first_sep);
+void	expend_if_dollard(t_env *env, t_node *str, char *first_sep, int count);
+void	expend_ifnot_dollard(t_env *env, t_node *str);
+
+char	*ft_strjoin_expend(char *st1, char *st2);
+char	*ft_strcpy3(char *str);
+char	*ft_strrev(char *str);
+int		count_guillmet(char *str, int i, int len);
+int		last_compare(char *sep);
+t_env	*list_new(char **matrix);
+int		sort_single_quote(char **dest, char *str, int *i, int *first);
+int		sort_double_quote(char **dest, char *str, int *i, int *first);
+char	*return_for_sort(int result, char *dest);
+char	*check_sort_guillmet(char *str, int i, int first, int result);
+char	*check_dollar(char *str, t_env *env, char *first_sep, int i);
+char	*return_env_if_dollar(char *str2, char *str, char *sep, int i);
+char	*check_dollar_interrogation(char *str);
+char	*check_first_sep(char *str);
+int		verif_char_special(char *str, t_node *next);
+int		verif_char_special2(char *str, t_node *next);
 
 /*======================*/
 

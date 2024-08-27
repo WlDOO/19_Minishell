@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:12:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 14:07:47 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:37:55 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,7 @@ void	heredoc(t_stack *stack)
 	i = ft_count_heredoc(stack);
 	if (i == 0)
 		return ;
-	// else if (i == 1)
-	// {
-	// 	printf("%d\n", i);
-	// 	while (node != NULL)
-	// 	{
-	// 		if (node->flag == 5)
-	// 			create_here_doc(node->next->content, "tmp0");
-	// 		else if (node->flag == 8)
-	// 			node->in = ft_strdup("tmp0");
-	// 		node = node->next;
-	// 	}
-	// 	if (ft_countcmd(stack) == 0)
-	// 		unlink("tmp0");
-	// }
-	if (i >= 1)
-		multi_heredoc(stack, NULL, 0, 0);
+	multi_heredoc(stack, NULL, 0, 0);
 	return ;
 }
 

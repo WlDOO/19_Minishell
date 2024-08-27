@@ -6,12 +6,11 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:11:06 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 15:13:55 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:12:27 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
 
 void	ft_echo(t_node *node)
 {

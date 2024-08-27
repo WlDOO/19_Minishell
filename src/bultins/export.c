@@ -3,32 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/20 14:59:28 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:14:57 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void printf_export(t_env *list_env)
+void	printf_export(t_env *list_env)
 {
-	while (list_env != NULL)
+	char	**matrix;
+	int		i;
+
+	i = 0;
+	g_exit_code = 0;
+	matrix = list_to_matrix(list_env);
+	matrix = trie_asci(matrix);
+	while (matrix[i])
 	{
-		if(list_env->flag == 1)
-		{
-			printf("declare -x %s=", list_env->attribut);
-			printf("\"%s\"\n", list_env->content);
-		}
-		else
-			printf("declare -x %s\n", list_env->attribut);
-		list_env = list_env->next;
+		printf("declare -x %s\n", matrix[i]);
+		free(matrix[i]);
+		i++;
 	}
+	free(matrix[i]);
 }
 
 int	verif(t_env *env, char *str)
 {
+	if (ft_isdigit(str[0]) == 1 || verif_not_aldigit(str) == 1)
+		return (printf("minishell: export: `%s': not a valid identifier\n",
+				str), 1);
 	if (check_char(str, '=') == 1)
 	{
 		while (env != NULL)
@@ -53,160 +59,50 @@ int	verif(t_env *env, char *str)
 	return (0);
 }
 
-char	**list_to_matrix(t_env *env)
+void	not_export(t_env *env)
 {
-	char **matrix;
-	int	i;
-	int	j;
-	int	k;
-	t_env *current;
-	int	env_count;
-
-	k = 0;
-	j = 0;
-	i = 0;
-	env_count = 0;
-	current = env;
-	while (current != NULL)
-	{
-		env_count++;
-		current = current->next;
-	}
-	matrix = malloc(sizeof(char *) * (env_count + 1));
-	if (!matrix)
-		return NULL;
-	while (env != NULL)
-	{
-		if (env->flag == 0)
-			matrix[i] = malloc(sizeof(char) * (ft_strlen(env->attribut) + 1));
-		else
-			matrix[i] = malloc(sizeof(char) * (ft_strlen(env->attribut) + ft_strlen(env->content) + 4));
-		if (!matrix[i])
-		{
-			while (i > 0)
-				free(matrix[--i]);
-			free(matrix);
-			return NULL;
-		}
-		while (env->attribut[j] != '\0')
-		{
-			matrix[i][j] = env->attribut[j];
-			j++;
-		}
-		if (env->flag == 0)
-		{
-			matrix[i][j] = '\0';
-		}
-		while (env->flag == 1 && env->content[k] != '\0')
-		{
-			if (k == 0)
-			{
-				matrix[i][j] = '=';
-				j++;
-				matrix[i][j] = '"';
-				j++;
-			}
-			matrix[i][j] = env->content[k];
-			j++;
-			k++;
-			if (env->content[k] == '\0')
-			{
-				matrix[i][j] = '"';
-				j++;
-				matrix[i][j] = '\0';
-			}
-		}
-		env = env->next;
-		i++;
-		k = 0;
-		j = 0;
-	}
-	//printf("\n\n\n\ncou\n\n");
-	matrix[i] = NULL;
-	return (matrix);
+	printf_export(env);
+	g_exit_code = 0;
+	return ;
 }
 
-char	*add_one_line_to_matrix(char *str, char *str2, int flag)
+void	ft_export_last(t_env *env, t_node *node)
 {
-	char *matrix;
-	int	i;
-	int j;
-	
-	i = 0;
-	j = 0;
-	if (flag == 0)
+	t_env	*tmp;
+
+	tmp = malloc(sizeof(t_env));
+	if (!tmp)
+		return ;
+	if (check_char(node->full_cmd[1], '=') == 1)
 	{
-		matrix = malloc(sizeof(char) * (ft_strlen(str2) + 1));
-		while (str2[i] != '\0')
-		{
-			matrix[i] = str2[i];
-			i++;
-		}
-		matrix[i] = '\0';
-		return (matrix);
+		tmp->content = ft_strchr2(node->full_cmd[1], '=');
+		tmp->attribut = ft_strcpy2(node->full_cmd[1], '=');
+		tmp->flag = 1;
 	}
-	matrix = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(str2) + 4));
-	while (str2[i] != '\0')
+	else
 	{
-		matrix[i] = str2[i];
-		i++;
+		tmp->flag = 0;
+		tmp->attribut = ft_strdup(node->full_cmd[1]);
 	}
-	while (str[j] != '\0')
-	{
-		if (j == 0)
-		{
-			matrix[i]= '=';
-			i++;
-			matrix[i] = '"';
-			i++;
-		}
-		matrix[i] = str[j];
-		j++;
-		i++;
-		if (str[j] == '\0')
-		{
-			matrix[i] = '"';
-			i++;
-			matrix[i] = '\0';
-		}
-	}
-	return (matrix);
+	tmp->next = NULL;
+	env->next = tmp;
+	env = env->next;
+	g_exit_code = 0;
 }
 
-
-void ft_export(t_env *env, t_node *node)
+void	ft_export(t_env *env, t_node *node)
 {
-	t_env *tmp;
-	// char **matrix;
-
-	//matrix = list_to_matrix(env);
 	if (node->full_cmd[1] == NULL)
 	{
 		printf_export(env);
 		return ;
 	}
-	if (!node)
+	if (!node || verif(env, node->full_cmd[1]) == 1)
 	{
-		return ;	
-	}
-	if (verif(env, node->content) == 1)
-	{
+		g_exit_code = 1;
 		return ;
 	}
 	while (env->next != NULL)
 		env = env->next;
-	tmp = malloc(sizeof(t_env*));	if (check_char(node->content, '=') == 1)
-	{	
-		tmp->content = ft_strchr2(node->content, '=');
-		tmp->attribut = ft_strcpy2(node->content, '=');
-		tmp->flag = 1;
-	}
-	else
-	{
-		tmp->attribut = ft_strdup(node->content);
-		tmp->flag = 0;	
-	}
-	tmp->next = NULL;
-	env->next = tmp;
-	env = env->next;
+	ft_export_last(env, node);
 }

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 13:14:58 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:35:22 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_use_bultin(t_node *node, t_env *env)
 	else if (ft_strncmp(node->content, "env", 3) == 0)
 		printf_env(env);
 	else if (ft_strncmp(node->content, "exit", 4) == 0)
-		ft_exit();
+		ft_exit(node->full_cmd);
 }
 
 void	ft_perror(void)

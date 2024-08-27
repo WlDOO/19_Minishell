@@ -45,7 +45,7 @@ typedef struct s_env
 {
 	char			*content;
 	char			*attribut;
-	int				flag;/*1 si il a une valeur 0 si non*/
+	int				flag;
 	struct s_env	*next;
 }				t_env;
 

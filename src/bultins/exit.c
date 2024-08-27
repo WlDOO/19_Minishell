@@ -6,15 +6,48 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/21 17:14:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:41:01 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_exit(void)
+void	not_alpha(char *str)
 {
-	g_exit_code =
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isalpha(str[i]) == 1)
+		{
+			g_exit_code = 255;
+			printf("exit\nminishell: exit: %s: numeric argument required\n",
+				str);
+			exit(g_exit_code);
+		}
+		i++;
+	}
+}
+
+void	ft_exit(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (i == 2)
+	{
+		not_alpha(str[1]);
+		if (ft_atoi(str[1]) <= 9223372036854775806)
+		{
+			g_exit_code = (ft_atoi(str[1]) % 256);
+			printf("exit\n");
+			exit(g_exit_code);
+		}
+	}
+	g_exit_code = 255;
 	printf("exit\n");
-	exit(255);
+	exit(g_exit_code);
 }

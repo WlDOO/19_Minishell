@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 14:12:51 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:13:23 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,11 @@ int	exec(t_stack *stack, t_env *env)
 	if (count == 1)
 	{
 		pid = fork();
-		if (node->bultin == 1)
+		if (pid == 0)
 		{
-			if (pid == 0)
-				exit (1);
-			else
-				ft_use_bultin(node, env);
-		}
-		else if (pid == 0)
 			g_exit_code = simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
-		printf("%s\n",node->content);
+			exit(g_exit_code);
+		}
 	}
 	else if (count > 1)
 		multi_cmd(stack, env);

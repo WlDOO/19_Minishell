@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 13:40:38 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:47:25 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 		{
 			if (i == 0)
 			{
-				if (node->in != NULL && in != NULL)
+				if (in != NULL)
 					node->in = ft_strdup(in);
 				node->out = ft_strdup(out);
 			}

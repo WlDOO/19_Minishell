@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:15:53 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:09:32 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ void	ft_exit(char **str)
 	int	i;
 
 	i = 0;
+	if (str[2] != NULL)
+	{
+		g_exit_code = 1;
+		printf("exit\nminishell: exit: too many arguments\n");
+		return ;
+	}
 	while (str[i])
 		i++;
 	if (i == 2)
@@ -47,7 +53,6 @@ void	ft_exit(char **str)
 			exit(g_exit_code);
 		}
 	}
-	g_exit_code = 255;
 	printf("exit\n");
 	exit(g_exit_code);
 }

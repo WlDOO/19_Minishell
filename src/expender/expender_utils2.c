@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 13:49:40 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:48:15 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ int verif_char_special(char *str)
 		i++;
 	if (str[i - 1] == '/')
 		return (0);
-	if (ft_strcmp(str, "..") == 0)
+	if (ft_strncmp(str, "..", 2) == 0)
+		return (0);
+	if (ft_strcmp(str, ".") == 0)
 		return (0);
 	return (1);
 }

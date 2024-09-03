@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 13:43:31 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:50:32 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	expend_verif(t_env *env, int count, t_node *str, char *first_sep)
 	}
 	if (count == -1)
 	{
+		if (check_char(str->content, '=') == 1)
+			return ;
 		printf("minishell: syntax error: unexpected end of file\n");
 		g_exit_code = 1;
 		return ;

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:16:10 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:48:48 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,34 @@ char	*malloc_dst(int len)
 	if (!dst)
 		return (NULL);
 	return (dst);
+}
+
+int	ft_strrcmp(char *st1, char *st2)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (st1[i])
+		i++;
+	while (st2[j])
+		j++;
+	j--;
+	i--;
+	if (st2[j] == '/')
+		j--;
+	while (i > 0 && j > 0 && (st1[i] == st2[j]))
+	{
+		i--;
+		j--;
+	}
+	if (st1[i] > st2[j])
+		return (1);
+	else if (st1[i] < st2[j])
+		return (-1);
+	else
+		return (0);
 }
 
 void	copy_pwd(char *next_pwd, char *pwd, char *dst)
@@ -45,6 +73,12 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 	dst[j] = '\0';
 	chdir(dst);
 	pwd = getcwd(NULL, 0);
+	g_exit_code = 0;
+	if (ft_strrcmp(pwd, next_pwd) != 0 && ft_strncmp(next_pwd, "..", 2) != 0 && ft_strcmp(next_pwd, ".") != 0)
+	{
+		printf("minishell: cd: %s: No such file or directory", next_pwd);
+		g_exit_code = 1;
+	}
 }
 
 void	ft_cd_secur(char *next_pwd, char *pwd)

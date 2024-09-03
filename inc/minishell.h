@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 13:48:01 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:10:30 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ char	**list_to_matrix(t_env *env);
 char	**trie_asci(char **matrix);
 int	isaldigit(int c);
 int	verif_not_aldigit(char *str);
+void	ft_export_last(t_env *env, char *node);
+char	*ft_strjoin_export(char *st1, char *st2);
 /*-------------*/
 
 /*======================*/

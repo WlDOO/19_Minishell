@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:52:15 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:16:43 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:47:01 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,9 @@ int	count_guillmet(char *str, int i, int len)
 			i++;
 			len--;
 		}
-		else if ((ft_isalnum(str[i]) == 1 || str[i] == '$')
-			&& ft_isalnum(str[len]) == 1)
+		else if ((ft_isalnum(str[i]) == 1 || str[i] == '$') && ft_isalnum(str[len]) == 1)
 			return (i);
-		else if (str[i] == '-')
+		else if (str[i] == '-' || str[i] == '|')
 			return (-2);
 		else
 			return (-1);

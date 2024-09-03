@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/08/27 16:43:28 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/08/29 14:04:22 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ BLUE=\033[0;34m
 ORANGE=\033[38;2;255;165;0m
 NC=\033[0m 
 
-CC = cc
+CC = gcc
 
 MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/parser_utils.c src/heredoc.c src/parser/parser_utils2.c \
 			src/exec/exec.c src/exec/exec_utils.c src/bultins/echo.c src/bultins/bultins_utils.c \
@@ -26,7 +26,7 @@ MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/
 			src/expender/expender_utils.c src/expender/expender_utils2.c src/bultins/export_utils.c \
 			src/expender/expender_utils3.c src/bultins/export_utils2.c\
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 LINK = -L/Users/$(shell whoami)/.brew/opt/readline/lib -I/Users/$(shell whoami)/.brew/opt/readline/include -lreadline
 
@@ -79,11 +79,11 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)/expender
 	@mkdir -p $(OBJS_DIR)/parser
 	@mkdir -p $(OBJS_DIR)/exec
-	$(CC) -g3 -I/inc/ -o $@ -c $<
+	$(CC) -I/inc/ -g -o $@ -c $<
 
 debug: $(MY_OBJECTS)
 	@make -C $(LIBFT)
-	@cc $(MY_OBJECTS) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
+	@gcc -fsanitize=address -g $(MY_OBJECTS) $(LIBFT.A) -I/inc/ $(LINK) -o $(NAME)
 	
 clean:
 	@make clean -C $(LIBFT)

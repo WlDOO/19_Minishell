@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 18:54:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:30:15 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,43 @@ int	exec(t_stack *stack, t_env *env)
 	t_node	*node;
 	int		count;
 	int		pid;
+	int		status;
 
 	node = stack->up;
-	printf("coucou");
-	printf_node(stack);
 	count = ft_countcmd(stack);
+	// printf_node(stack);
 	if (count == 1)
 	{
 		pid = fork();
 		if (node->bultin == 1)
 		{
 			if (pid == 0)
-			{
-				g_exit_code = 1;
-				exit(1);
-			}
-			else
-			{
-				ft_use_bultin(node, env);
-			}
+				exit(g_exit_code);
+			ft_use_bultin(node, env);
 		}
 		else if (pid == 0)
 		{
-			g_exit_code = simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
+			simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
 			exit(g_exit_code);
 		}
 	}
 	else if (count > 1)
-		multi_cmd(stack, env);
-	while (wait(NULL) > 0)
-		;
+		multi_cmd(stack, env, &pid);
+	while (count != 0)
+	{
+		if (wait(&status) == pid)
+			if (WIFEXITED(status))
+				g_exit_code = WEXITSTATUS(status);
+		count--;
+	}
 	return (delete_heredoc(stack, 0), 0);
 }
 
-int	multi_cmd(t_stack *stack, t_env *env)
+int	multi_cmd(t_stack *stack, t_env *env, int *pid)
 {
 	t_node	*node;
 	int		pipee[2];
 	int		prev_fd;
-	int		pid;
 
 	prev_fd = -1;
 	node = stack->up;
@@ -64,8 +62,8 @@ int	multi_cmd(t_stack *stack, t_env *env)
 		if (node->flag != 1)
 		{
 			pipe(pipee);
-			pid = fork();
-			if (pid == 0)
+			*pid = fork();
+			if (*pid == 0)
 				multi_cmd2(node, pipee, prev_fd, env);
 			else
 			{
@@ -83,20 +81,19 @@ int	multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env)
 {
 	close(pipe[0]);
 	if (node->prev == NULL)
-		g_exit_code = simple_cmd(node, STDOUT_FILENO, pipe[1], env);
+		simple_cmd(node, STDOUT_FILENO, pipe[1], env);
 	else if (node->prev != NULL && node->next != NULL)
 	{
-		g_exit_code = simple_cmd(node, prev_fd, pipe[1], env);
+		simple_cmd(node, prev_fd, pipe[1], env);
 	}
 	else if (node->next == NULL)
-		g_exit_code = simple_cmd(node, prev_fd, STDOUT_FILENO, env);
-	return (0);
+		simple_cmd(node, prev_fd, STDOUT_FILENO, env);
+	return (g_exit_code);
 }
 
 int	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 {
 	ft_check_fd(node);
-	printf("out %s\n", node->out);
 	if (node->in_fd != -1)
 	{
 		if (dup2(node->in_fd, STDIN_FILENO) == -1)
@@ -107,7 +104,6 @@ int	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 		ft_perror();
 	if (node->out_fd != -1)
 	{
-		printf("coucou");
 		if (dup2(node->out_fd, STDOUT_FILENO) == -1)
 			ft_perror();
 		close(node->out_fd);
@@ -121,19 +117,20 @@ int	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 		printf("minishell: %s: command not found\n", node->content);
 		exit(127);
 	}
-	return (0);
+	exit(g_exit_code);
 }
 
 void	ft_check_fd(t_node *node)
 {
+	node->in_fd = -1;
+	node->out_fd = -1;
 	if (node->in != NULL)
 	{
 		node->in_fd = open(node->in, O_RDONLY);
 		if (node->in_fd == -1)
 		{
 			printf("zsh: no such file or directory: %s\n", node->in);
-			g_exit_code = 1;
-			return ;
+			exit(1);
 		}
 	}
 	else
@@ -145,7 +142,7 @@ void	ft_check_fd(t_node *node)
 		{
 			printf("zsh: no such file or directory: %s\n", node->out);
 			g_exit_code = 1;
-			return ;
+			exit(g_exit_code);
 		}
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:51:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 14:13:03 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:04:12 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_node_in(t_stack *stack, int pipe, char *infile, int i)
 		{
 			node->in = ft_strdup(infile);
 			node->heredoc = i;
-			ft_check_fd(node);
 			return ;
 		}
 		node = node->next;

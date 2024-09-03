@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 16:48:39 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:10:54 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	ft_parser2(t_stack *stack, t_env *list_env)
 		ft_bultincheck(node);
 		node = node->next;
 	}
+	ft_look_cmd(stack);
 	ft_checkcmd(stack);
 	ft_finish_node(stack, NULL, NULL, -1);
 }
@@ -116,6 +117,8 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 	heredoc(stack);
 	while (node != NULL)
 	{
+		in = NULL;
+		out = NULL;
 		while (node != NULL && node->content && node->flag != 1)
 		{
 			if (node->flag == 3 || node->flag == 4 || node->flag == 5)
@@ -127,12 +130,10 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 				else if (node->flag == 4)
 					out = ft_strdup(node->next->content);
 			}
-			if (node != NULL)
-				node = node->next;
+			ft_check_next(&node);
 		}
 		ft_suite_node(stack, in, out, ++i);
-		if (node != NULL)
-			node = node->next;
+		ft_check_next(&node);
 	}
 	ft_clear_all(stack);
 }

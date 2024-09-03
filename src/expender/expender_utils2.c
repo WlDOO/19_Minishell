@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 17:16:59 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:03:10 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*check_dollar_interrogation(char *str)
 	i++;
 	if (str[i] == '?')
 	{
+		printf("g_exit_code %d\n", g_exit_code);
 		dest = ft_itoa(g_exit_code);
 		g_exit_code = 0;
 		return (dest);
@@ -109,23 +110,12 @@ int	verif_char_special(char *str, t_node *next)
 	int	i;
 
 	i = 0;
+	(void)next;
 	while (str[i])
 		i++;
 	if (str[i - 1] == '/')
 		return (0);
 	if (ft_strcmp(str, "..") == 0)
-		return (0);
-	if (ft_strncmp(str, "<<<", 3) == 0)
-	{
-		printf("minishell: syntax error near unexpected token `<<<'\n");
-		return (0);
-	}
-	if (ft_strncmp(str, ">>>>", 4) == 0)
-	{
-		printf("minishell: syntax error near unexpected token `>>'\n");
-		return (0);
-	}
-	if (verif_char_special2(str, next) == 0)
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 16:59:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/29 13:27:01 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void	ft_expend(t_stack *stack, t_env *env)
 		return ;
 	str = stack->up;
 	str = str->next;
+	if (verif_char_special(str->content, str->next) == 0)
+		return ;
 	count = count_guillmet(str->content, 0, 0);
 	first_sep = check_first_sep(str->content);
 	expend_verif(env, count, str, first_sep);

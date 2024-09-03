@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 17:21:46 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:13:12 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void	ft_checkcmd(t_stack *stack);
 void	ft_clear_all_suite(t_stack *stack);
 void	ft_clear_all_annexe(t_stack *stack, char *tmp, t_node *tmp3,
 			t_node *node);
+void	ft_check_next(t_node **node);
+void	ft_look_cmd(t_stack *stack);
+void	ft_bultincheck2(t_node *node);
 
 /*-------*/
 
@@ -84,7 +87,7 @@ void	ft_clear_all_annexe(t_stack *stack, char *tmp, t_node *tmp3,
 int		ft_countcmd(t_stack *stack);
 int		exec(t_stack *stack, t_env *envp);
 void	ft_check_fd(t_node *node);
-int		multi_cmd(t_stack *stack, t_env *env);
+int		multi_cmd(t_stack *stack, t_env *env, int *pid);
 void	ft_use_bultin(t_node *node, t_env *env);
 int		simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
 int		multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env);

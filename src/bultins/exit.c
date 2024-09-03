@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 16:41:01 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:15:16 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_exit(char **str)
 			exit(g_exit_code);
 		}
 	}
-	g_exit_code = 255;
 	printf("exit\n");
+	system("leaks minishell");
 	exit(g_exit_code);
 }

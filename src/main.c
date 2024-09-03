@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 18:53:37 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:04:59 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	printf_node(t_stack *stack)
 	node = stack->up;
 	while (node != NULL)
 	{
-		printf("// %s %d %d %s || %s//\n", node->content, node->flag, node->bultin, node->out, node->full_cmd[1]);
+		printf("// %s %d %d %s//\n", node->content, node->flag, node->bultin, node->full_cmd[1]);
 		node = node->next;
 	}
 }

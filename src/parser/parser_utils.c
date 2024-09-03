@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 18:32:46 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:07:06 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void	ft_bultincheck(t_node *node)
 		node->flag = 8;
 		node->bultin = 1;
 	}
-	else if (ft_strncmp(node->content, "cd", 2) == 0)
+	else if (ft_strcmp(node->content, "cd") == 0)
 	{
+		printf("AAAAAA\n");
 		node->flag = 8;
 		node->bultin = 1;
 	}
@@ -62,21 +63,8 @@ void	ft_bultincheck(t_node *node)
 		node->flag = 8;
 		node->bultin = 1;
 	}
-	else if (ft_strncmp(node->content, "unset", 5) == 0)
-	{
-		node->flag = 8;
-		node->bultin = 1;
-	}
-	else if (ft_strncmp(node->content, "env", 3) == 0)
-	{
-		node->flag = 8;
-		node->bultin = 1;
-	}
-	else if (ft_strncmp(node->content, "exit", 4) == 0)
-	{
-		node->flag = 8;
-		node->bultin = 1;
-	}
+	else
+		ft_bultincheck2(node);
 }
 
 t_node	*ft_flagcheck(t_node *node)
@@ -104,6 +92,8 @@ void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 	t_node	*node;
 
 	node = stack->up;
+	if (in == NULL && out == NULL)
+		return ;
 	while (node != NULL)
 	{
 		if (node->flag == 8)
@@ -112,7 +102,8 @@ void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 			{
 				if (in != NULL)
 					node->in = ft_strdup(in);
-				node->out = ft_strdup(out);
+				if (out != NULL)
+					node->out = ft_strdup(out);
 			}
 			else
 				i--;

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:36:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 17:17:06 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:23:55 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ char	*check_sort_guillmet(char *str, int i, int first, int result)
 
 int	verif_char_special2(char *str, t_node *next)
 {
+	if (ft_strncmp(str, "<<<", 3) == 0)
+		return (printf("minishell: syntax error near unexpected token `<<<'\n"),
+			0);
+	if (ft_strncmp(str, ">>>>", 4) == 0)
+	{
+		printf("minishell: syntax error near unexpected token `>>'\n");
+		return (0);
+	}
 	if (ft_strncmp(str, ">>>", 3) == 0)
 	{
 		printf("minishell: syntax error near unexpected token `>'\n");

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:06:43 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 13:38:45 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:13:55 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@ void	ft_clear_all_suite(t_stack *stack)
 	if (node->flag == 5 && node->prev == NULL && node->next->next == NULL)
 		return ;
 	else if (node->flag == 4 && node->prev == NULL && node->next->next == NULL)
-	{
-		node->next->out_fd = open(node->next->content, O_RDWR
-				| O_CREAT | O_TRUNC, 0644);
-		if (node->out_fd == -1)
-			printf("zsh: no such file or directory: %s\n", node->next->content);
 		return ;
-	}
 	while (node != NULL)
 	{
 		if (node != NULL && node->flag != 8 && node->flag != 1)
@@ -50,6 +44,7 @@ void	ft_clear_all_annexe(t_stack *stack, char *tmp,
 		tmp3 = node->next;
 		while (tmp3 != NULL && tmp3->flag != 1)
 		{
+			printf("tmp = %s %d\n", node->next->content, node->next->flag);
 			tmp = ft_strjoin(tmp, tmp3->content);
 			tmp = ft_strjoin(tmp, " ");
 			tmp3 = tmp3->next;
@@ -58,6 +53,53 @@ void	ft_clear_all_annexe(t_stack *stack, char *tmp,
 		while (node != NULL && node->flag != 1)
 			node = node->next;
 	}
-	else if (node->flag)
+	else if (node->flag != 3 && node->flag != 4 && node->flag != 1)
 		node->full_cmd = ft_split(node->content, ' ');
+}
+
+void	ft_bultincheck2(t_node *node)
+{
+	if (ft_strncmp(node->content, "unset", 5) == 0)
+	{
+		node->flag = 8;
+		node->bultin = 1;
+	}
+	else if (ft_strncmp(node->content, "env", 3) == 0)
+	{
+		node->flag = 8;
+		node->bultin = 1;
+	}
+	else if (ft_strncmp(node->content, "exit", 4) == 0)
+	{
+		node->flag = 8;
+		node->bultin = 1;
+	}
+}
+
+void	ft_check_next(t_node **node)
+{
+	if (*node != NULL)
+		*node = (*node)->next;
+}
+
+void	ft_look_cmd(t_stack *stack)
+{
+	t_node	*node;
+
+	node = stack->up;
+	while (node != NULL)
+	{
+		if (node->flag == 8)
+		{
+			if (node->next != NULL && node->next->flag != 1
+				&& node->next->flag != 3 && node->next->flag != 4
+				&& node->next->flag != 5)
+			{
+				printf("%s %d\n", node->next->content, node->next->flag);
+				node->next->flag = 0;
+				node->next->bultin = 0;
+			}
+		}
+		node = node->next;
+	}
 }

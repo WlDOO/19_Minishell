@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/29 11:15:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:23:29 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	ft_exit(char **str)
 	int	i;
 
 	i = 0;
+	if (str[1] == NULL)
+	{
+		printf("exit\n");
+		system("leaks minishell");
+		exit(g_exit_code);	
+	}
+	if (str[2] != NULL)
+	{
+		g_exit_code = 1;
+		printf("exit\nminishell: exit: too many arguments\n");
+		return ;
+	}
 	while (str[i])
 		i++;
 	if (i == 2)
@@ -47,7 +59,4 @@ void	ft_exit(char **str)
 			exit(g_exit_code);
 		}
 	}
-	printf("exit\n");
-	system("leaks minishell");
-	exit(g_exit_code);
 }

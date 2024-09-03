@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/30 14:05:58 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:13:16 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,32 @@ char	*malloc_dst(int len)
 	return (dst);
 }
 
-int	check_char_pwd(char *str, char *c)
+int	ft_strrcmp(char *st1, char *st2)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (c[j])
-		{
-			if (str[i] == c[j])
-				return (1);
-			j++;
-		}
+	while (st1[i])
 		i++;
+	while (st2[j])
+		j++;
+	j--;
+	i--;
+	if (st2[j] == '/')
+		j--;
+	while (i > 0 && j > 0 && (st1[i] == st2[j]))
+	{
+		i--;
+		j--;
 	}
-	return (0);
+	if (st1[i] > st2[j])
+		return (1);
+	else if (st1[i] < st2[j])
+		return (-1);
+	else
+		return (0);
 }
 
 void	copy_pwd(char *next_pwd, char *pwd, char *dst)
@@ -67,13 +74,12 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 	dst[j] = '\0';
 	chdir(dst);
 	pwd = getcwd(NULL, 0);
-	if (check_char_pwd(pwd, next_pwd) == 0)
+	g_exit_code = 0;
+	if (ft_strrcmp(pwd, next_pwd) != 0 && ft_strncmp(next_pwd, "..", 2) != 0 && ft_strcmp(next_pwd, ".") != 0)
 	{
+		printf("minishell: cd: %s: No such file or directory", next_pwd);
 		g_exit_code = 1;
-		printf("pwd = %s\n", pwd);
 	}
-	else
-		g_exit_code = 0;
 }
 
 void	ft_cd_secur(char *next_pwd, char *pwd)

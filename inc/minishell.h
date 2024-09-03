@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:13:12 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:10:53 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ char	**list_to_matrix(t_env *env);
 char	**trie_asci(char **matrix);
 int		isaldigit(int c);
 int		verif_not_aldigit(char *str);
+void	ft_export_last(t_env *env, char *node);
+char	*ft_strjoin_export(char *st1, char *st2);
 /*-------------*/
 
 /*=======EXPENDER=======*/

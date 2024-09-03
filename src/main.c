@@ -97,7 +97,7 @@ void	printf_node(t_stack *stack)
 	node = stack->up;
 	while (node != NULL)
 	{
-		printf("// %s %d %d %s//\n", node->content, node->flag, node->bultin, node->full_cmd[1]);
+		printf("// %s %d %d//\n", node->content, node->flag, node->bultin);
 		node = node->next;
 	}
 }

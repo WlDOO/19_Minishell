@@ -40,7 +40,7 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 		{
 			start = i;
 			i++;
-			while (line[i] && line[i] != ' ')
+			while (line[i] && line[i] != '"')
 			{
 				i++;
 				if (line[i] == '"' && line[i + 1] == '"')
@@ -103,6 +103,7 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 			return ;
 		node = node->next;
 	}
+	printf_node(stack);
 	ft_expend(stack, envp);
 	ft_parser(stack, envp);
 	exec(stack, envp);

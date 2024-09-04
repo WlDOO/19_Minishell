@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 15:12:23 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:05:40 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	ft_expend(t_stack *stack, t_env *env)
 	count = count_guillmet(str->content, 0, 0);
 	first_sep = check_first_sep(str->content);
 	expend_verif(env, count, str, first_sep);
+	free(first_sep);
 	g_exit_code = 0;
 	return ;
 }

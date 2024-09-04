@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 15:23:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:34:33 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_exit(char **str)
 	if (str[1] == NULL)
 	{
 		printf("exit\n");
-		system("leaks minishell");
 		exit(g_exit_code);	
 	}
 	if (str[2] != NULL)

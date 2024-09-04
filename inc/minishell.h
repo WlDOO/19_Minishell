@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/03 15:10:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:15:22 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp);
 int		lexer_suite(t_stack *stack, char *line, int start, int i);
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp);
 int		lexer_suite2(t_stack *stack, char *line, int start, int i);
+void	ft_free_env(t_env *list_env);
 
 /*-------*/
 
@@ -54,6 +55,7 @@ int		ft_count_heredoc(t_stack *stack);
 void	ft_node_in(t_stack *stack, int pipe, char *infile, int i);
 void	delete_heredoc(t_stack *stack, int count);
 void	multi_heredoc2(t_stack *stack, char *infile, int i);
+void	ft_multi_heredoc_suite(t_node *node, char *infile, int i, t_stack *stack);
 
 /*--------*/
 
@@ -65,7 +67,6 @@ char	*ft_path(char *line, t_env *lst_env);
 char	*ft_path2(char **str, char *str2);
 void	ft_checknode(t_stack *stack);
 t_node	*ft_flagcheck(t_node *node);
-void	ft_free_all(char **str);
 void	ft_bultincheck(t_node *node);
 void	ft_parser2(t_stack *stack, t_env *list_env);
 void	ft_finish_node(t_stack *stack, char *in, char *out, int i);
@@ -92,15 +93,20 @@ void	ft_use_bultin(t_node *node, t_env *env);
 int		simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
 int		multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env);
 void	ft_perror(void);
+void	ft_wait(int pid, int status, int count);
 
 /*-------*/
 
 /*signaux*/
 
-void	ft_control(void);
+void	ft_control(int count);
 void	sig_for_ctrl_c(int signal);
 void	sig_for_ctrl_back_slash(int signal);
 void	rl_replace_line(const char *text, int clear_undo);
+void	ft_control_exec(void);
+void	sig_for_ctrl_back_slash_exec(int signal);
+void	sig_for_ctrl_c_exec(int signal);
+
 
 /*-------*/
 

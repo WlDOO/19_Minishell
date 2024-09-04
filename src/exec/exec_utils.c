@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:26:55 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:52:05 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,15 @@ void	ft_use_bultin(t_node *node, t_env *env)
 void	ft_perror(void)
 {
 	exit(1);
+}
+
+void	ft_wait(int pid, int status, int count)
+{
+	while (count != 0)
+	{
+		if (wait(&status) == pid)
+			if (WIFEXITED(status))
+				g_exit_code = WEXITSTATUS(status);
+		count--;
+	}
 }

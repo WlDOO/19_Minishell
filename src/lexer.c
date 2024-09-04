@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:15:04 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:27:39 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 			return ;
 		node = node->next;
 	}
-	printf_node(stack);
 	ft_expend(stack, envp);
 	ft_parser(stack, envp);
 	exec(stack, envp);

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/03 15:12:05 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:15:12 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	exec(t_stack *stack, t_env *env)
 
 	node = stack->up;
 	count = ft_countcmd(stack);
-	// printf_node(stack);
+	ft_control(1);
 	if (count == 1)
 	{
 		pid = fork();
@@ -32,20 +32,11 @@ int	exec(t_stack *stack, t_env *env)
 			ft_use_bultin(node, env);
 		}
 		else if (pid == 0)
-		{
 			simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
-			exit(g_exit_code);
-		}
 	}
 	else if (count > 1)
 		multi_cmd(stack, env, &pid);
-	while (count != 0)
-	{
-		if (wait(&status) == pid)
-			if (WIFEXITED(status))
-				g_exit_code = WEXITSTATUS(status);
-		count--;
-	}
+	ft_wait(pid, status, count);
 	return (delete_heredoc(stack, 0), 0);
 }
 

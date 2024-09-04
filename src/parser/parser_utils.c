@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:07:06 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:57:57 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ void	ft_free_all(char **str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i] != NULL)
+	i = -1;
+	while (str && str[++i])
 	{
 		free (str[i]);
-		i++;
 	}
 	free (str);
 }
@@ -49,7 +48,6 @@ void	ft_bultincheck(t_node *node)
 	}
 	else if (ft_strcmp(node->content, "cd") == 0)
 	{
-		printf("AAAAAA\n");
 		node->flag = 8;
 		node->bultin = 1;
 	}
@@ -104,6 +102,8 @@ void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 					node->in = ft_strdup(in);
 				if (out != NULL)
 					node->out = ft_strdup(out);
+				free (in);
+				free (out);
 			}
 			else
 				i--;

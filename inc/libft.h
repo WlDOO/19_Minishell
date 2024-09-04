@@ -55,6 +55,7 @@ typedef struct s_stack
 	t_node	*low;
 }				t_stack;
 
+void		ft_free_all(char **str);
 char		*ft_strcreate(char *line, int start, int end);
 int			ft_toupper(int c);
 int			ft_tolower(int c);

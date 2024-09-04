@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/29 11:19:07 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:55:29 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_clear_all(t_stack *stack)
 	node = stack->up;
 	while (node != NULL)
 	{
+		node->full_cmd = NULL;
 		ft_clear_all_annexe(stack, tmp, tmp3, node);
 		if (node != NULL)
 			node = node->next;
@@ -91,7 +92,6 @@ void	ft_checknode(t_stack *stack)
 		node->flag = 0;
 		if (check_sep(node->content[0], "|<>") == 0)
 			node = ft_flagcheck(node);
-		printf("aa node->flag = %d\n", node->flag);
 		node = node->next;
 	}
 }
@@ -100,14 +100,23 @@ void	free_stack(t_stack *stack)
 {
 	t_node	*temp;
 
+	while (stack->up)
 	{
-		while (stack->up != NULL)
-		{
-			temp = stack->up->next;
+		temp = stack->up->next;
+		if (stack->up->content != NULL)
+			free (stack->up->content);
+		if (stack->up->full_cmd != NULL)
+			ft_free_all(stack->up->full_cmd);
+		if (stack->up->cmd != NULL)
+			free (stack->up->cmd);
+		if (stack->up->in != NULL)
+			free(stack->up->in);
+		if (stack->up->out != NULL)
+			free (stack->up->out);
+		if (stack->up != NULL)
 			free(stack->up);
-			stack->up = temp;
-		}
-		stack->up = NULL;
-		stack->low = NULL;
+		stack->up = temp;
 	}
+	if (stack != NULL)
+		free(stack);
 }

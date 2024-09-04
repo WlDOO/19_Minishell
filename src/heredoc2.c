@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:51:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 19:04:12 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:02:27 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	delete_heredoc(t_stack *stack, int count)
 {
 	char	*infile;
 	t_node	*node;
+	char	*count_nbr;
 
 	node = stack->up;
 	infile = ft_strdup("");
@@ -54,7 +55,10 @@ void	delete_heredoc(t_stack *stack, int count)
 		free(infile);
 		count--;
 		infile = ft_strdup("tmp");
-		infile = ft_strjoin(infile, ft_itoa(count));
+		count_nbr = ft_itoa(count);
+		infile = ft_strjoin(infile, count_nbr);
+		free (count_nbr);
 		unlink(infile);
 	}
+	free (infile);
 }

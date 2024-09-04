@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/03 15:12:27 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:17:00 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,43 +90,43 @@ t_env	*list_new(char **matrix)
 	return (tmp);
 }
 
-void	printf_node(t_stack *stack)
-{
-	t_node	*node;
+// void	printf_node(t_stack *stack)
+// {
+// 	t_node	*node;
 
-	node = stack->up;
-	while (node != NULL)
-	{
-		printf("// %s %d %d//\n", node->content, node->flag, node->bultin);
-		node = node->next;
-	}
-}
+// 	node = stack->up;
+// 	while (node != NULL)
+// 	{
+// 		printf("// %s %d %d//\n", node->content, node->flag, node->bultin);
+// 		node = node->next;
+// 	}
+// }
 
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
 	t_stack	*stack;
 	t_env	*list_env;
-	t_sign	*flag;
 
 	(void)av;
 	(void)ac;
 	stack = NULL;
 	list_env = list_new(env);
-	stack = ft_init_dl(stack);
-	flag = malloc(sizeof(t_sign));
-	ft_control();
 	while (1)
 	{
+		ft_control(0);
+		stack = ft_init_dl(stack);
 		line = readline("minishell$ ");
 		if (line == NULL)
 		{
-			free_stack(stack);
+			ft_free_env(list_env);
 			printf("\rexit\n");
+			free_stack(stack);
 			exit(0);
 		}
 		lexer(stack, line, 0, list_env);
 		add_history(line);
 		free_stack(stack);
+		free(line);
 	}
 }

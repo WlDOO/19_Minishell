@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 15:51:26 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:01:11 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 	int		i;
 	t_node	*node;
 
+	node = NULL;
 	i = 0;
 	while (line && line[i])
 	{
@@ -108,7 +109,6 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 			return ;
 		node = node->next;
 	}
-	printf_node(stack);
 	ft_expend(stack, envp);
 	if (g_exit_code == -1)
 	{
@@ -116,5 +116,5 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 		return ;
 	}
 	ft_parser(stack, envp);
-	exec(stack, envp);
+	exec(stack, envp, 0);
 }

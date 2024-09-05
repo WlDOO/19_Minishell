@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 14:48:26 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:58:43 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	printf_export(t_env *list_env)
 	free(matrix[i]);
 }
 
-char	check_sep2(char *str, char *charset)
+char	check_sep2(char *str)
 {
 	int	i;
 
@@ -82,7 +82,7 @@ int	verif(t_env *env, char *str)
 	if (ft_isdigit(str[0]) == 1 || verif_not_aldigit(str) == 1)
 		return (printf("minishell: export: `%s': not a valid identifier\n",
 				str), 1);
-	if (check_sep2(str, "+=") == 0)
+	if (check_sep2(str) == 0)
 	{
 		while (env != NULL)
 		{

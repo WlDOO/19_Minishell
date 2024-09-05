@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:06:43 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:13:55 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:53:10 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_clear_all_annexe(t_stack *stack, char *tmp,
 		tmp = ft_strdup(node->content);
 		tmp = ft_strjoin(tmp, " ");
 		tmp3 = node->next;
-		while (tmp3 != NULL && tmp3->flag != 1)
+		while (tmp3 != NULL && tmp3->flag != 1 && tmp3->flag != 3
+			&& tmp3->flag != 4 && tmp3->flag != 5)
 		{
-			printf("tmp = %s %d\n", node->next->content, node->next->flag);
 			tmp = ft_strjoin(tmp, tmp3->content);
 			tmp = ft_strjoin(tmp, " ");
 			tmp3 = tmp3->next;
@@ -52,9 +52,12 @@ void	ft_clear_all_annexe(t_stack *stack, char *tmp,
 		node->full_cmd = ft_split(tmp, ' ');
 		while (node != NULL && node->flag != 1)
 			node = node->next;
+		free(tmp);
 	}
 	else if (node->flag != 3 && node->flag != 4 && node->flag != 1)
+	{
 		node->full_cmd = ft_split(node->content, ' ');
+	}
 }
 
 void	ft_bultincheck2(t_node *node)
@@ -95,7 +98,6 @@ void	ft_look_cmd(t_stack *stack)
 				&& node->next->flag != 3 && node->next->flag != 4
 				&& node->next->flag != 5)
 			{
-				printf("%s %d\n", node->next->content, node->next->flag);
 				node->next->flag = 0;
 				node->next->bultin = 0;
 			}

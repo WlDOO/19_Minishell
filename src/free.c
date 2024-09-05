@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dl_lstnew.c                                        :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 14:18:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 16:25:03 by najeuneh         ###   ########.fr       */
+/*   Created: 2024/09/03 17:47:57 by najeuneh          #+#    #+#             */
+/*   Updated: 2024/09/04 13:55:57 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../inc/minishell.h"
 
-t_node	*dl_lstnew(char *line, int start, int end)
+void	ft_free_env(t_env *list_env)
 {
-	t_node	*node;
+	t_env	*tmp;
 
-	node = malloc(sizeof(t_node));
-	if (!node)
-		return (NULL);
-	node->content = ft_strcreate(line, start, end);
-	node->flag = 0;
-	node->cmd = NULL;
-	node->full_cmd = NULL;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
+	while (list_env)
+	{
+		tmp = list_env->next;
+		if (list_env->content)
+			free (list_env->content);
+		if (list_env->attribut)
+			free(list_env->attribut);
+		free (list_env);
+		list_env = tmp;
+	}
+	list_env = NULL;
 }

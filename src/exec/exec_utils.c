@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 14:48:11 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:58:48 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,22 @@ void	ft_use_bultin(t_node *node, t_env *env)
 void	ft_perror(void)
 {
 	exit(1);
+}
+
+void	ft_wait(int pid, int status, int count)
+{
+	while (count != 0)
+	{
+		if (wait(&status) == pid)
+			if (WIFEXITED(status))
+				g_exit_code = WEXITSTATUS(status);
+		count--;
+	}
+}
+
+void	ft_putstr_error(char *content)
+{
+	write(2, "minishell: ", 12);
+	ft_putstr_fd(content, 2);
+	write(2, ": command not found\n", 21);
 }

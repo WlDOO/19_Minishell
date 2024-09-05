@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:53:42 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/30 12:48:04 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:18:08 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ void	sig_for_ctrl_back_slash(int signal)
 	rl_redisplay();
 }
 
-void	ft_control(void)
+void	ft_control(int count)
 {
 	struct termios	term;
 
-	signal(SIGINT, sig_for_ctrl_c);
-	signal(SIGQUIT, sig_for_ctrl_back_slash);
+	if (count == 0)
+	{
+		signal(SIGINT, sig_for_ctrl_c);
+		signal(SIGQUIT, sig_for_ctrl_back_slash);
+	}
+	if (count == 1)
+	{
+		signal(SIGINT, sig_for_ctrl_c_exec);
+		signal(SIGQUIT, sig_for_ctrl_back_slash_exec);
+	}
 	tcgetattr(0, &term);
 	term.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, TCSANOW, &term);

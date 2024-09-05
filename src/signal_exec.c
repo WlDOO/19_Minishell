@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dl_lstnew.c                                        :+:      :+:    :+:   */
+/*   signal_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 14:18:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 16:25:03 by najeuneh         ###   ########.fr       */
+/*   Created: 2024/09/04 17:53:21 by najeuneh          #+#    #+#             */
+/*   Updated: 2024/09/04 18:17:38 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../inc/minishell.h"
 
-t_node	*dl_lstnew(char *line, int start, int end)
+void	sig_for_ctrl_c_exec(int signal)
 {
-	t_node	*node;
+	(void)signal;
+	g_exit_code = 130;
+}
 
-	node = malloc(sizeof(t_node));
-	if (!node)
-		return (NULL);
-	node->content = ft_strcreate(line, start, end);
-	node->flag = 0;
-	node->cmd = NULL;
-	node->full_cmd = NULL;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
+void	sig_for_ctrl_back_slash_exec(int signal)
+{
+	g_exit_code = 131;
+	write(2, "Quit: 3\n", 8);
+	(void)signal;
 }

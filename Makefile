@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
+#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/09/05 15:43:24 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/09/05 20:40:47 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/
 			src/expender/expender.c src/heredoc2.c src/parser/parser_utils3.c \
 			src/expender/expender_utils.c src/expender/expender_utils2.c src/bultins/export_utils.c \
 			src/expender/expender_utils3.c src/bultins/export_utils2.c src/free.c src/signal_exec.c \
+			src/bultins/bultins_utils2.c src/bultins/export_utils3.c src/expender/expender_utils4.c \
+			src/main_utils.c \
 
 CFLAGS = -Wall -Wextra -Werror
 

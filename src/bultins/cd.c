@@ -6,62 +6,21 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 16:58:34 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:30:40 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char	*malloc_dst(int len)
-{
-	char	*dst;
-
-	dst = malloc(sizeof(char) * (len + 2));
-	if (!dst)
-		return (NULL);
-	return (dst);
-}
-
-int	ft_strrcmp(char *st1, char *st2)
+void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (st1[i])
-		i++;
-	while (st2[j])
-		j++;
-	j--;
-	i--;
-	if (st2[j] == '/')
-		j--;
-	while (i > 0 && j > 0 && (st1[i] == st2[j]))
-	{
-		i--;
-		j--;
-	}
-	if (st1[i] > st2[j])
-		return (1);
-	else if (st1[i] < st2[j])
-		return (-1);
-	else
-		return (0);
-}
-
-void	copy_pwd(char *next_pwd, char *pwd, char *dst)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	j = 0;
-	while (pwd != NULL && pwd[j])
-	{
+	j = -1;
+	while (pwd != NULL && pwd[++j])
 		dst[j] = pwd[j];
-		j++;
-	}
 	dst[j++] = '/';
 	while (next_pwd[i])
 	{
@@ -72,7 +31,8 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 	dst[j] = '\0';
 	chdir(dst);
 	pwd = getcwd(NULL, 0);
-	if (ft_strrcmp(pwd, next_pwd) != 0 && ft_strncmp(next_pwd, "..", 2) != 0 && ft_strcmp(next_pwd, ".") != 0)
+	if (ft_strrcmp(pwd, next_pwd) != 0 && ft_strncmp(next_pwd, "..", 2) != 0
+		&& ft_strcmp(next_pwd, ".") != 0)
 	{
 		printf("minishell: cd: %s: No such file or directory", next_pwd);
 		g_exit_code = 1;
@@ -94,13 +54,13 @@ void	ft_cd_secur(char *next_pwd, char *pwd)
 	}
 }
 
-void add_oldpwd(t_env *env)
+void	add_oldpwd(t_env *env)
 {
 	t_env	*tmp;
 	char	*pwd;
-	
+
 	pwd = getcwd(NULL, 0);
-	while (env)
+	while (env->next)
 	{
 		if (ft_strcmp("OLDPWD", env->attribut) == 0)
 		{
@@ -112,7 +72,7 @@ void add_oldpwd(t_env *env)
 	tmp = malloc(sizeof(t_env));
 	if (!tmp)
 		return ;
-	tmp->content = pwd;
+	tmp->content = ft_strdup(pwd);
 	tmp->attribut = ft_strdup("OLDPWD");
 	tmp->flag = 1;
 	tmp->next = NULL;
@@ -120,7 +80,7 @@ void add_oldpwd(t_env *env)
 	env = env->next;
 }
 
-void cd_suite(char *pwd, t_node *node, t_env *env)
+void	cd_suite(char *pwd, t_node *node, t_env *env)
 {
 	if (ft_strcmp(node->full_cmd[1], "-") == 0)
 	{

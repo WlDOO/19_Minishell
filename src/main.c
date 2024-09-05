@@ -6,78 +6,28 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 17:00:41 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:40:01 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-t_stack	*ft_init_dl(t_stack *stack)
+char	**create_matrix_env(void)
 {
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-	{
-		write(2, "Error\n", 6);
-		return (stack);
-	}
-	stack->up = NULL;
-	stack->low = NULL;
-	return (stack);
+	char	**m;
+
+	m = malloc(sizeof(char *) * 4);
+	m[0] = ft_strdup("PWD=/Users/sadegrae/minishell/minishell-42-sami-nat-1");
+	m[1] = ft_strdup("SHLVL=1");
+	m[2] = ft_strdup("_=/usr/bin/env");
+	m[3] = NULL;
+	return (m);
 }
 
-char	*ft_strchr2(const char *s, int c)
-{
-	size_t		i;
-	char		*str;
-
-	str = (char *)s;
-	i = 0;
-	while (i <= ft_strlen(s))
-	{
-		if (str[i] == (unsigned char)c)
-			return (ft_strdup(&str[i + 1]));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strcpy2(char *str, char c)
-{
-	int		i;
-	char	*dst;
-
-	i = 0;
-	while (str[i] != c)
-		i++;
-	dst = malloc(sizeof(char) * (i + 1));
-	if (!dst)
-		return (NULL);
-	i = 0;
-	while (str[i] != c)
-	{
-		dst[i] = str[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-char **create_matrix_env()
-{
-	char **matrix;
-
-	matrix = malloc(sizeof(char *) * 4);
-	matrix[0] = ft_strdup("PWD=/Users/sadegrae/minishell/minishell-42-sami-nat-1");
-	matrix[1] = ft_strdup("SHLVL=1");
-	matrix[2] = ft_strdup("_=/usr/bin/env");
-	matrix[3] = NULL;
-	return (matrix);
-}
-
-void shell_level(t_env *env)
+void	shell_level(t_env *env)
 {
 	t_env	*tmp;
-	int count;
+	int		count;
 
 	while (env->next != NULL)
 	{
@@ -89,7 +39,6 @@ void shell_level(t_env *env)
 			return ;
 		}
 		env = env->next;
-		
 	}
 	tmp = malloc(sizeof(t_env));
 	if (!tmp)

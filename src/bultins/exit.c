@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 16:58:38 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:26:48 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_exit(char **str, int i)
 	if (str[1] == NULL)
 	{
 		printf("exit\n");
-		exit(g_exit_code);	
+		exit(g_exit_code);
 	}
 	if (str[2] != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 16:58:16 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:41:15 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct s_sign
 }				t_sign;
 
 int	g_exit_code;
+
+t_stack	*ft_init_dl(t_stack *stack);
+char	*ft_strchr2(const char *s, int c);
+char	*ft_strcpy2(char *str, char c);
 
 /* lexer */
 
@@ -135,6 +139,14 @@ int		isaldigit(int c);
 int		verif_not_aldigit(char *str);
 void	ft_export_last(t_env *env, char *node);
 char	*ft_strjoin_export(char *st1, char *st2);
+int		ft_strrcmp(char *st1, char *st2);
+char	*malloc_dst(int len);
+void	verif_suite3(t_env *env, char *str);
+void	verif_suite(t_env *env, char *str);
+void	verif_suite_2(t_env *env, char *str);
+int		verif(t_env *env, char *str);
+void	not_export(t_env *env);
+char	check_sep2(char *str);
 /*-------------*/
 
 /*=======EXPENDER=======*/
@@ -160,6 +172,9 @@ char	*check_dollar_interrogation(char *str);
 char	*check_first_sep(char *str);
 int		verif_char_special(char *str, t_node *next);
 int		verif_char_special2(char *str, t_node *next);
+int		count_char(char *str, char c);
+char	*copy_without_char(char *str, char c);
+void	expend_verif(t_env *env, int count, t_node *str, char *first_sep);
 
 /*======================*/
 

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 16:40:06 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 19:33:41 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ void	find_env(t_env *env, char *str)
 			if (env->next->next == NULL)
 			{
 				env->next = NULL;
+				g_exit_code = 0;
 				break ;
 			}
 			free(env->next);
 			env->next = env->next->next;
+			g_exit_code = 0;
 		}
 		env = env->next;
 	}
-	
+	g_exit_code = 1;
+	return ;
 }
 
 void	ft_unset(t_env *env, t_node *node)
@@ -37,6 +40,8 @@ void	ft_unset(t_env *env, t_node *node)
 	int		i;
 
 	i = 1;
+	if (node->full_cmd[1] == NULL)
+		return ;
 	if (ft_strcmp(node->full_cmd[1], env->attribut) == 0)
 	{
 		tmp = env->next;
@@ -47,5 +52,4 @@ void	ft_unset(t_env *env, t_node *node)
 		find_env(env, node->full_cmd[i]);
 		i++;
 	}
-	g_exit_code = 0;
 }

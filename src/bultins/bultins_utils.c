@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:52:01 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/25 19:08:45 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:27:01 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_char(char *str, char c)
 
 int	ft_strcmp(char *st1, char *st2)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (st1[i] && st2[i] && (st1[i] == st2[i]))
@@ -43,7 +43,7 @@ int	ft_strcmp(char *st1, char *st2)
 
 int	ft_strcmp_before_char(char *st1, char *st2, char c)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (st1[i] && st2[i] && (st1[i] == st2[i]) && st1[i] != c)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:11:06 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 15:11:39 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:26:55 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int count_n(char *str)
+int	count_n(char *str)
 {
 	int	i;
 	int	count;
@@ -22,7 +22,7 @@ int count_n(char *str)
 	while (str[i])
 	{
 		if (str[i] == '-')
-			count++;	
+			count++;
 		i++;
 	}
 	if (count == 1)
@@ -32,7 +32,7 @@ int count_n(char *str)
 
 void	ft_echo(t_node *node)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (!ft_strncmp(node->full_cmd[1], "-n", 2) && !count_n(node->full_cmd[1]))

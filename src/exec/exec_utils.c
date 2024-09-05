@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 20:45:55 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:10:17 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ int	ft_countcmd(t_stack *stack)
 void	ft_use_bultin(t_node *node, t_env *env)
 {
 	if (ft_strncmp(node->content, "echo", 4) == 0)
-		ft_echo(node);
+	{
+		if (node->full_cmd[1] == NULL)
+			printf("\n");
+		else
+			ft_echo(node);
+	}
 	else if (ft_strncmp(node->content, "cd", 2) == 0)
 		ft_cd(env, node);
 	else if (ft_strncmp(node->content, "pwd", 3) == 0)

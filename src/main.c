@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 20:46:05 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:26:51 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 char	**create_matrix_env(void)
 {
 	char	**m;
+	char	*tmp;
+	char	*tmp2;
 
+	tmp = ft_strdup("_=/Users/najeuneh/Desktop/cursus");
+	tmp2 = ft_strdup("/minishell-42-sami-nat/./minishell");
 	m = malloc(sizeof(char *) * 4);
 	m[0] = ft_strdup("PWD=/Users/sadegrae/minishell/minishell-42-sami-nat-1");
 	m[1] = ft_strdup("SHLVL=1");
-	m[2] = ft_strdup("_=/usr/bin/env");
+	m[2] = ft_strjoin(tmp, tmp2);
 	m[3] = NULL;
+	free (tmp2);
 	return (m);
 }
 
@@ -73,6 +78,7 @@ t_env	*list_new(char **matrix, int i, t_env *tmp)
 			node->next = new;
 		node = new;
 	}
+	check_pwd(matrix, tmp);
 	shell_level(tmp);
 	return (tmp);
 }

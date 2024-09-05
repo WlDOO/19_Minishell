@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 17:21:33 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:19:38 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	verif_char_special(char *str, t_node *next)
 	if (ft_strcmp(str, ".") == 0)
 		return (0);
 	if (ft_strcmp(str, "~") == 0)
+		return (0);
+	if (ft_strcmp(str, "_") == 0)
 		return (0);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 19:33:41 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:14:49 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_unset(t_env *env, t_node *node)
 
 	i = 1;
 	if (node->full_cmd[1] == NULL)
+		return ;
+	if (node->full_cmd[1][0] == '_')
 		return ;
 	if (ft_strcmp(node->full_cmd[1], env->attribut) == 0)
 	{

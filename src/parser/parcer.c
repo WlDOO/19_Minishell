@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 20:01:40 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:06:50 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,24 @@ char	*ft_path2(char **str, char *str2)
 
 	j = -1;
 	cmp = NULL;
-	while (str[++j] != NULL)
+	if (str != NULL)
 	{
-		str[j] = ft_strjoin(str[j], "/");
-		str[j] = ft_strjoin(str[j], str2);
-		if (access(str[j], X_OK) == 0)
+		while (str[++j] != NULL)
 		{
-			cmp = ft_strdup(str[j]);
-			ft_free_all(str);
-			return (cmp);
+			str[j] = ft_strjoin(str[j], "/");
+			str[j] = ft_strjoin(str[j], str2);
+			if (access(str[j], X_OK) == 0)
+			{
+				cmp = ft_strdup(str[j]);
+				ft_free_all(str);
+				return (cmp);
+			}
 		}
-		else if (access(str2, X_OK) == 0)
-		{
-			cmp = ft_strdup(str2);
-			ft_free_all(str);
-			return (cmp);
-		}
+	}
+	if (access(str2, X_OK) == 0)
+	{
+		cmp = ft_strdup(str2);
+		return (ft_free_all(str), cmp);
 	}
 	return (ft_free_all(str), NULL);
 }
@@ -58,14 +60,16 @@ char	*ft_path(char *line, t_env *lst_env)
 	char	*cmp;
 	char	**env;
 
+	str = NULL;
 	cmp = NULL;
 	env = list_to_matrix(lst_env);
 	i = ft_checkpath(env);
-	if (i == -1)
-		return (0);
-	str = ft_split(env[i] + 5, ':');
-	if (str == NULL)
-		return (NULL);
+	if (i != -1)
+	{
+		str = ft_split(env[i] + 5, ':');
+		if (str == NULL)
+			return (NULL);
+	}
 	cmp = ft_path2(str, line);
 	ft_free_all(env);
 	return (cmp);

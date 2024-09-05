@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 21:18:32 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:12:52 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	g_exit_code;
 t_stack	*ft_init_dl(t_stack *stack);
 char	*ft_strchr2(const char *s, int c);
 char	*ft_strcpy2(char *str, char c);
+void	check_pwd(char **matrix, t_env *env);
+void	check__(char **matrix, t_env *env);
 
 /* lexer */
 

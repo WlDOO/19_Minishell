@@ -6,23 +6,23 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 19:11:19 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:44:54 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	exec(t_stack *stack, t_env *env)
+int	exec(t_stack *stack, t_env *env, int status)
 {
 	t_node	*node;
 	int		count;
 	int		pid;
-	int		status;
 
 	node = stack->up;
 	count = ft_countcmd(stack);
-	printf_node(stack);
+	pid = 0;
 	ft_control(1);
+	printf_node(stack);
 	if (count == 1)
 	{
 		pid = fork();
@@ -37,8 +37,7 @@ int	exec(t_stack *stack, t_env *env)
 	}
 	else if (count > 1)
 		multi_cmd(stack, env, &pid);
-	ft_wait(pid, status, count);
-	return (delete_heredoc(stack, 0), 0);
+	return (ft_wait(pid, status, count), delete_heredoc(stack, 0), 0);
 }
 
 int	multi_cmd(t_stack *stack, t_env *env, int *pid)

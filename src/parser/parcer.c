@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 19:02:59 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:21:27 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ char	*ft_path2(char **str, char *str2)
 		if (access(str[j], X_OK) == 0)
 		{
 			cmp = ft_strdup(str[j]);
+			ft_free_all(str);
+			return (cmp);
+		}
+		else if (access(str2, X_OK) == 0)
+		{
+			cmp = ft_strdup(str2);
 			ft_free_all(str);
 			return (cmp);
 		}
@@ -81,6 +87,7 @@ void	ft_parser(t_stack *stack, t_env *env)
 				node->flag = 8;
 			if (node->flag == 8)
 			{
+				ft_check_full_path(node);
 				while (node != NULL && node->flag != 1)
 					node = node->next;
 			}

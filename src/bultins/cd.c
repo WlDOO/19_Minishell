@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 15:13:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:42:28 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 {
 	int			i;
 	int			j;
-	static char	*tmp;
 
 	i = 0;
 	j = 0;

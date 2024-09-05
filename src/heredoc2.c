@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:51:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 17:02:27 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:35:47 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,27 @@ void	delete_heredoc(t_stack *stack, int count)
 		unlink(infile);
 	}
 	free (infile);
+}
+
+void	ft_check_full_path(t_node *node)
+{
+	int i;
+	int	y;
+
+	i = 0;
+	y = 0;
+	if (node->content[0] == '.')
+		return ;
+	if(ft_strcmp(node->content, node->cmd) == 0)
+	{
+		free (node->content);
+		while (node->cmd[i])
+		{
+			if (node->cmd[i] == '/')
+				y = i;
+			i++;		
+		}
+
+		node->content = ft_strcreate(node->cmd, y + 1, i);
+	}
 }

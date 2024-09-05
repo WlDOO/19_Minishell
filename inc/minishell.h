@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 19:36:34 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:42:30 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int		ft_count_heredoc(t_stack *stack);
 void	ft_node_in(t_stack *stack, int pipe, char *infile, int i);
 void	delete_heredoc(t_stack *stack, int count);
 void	multi_heredoc2(t_stack *stack, char *infile, int i);
-void	ft_multi_heredoc_suite(t_node *node, char *infile, int i, t_stack *stack);
+void	ft_multi_heredoc_suite(t_node *node, char *infile, int i,
+			t_stack *stack);
 
 /*--------*/
 
@@ -108,7 +109,6 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	ft_control_exec(void);
 void	sig_for_ctrl_back_slash_exec(int signal);
 void	sig_for_ctrl_c_exec(int signal);
-
 
 /*-------*/
 

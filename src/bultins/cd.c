@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:30:40 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 21:18:20 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ void	ft_cd_secur(char *next_pwd, char *pwd)
 	}
 }
 
-void	add_oldpwd(t_env *env)
+void	add_oldpwd(t_env *env, char	*pwd)
 {
 	t_env	*tmp;
-	char	*pwd;
 
-	pwd = getcwd(NULL, 0);
 	while (env->next)
 	{
 		if (ft_strcmp("OLDPWD", env->attribut) == 0)
@@ -88,6 +86,7 @@ void	cd_suite(char *pwd, t_node *node, t_env *env)
 		{
 			if (ft_strcmp("OLDPWD", env->attribut) == 0)
 			{
+				printf("test = %s\n", env->content);
 				pwd = NULL;
 				ft_cd_secur(env->content, pwd);
 				g_exit_code = 0;
@@ -106,18 +105,22 @@ void	ft_cd(t_env *env, t_node *node)
 {
 	char	*pwd;
 
-	add_oldpwd(env);
+	pwd = getcwd(NULL, 0);
 	if (node->full_cmd[1] != NULL)
-		cd_suite(pwd, node, env);
+	{
+		cd_suite(NULL, node, env);
+		add_oldpwd(env, pwd);
+		add_pwd(env, NULL);
+	}
 	else
 	{
 		while (env != NULL)
 		{
 			if (ft_strcmp("HOME", env->attribut) == 0)
 			{
-				pwd = NULL;
-				ft_cd_secur(env->content, pwd);
-				g_exit_code = 0;
+				ft_cd_secur(env->content, NULL);
+				add_oldpwd(env, pwd);
+				add_pwd(env, NULL);
 				return ;
 			}
 			env = env->next;

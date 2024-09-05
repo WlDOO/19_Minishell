@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 20:41:15 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 21:18:32 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int		ft_count_heredoc(t_stack *stack);
 void	ft_node_in(t_stack *stack, int pipe, char *infile, int i);
 void	delete_heredoc(t_stack *stack, int count);
 void	multi_heredoc2(t_stack *stack, char *infile, int i);
-void	ft_multi_heredoc_suite(t_node *node, char *infile, int i, t_stack *stack);
+void	ft_multi_heredoc_suite(t_node *node, char *infile, int i,
+			t_stack *stack);
 
 /*--------*/
 
@@ -113,7 +114,6 @@ void	ft_control_exec(void);
 void	sig_for_ctrl_back_slash_exec(int signal);
 void	sig_for_ctrl_c_exec(int signal);
 
-
 /*-------*/
 
 /*=======BULTINS=======*/
@@ -147,6 +147,7 @@ void	verif_suite_2(t_env *env, char *str);
 int		verif(t_env *env, char *str);
 void	not_export(t_env *env);
 char	check_sep2(char *str);
+void	add_pwd(t_env *env, char	*pwd);
 /*-------------*/
 
 /*=======EXPENDER=======*/

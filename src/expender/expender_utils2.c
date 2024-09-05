@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 16:42:24 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:21:33 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ char	*check_dollar(char *str, t_env *env, char *first_sep, int i)
 	char	*sep;
 	char	*str2;
 
+	sep = NULL;
 	if (check_char(str, '$') == 0)
 		return (str);
 	else if ((str[i] == 39 || str[i] == '"') && last_compare(first_sep) == 1)

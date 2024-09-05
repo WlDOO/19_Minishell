@@ -6,7 +6,7 @@
 #    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/09/05 20:40:47 by sadegrae         ###   ########.fr        #
+#    Updated: 2024/09/05 20:46:10 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)/expender
 	@mkdir -p $(OBJS_DIR)/parser
 	@mkdir -p $(OBJS_DIR)/exec
-	$(CC) -I/inc/ -g -o $@ -c $<
+	$(CC) $(CFLAGS) -I/inc/ -g -o $@ -c $<
 
 debug: $(MY_OBJECTS)
 	@make -C $(LIBFT)

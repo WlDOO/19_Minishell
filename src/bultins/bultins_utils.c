@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:52:01 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:27:01 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:45:45 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_strcmp(char *st1, char *st2)
 	int	i;
 
 	i = 0;
+	if (st1 == NULL || st2 == NULL)
+		return (-1);
 	while (st1[i] && st2[i] && (st1[i] == st2[i]))
 		i++;
 	if (st1[i] > st2[i])

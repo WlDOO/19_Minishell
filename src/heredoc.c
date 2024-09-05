@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:12:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 18:16:28 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 19:40:50 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	multi_heredoc(t_stack *stack, char *infile, int i, int pipe)
 			{
 				free(infile);
 				count_nbr = ft_itoa(++i);
-				infile = ft_strjoin(ft_strdup("tmp"), count_nbr);
+				infile = ft_strjoin(ft_strdup("/tmp/.tmp"), count_nbr);
 				create_here_doc(node->next->content, infile);
 				free (count_nbr);
 			}
@@ -62,7 +62,7 @@ void	multi_heredoc2(t_stack *stack, char *infile, int i)
 		{
 			free(infile);
 			i--;
-			infile = ft_strdup("tmp");
+			infile = ft_strdup("/tmp/.tmp");
 			infile = ft_strjoin(infile, ft_itoa(i));
 			printf("%s\n", infile);
 			unlink(infile);

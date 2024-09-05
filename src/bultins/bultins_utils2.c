@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:30:21 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:32:57 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 21:19:10 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,30 @@ int	ft_strrcmp(char *st1, char *st2)
 		return (-1);
 	else
 		return (0);
+}
+
+void	add_pwd(t_env *env, char	*pwd)
+{
+	t_env	*tmp;
+
+	pwd = getcwd(NULL, 0);
+	while (env->next)
+	{
+		if (ft_strcmp("PWD", env->attribut) == 0)
+		{
+			env->content = pwd;
+			return ;
+		}
+		env = env->next;
+	}
+	tmp = malloc(sizeof(t_env));
+	if (!tmp)
+		return ;
+	tmp->content = ft_strdup(pwd);
+	tmp->attribut = ft_strdup("PWD");
+	tmp->flag = 1;
+	tmp->next = NULL;
+	env->next = tmp;
+	env = env->next;
+	g_exit_code = 0;
 }

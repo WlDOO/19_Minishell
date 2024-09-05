@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 16:58:34 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 17:21:02 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void	ft_cd(t_env *env, t_node *node)
 {
 	char	*pwd;
 
+	pwd = NULL;
 	add_oldpwd(env);
 	if (node->full_cmd[1] != NULL)
 		cd_suite(pwd, node, env);

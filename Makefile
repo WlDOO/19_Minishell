@@ -6,7 +6,7 @@
 #    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/09/05 15:43:24 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/09/05 17:20:43 by najeuneh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)/expender
 	@mkdir -p $(OBJS_DIR)/parser
 	@mkdir -p $(OBJS_DIR)/exec
-	$(CC) -I/inc/ -g -o $@ -c $<
+	$(CC) $(CFLAGS) -I/inc/ -g -o $@ -c $<
 
 debug: $(MY_OBJECTS)
 	@make -C $(LIBFT)

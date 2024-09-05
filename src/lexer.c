@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 17:01:11 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:27:10 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 		{
 			start = i;
 			i++;
-			while (line[i] && (line[i] != '"' || line[i] != 39))
+			while (line[i++] && (line[i] != '"' || line[i] != 39))
 			{
-				i++;
 				if (line[i] == '"' && line[i + 1] == '"')
 					i += 2;
 			}
@@ -101,7 +100,7 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 	{
 		printf("minishell: syntax error: unexpected end of file\n");
 		return ;
-	}	
+	}
 	node = stack->up;
 	while (node != NULL)
 	{

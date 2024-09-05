@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 15:21:27 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:01:40 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ void	ft_parser(t_stack *stack, t_env *env)
 
 	node = stack->up;
 	ft_checknode(stack);
+	node->flag = 8;
 	while (node != NULL)
 	{
 		node->cmd = NULL;
-		if (node->flag == 0)
+		if (node->flag == 0 || node->flag == 8)
 		{
 			node->cmd = ft_path(node->content, env);
 			if (node->cmd != NULL)

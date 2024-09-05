@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 16:55:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:01:18 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	ft_checkcmd(t_stack *stack)
 				count++;
 			node = node->next;
 		}
-		if (node != NULL && node->flag == 1)
-			i++;
 		if (count == 0)
 			ft_checkflag0(stack, i);
+		if (node != NULL && node->flag == 1)
+			i++;
 		if (node != NULL)
 			node = node->next;
 	}

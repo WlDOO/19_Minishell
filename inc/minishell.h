@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 18:15:22 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:05:08 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	ft_use_bultin(t_node *node, t_env *env);
 int		simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
 int		multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env);
 void	ft_perror(void);
+void	ft_putstr_error(char *content);`
 void	ft_wait(int pid, int status, int count);
 
 /*-------*/

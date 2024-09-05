@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 16:52:05 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:14:02 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ void	ft_wait(int pid, int status, int count)
 				g_exit_code = WEXITSTATUS(status);
 		count--;
 	}
+}
+
+void	ft_putstr_error(char *content)
+{
+	write(2, "minishell: ", 12);
+	ft_putstr_fd(content, 2);
+	write(2, ": command not found\n", 21);
 }

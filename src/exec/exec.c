@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 18:15:12 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:11:19 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	exec(t_stack *stack, t_env *env)
 
 	node = stack->up;
 	count = ft_countcmd(stack);
+	printf_node(stack);
 	ft_control(1);
 	if (count == 1)
 	{
@@ -105,7 +106,7 @@ int	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 		ft_use_bultin(node, env);
 	else if (execve(node->cmd, node->full_cmd, list_to_matrix(env)) == -1)
 	{
-		printf("minishell: %s: command not found\n", node->content);
+		ft_putstr_error(node->content);
 		exit(127);
 	}
 	exit(g_exit_code);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:15:04 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:51:26 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 		{
 			start = i;
 			i++;
-			while (line[i] && line[i] != '"')
+			while (line[i] && (line[i] != '"' || line[i] != 39))
 			{
 				i++;
 				if (line[i] == '"' && line[i + 1] == '"')
@@ -96,6 +96,11 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 {
 	if (!line || stack->up == NULL)
 		return ;
+	if (ft_strcmp(stack->low->content, "|") == 0)
+	{
+		printf("minishell: syntax error: unexpected end of file\n");
+		return ;
+	}	
 	node = stack->up;
 	while (node != NULL)
 	{
@@ -105,6 +110,11 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 	}
 	printf_node(stack);
 	ft_expend(stack, envp);
+	if (g_exit_code == -1)
+	{
+		g_exit_code = 1;
+		return ;
+	}
 	ft_parser(stack, envp);
 	exec(stack, envp);
 }

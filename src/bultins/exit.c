@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 15:23:29 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:46:45 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,11 @@ void	not_alpha(char *str)
 	}
 }
 
-void	ft_exit(char **str)
+void	ft_exit(char **str, int i)
 {
-	int	i;
-
-	i = 0;
 	if (str[1] == NULL)
 	{
 		printf("exit\n");
-		system("leaks minishell");
 		exit(g_exit_code);	
 	}
 	if (str[2] != NULL)

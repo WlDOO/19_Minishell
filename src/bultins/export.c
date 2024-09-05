@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/03 15:19:59 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:48:26 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,11 +158,8 @@ void	ft_export_last(t_env *env, char *node)
 	g_exit_code = 0;
 }
 
-void	ft_export(t_env *env, t_node *node)
+void	ft_export(t_env *env, t_node *node, int i)
 {
-	int i;
-
-	i = 1;
 	if (node->full_cmd[1] == NULL)
 	{
 		printf_export(env);

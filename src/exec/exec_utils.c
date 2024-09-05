@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/30 14:26:55 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:48:11 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	ft_use_bultin(t_node *node, t_env *env)
 	else if (ft_strncmp(node->content, "pwd", 3) == 0)
 		ft_pwd();
 	else if (ft_strncmp(node->content, "export", 6) == 0)
-		ft_export(env, node);
+		ft_export(env, node, 1);
 	else if (ft_strncmp(node->content, "unset", 5) == 0)
 		ft_unset(env, node);
 	else if (ft_strncmp(node->content, "env", 3) == 0)
 		printf_env(env);
 	else if (ft_strncmp(node->content, "exit", 4) == 0)
-		ft_exit(node->full_cmd);
+		ft_exit(node->full_cmd, 0);
 }
 
 void	ft_perror(void)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/03 15:12:27 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:36:13 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,54 @@ char	*ft_strcpy2(char *str, char c)
 	return (dst);
 }
 
-t_env	*list_new(char **matrix)
+char **create_matrix_env()
+{
+	char **matrix;
+
+	matrix = malloc(sizeof(char *) * 4);
+	matrix[0] = ft_strdup("PWD=/Users/sadegrae/minishell/minishell-42-sami-nat-1");
+	matrix[1] = ft_strdup("SHLVL=1");
+	matrix[2] = ft_strdup("_=/usr/bin/env");
+	matrix[3] = NULL;
+	return (matrix);
+}
+
+void shell_level(t_env *env)
+{
+	t_env	*tmp;
+	int count;
+
+	while (env->next != NULL)
+	{
+		if (ft_strcmp(env->attribut, "SHLVL") == 0)
+		{
+			count = ft_atoi(env->content) + 1;
+			free(env->content);
+			env->content = ft_itoa(count);
+			return ;
+		}
+		env = env->next;
+		
+	}
+	tmp = malloc(sizeof(t_env));
+	if (!tmp)
+		return ;
+	tmp->content = ft_strdup("1");
+	tmp->attribut = ft_strdup("SHLVL");
+	tmp->flag = 1;
+	tmp->next = NULL;
+	env->next = tmp;
+	return ;
+}
+
+t_env	*list_new(char **matrix, int i, t_env *tmp)
 {
 	t_env	*new;
 	t_env	*node;
-	t_env	*tmp;
-	int		i;
 
-	tmp = NULL;
-	i = 0;
-	while (matrix[i])
+	if (!matrix[0])
+		matrix = create_matrix_env();
+	while (matrix[++i])
 	{
 		new = malloc(sizeof(*new));
 		if (!new)
@@ -85,8 +123,8 @@ t_env	*list_new(char **matrix)
 		else
 			node->next = new;
 		node = new;
-		i++;
 	}
+	shell_level(tmp);
 	return (tmp);
 }
 
@@ -112,7 +150,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)ac;
 	stack = NULL;
-	list_env = list_new(env);
+	list_env = list_new(env, -1, NULL);
 	stack = ft_init_dl(stack);
 	flag = malloc(sizeof(t_sign));
 	ft_control();
@@ -122,6 +160,7 @@ int	main(int ac, char **av, char **env)
 		if (line == NULL)
 		{
 			free_stack(stack);
+			system("leaks minishell");
 			printf("\rexit\n");
 			exit(0);
 		}

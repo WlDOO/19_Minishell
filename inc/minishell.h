@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/03 15:10:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:59:15 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	ft_echo(t_node *node);
 void	ft_cd(t_env *env, t_node *node);
 void	ft_pwd(void);
-void	ft_exit(char **str);
-void	ft_export(t_env *env, t_node *node);
+void	ft_exit(char **str, int i);
+void	ft_export(t_env *env, t_node *node, int i);
 void	printf_export(t_env *list_env);
 void	printf_env(t_env *list_env);
 void	ft_unset(t_env *env, t_node *node);
@@ -141,7 +141,7 @@ char	*ft_strcpy3(char *str);
 char	*ft_strrev(char *str);
 int		count_guillmet(char *str, int i, int len);
 int		last_compare(char *sep);
-t_env	*list_new(char **matrix);
+t_env	*list_new(char **matrix, int i, t_env *tmp);
 int		sort_single_quote(char **dest, char *str, int *i, int *first);
 int		sort_double_quote(char **dest, char *str, int *i, int *first);
 char	*return_for_sort(int result, char *dest);

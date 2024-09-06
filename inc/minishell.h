@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 22:12:52 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:55:17 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	check__(char **matrix, t_env *env);
 
 char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
-void	printf_node(t_stack *stack);
 void	lexer(t_stack *stack, char *line, int start, t_env *envp);
 int		lexer_suite(t_stack *stack, char *line, int start, int i);
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp);
@@ -128,6 +127,8 @@ void	ft_export(t_env *env, t_node *node, int i);
 void	printf_export(t_env *list_env);
 void	printf_env(t_env *list_env);
 void	ft_unset(t_env *env, t_node *node);
+void	ft_cd_secur(char *next_pwd, char *pwd);
+void	ft_cd_HOME(t_env *env);
 
 /*bultins utils*/
 int		ft_strcmp(char *st1, char *st2);

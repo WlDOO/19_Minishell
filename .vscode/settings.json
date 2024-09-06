@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"pipex.h": "c",
-		"ft_printf.h": "c",
-		"minishell.h": "c",
-		"libft.h": "c",
-		"__node_handle": "c"
-	}
-}

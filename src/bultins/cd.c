@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 21:18:20 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:48:33 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 	if (ft_strrcmp(pwd, next_pwd) != 0 && ft_strncmp(next_pwd, "..", 2) != 0
 		&& ft_strcmp(next_pwd, ".") != 0)
 	{
-		printf("minishell: cd: %s: No such file or directory", next_pwd);
+		printf("minishell: cd: %s: No such file or directory\n", next_pwd);
 		g_exit_code = 1;
 	}
 }
@@ -86,7 +86,6 @@ void	cd_suite(char *pwd, t_node *node, t_env *env)
 		{
 			if (ft_strcmp("OLDPWD", env->attribut) == 0)
 			{
-				printf("test = %s\n", env->content);
 				pwd = NULL;
 				ft_cd_secur(env->content, pwd);
 				g_exit_code = 0;
@@ -97,7 +96,7 @@ void	cd_suite(char *pwd, t_node *node, t_env *env)
 		printf("minishell: cd: OLDPWD not set");
 		return ;
 	}
-	pwd = getcwd(NULL, 0);
+	
 	ft_cd_secur(node->full_cmd[1], pwd);
 }
 
@@ -105,6 +104,7 @@ void	ft_cd(t_env *env, t_node *node)
 {
 	char	*pwd;
 
+	printf("%s\n", node->full_cmd[1]);
 	pwd = getcwd(NULL, 0);
 	if (node->full_cmd[1] != NULL)
 	{
@@ -114,6 +114,7 @@ void	ft_cd(t_env *env, t_node *node)
 	}
 	else
 	{
+		
 		while (env != NULL)
 		{
 			if (ft_strcmp("HOME", env->attribut) == 0)

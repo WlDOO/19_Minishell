@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 19:57:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:55:09 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	exec(t_stack *stack, t_env *env, int status)
 	count = ft_countcmd(stack);
 	pid = 0;
 	ft_control(1);
-	printf_node(stack);
 	if (count == 1)
 	{
 		pid = fork();

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:43:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 22:28:52 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:40:11 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,19 @@ void	check__(char **matrix, t_env *env)
 		env->next = tmp;
 	}
 	free (tmp3);
+}
+
+void	ft_cd_HOME(t_env *env)
+{
+	while (env != NULL)
+	{
+		if (ft_strcmp("HOME", env->attribut) == 0)
+		{
+			ft_cd_secur(env->content, NULL);
+			g_exit_code = 0;
+			return ;
+		}
+		env = env->next;
+	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:30:31 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 22:19:38 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:04:37 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*check_dollar_interrogation(char *str)
 	i++;
 	if (str[i] == '?')
 	{
-		printf("g_exit_code %d\n", g_exit_code);
 		dest = ft_itoa(g_exit_code);
 		g_exit_code = 0;
 		return (dest);

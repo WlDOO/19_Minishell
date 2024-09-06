@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:12:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 19:40:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:02:45 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	multi_heredoc2(t_stack *stack, char *infile, int i)
 			i--;
 			infile = ft_strdup("/tmp/.tmp");
 			infile = ft_strjoin(infile, ft_itoa(i));
-			printf("%s\n", infile);
 			unlink(infile);
 		}
 	}

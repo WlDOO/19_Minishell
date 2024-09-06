@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/06 13:55:17 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:29:19 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	printf_export(t_env *list_env);
 void	printf_env(t_env *list_env);
 void	ft_unset(t_env *env, t_node *node);
 void	ft_cd_secur(char *next_pwd, char *pwd);
-void	ft_cd_HOME(t_env *env);
+void	ft_cd_home(t_env *env);
 
 /*bultins utils*/
 int		ft_strcmp(char *st1, char *st2);

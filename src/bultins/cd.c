@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/06 12:48:33 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:28:11 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	cd_suite(char *pwd, t_node *node, t_env *env)
 		printf("minishell: cd: OLDPWD not set");
 		return ;
 	}
-	
 	ft_cd_secur(node->full_cmd[1], pwd);
 }
 
@@ -104,7 +103,6 @@ void	ft_cd(t_env *env, t_node *node)
 {
 	char	*pwd;
 
-	printf("%s\n", node->full_cmd[1]);
 	pwd = getcwd(NULL, 0);
 	if (node->full_cmd[1] != NULL)
 	{
@@ -114,7 +112,6 @@ void	ft_cd(t_env *env, t_node *node)
 	}
 	else
 	{
-		
 		while (env != NULL)
 		{
 			if (ft_strcmp("HOME", env->attribut) == 0)

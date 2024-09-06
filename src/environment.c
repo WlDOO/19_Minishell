@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:43:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 22:40:11 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:29:03 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	check__(char **matrix, t_env *env)
 	free (tmp3);
 }
 
-void	ft_cd_HOME(t_env *env)
+void	ft_cd_home(t_env *env)
 {
 	while (env != NULL)
 	{

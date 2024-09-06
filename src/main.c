@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/06 13:55:13 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:28:32 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ t_env	*list_new(char **matrix, int i, t_env *tmp)
 	shell_level(tmp);
 	return (tmp);
 }
-
 
 int	main(int ac, char **av, char **env)
 {

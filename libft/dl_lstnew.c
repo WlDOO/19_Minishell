@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:18:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 19:59:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:57:36 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_node	*dl_lstnew(char *line, int start, int end)
 	node->out_fd = 0;
 	node->full_cmd = NULL;
 	node->heredoc = 0;
+	node->append = 0;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

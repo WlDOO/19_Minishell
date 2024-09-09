@@ -37,6 +37,7 @@ typedef struct s_node
 	int				out_fd;
 	char			**full_cmd;
 	int				heredoc;
+	int				append;
 	struct s_node	*next;
 	struct s_node	*prev;
 }				t_node;

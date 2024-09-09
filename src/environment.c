@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:43:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/06 14:29:03 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:32:44 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,33 @@ void	ft_cd_home(t_env *env)
 		env = env->next;
 	}
 	return ;
+}
+
+void	ft_look_append(t_stack	*stack)
+{
+	t_node	*node;
+	t_node	*tmp;
+
+	node = stack->up;
+	while (node)
+	{
+		tmp = node;
+		while (node && node->flag != 1)
+		{
+			if (node->flag == 8)
+			{
+				while (tmp && tmp->flag != 1)
+				{
+					if (tmp->flag == 6)
+						break ;
+					tmp = tmp->next;
+				}
+				if (tmp != NULL && ft_strcmp(node->out, tmp->next->content) == 0)
+					node->append = 1;
+			}
+			node = node->next;
+		}
+		if (node != NULL)
+			node = node->next;
+	}
 }

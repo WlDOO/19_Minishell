@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:12:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/06 14:02:45 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:16:01 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	multi_heredoc(t_stack *stack, char *infile, int i, int pipe)
 		pipe++;
 	}
 	multi_heredoc2(stack, infile, i + 1);
-	free (infile);
 }
 
 void	multi_heredoc2(t_stack *stack, char *infile, int i)
@@ -67,6 +66,8 @@ void	multi_heredoc2(t_stack *stack, char *infile, int i)
 			unlink(infile);
 		}
 	}
+	if (!infile)
+		free (infile);
 }
 
 int	ft_count_heredoc(t_stack *stack)

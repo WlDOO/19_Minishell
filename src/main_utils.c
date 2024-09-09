@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:39:46 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:41:00 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:40:28 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,16 @@ char	*ft_strcpy2(char *str, char c)
 	}
 	dst[i] = '\0';
 	return (dst);
+}
+
+void	ft_print(t_stack *stack)
+{
+	t_node	*node;
+	
+	node =stack->up;
+	while (node != NULL)
+	{
+		printf("content = %s flag = %d %s\n", node->content, node->flag, node->out);
+		node = node->next;
+	}
 }

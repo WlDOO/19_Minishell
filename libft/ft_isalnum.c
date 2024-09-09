@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:16 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/08/27 16:34:28 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:44:28 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_isalnum(int c)
 		return (1);
 	else if (c >= 'a' && c <= 'z')
 		return (1);
-	else if (c == '?' || c == '>' || c == '<')
+	else if (c == '?' || c == '>' || c == '<' || c == '-')
 		return (1);
 	return (0);
 }

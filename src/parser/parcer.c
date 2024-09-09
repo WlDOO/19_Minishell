@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 22:06:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:53:40 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	ft_parser(t_stack *stack, t_env *env)
 	node = stack->up;
 	ft_checknode(stack);
 	node->flag = 8;
+	ft_flagcheck(node);
 	while (node != NULL)
 	{
 		node->cmd = NULL;
@@ -119,6 +120,7 @@ void	ft_parser2(t_stack *stack, t_env *list_env)
 	}
 	ft_look_cmd(stack);
 	ft_checkcmd(stack);
+	heredoc(stack);
 	ft_finish_node(stack, NULL, NULL, -1);
 }
 
@@ -127,20 +129,20 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 	t_node	*node;
 
 	node = stack->up;
-	heredoc(stack);
 	while (node != NULL)
 	{
 		in = NULL;
 		out = NULL;
 		while (node != NULL && node->content && node->flag != 1)
 		{
-			if (node->flag == 3 || node->flag == 4 || node->flag == 5)
+			if (node->flag == 3 || node->flag == 4
+				|| node->flag == 5 || node->flag == 6)
 			{
 				if (node->flag == 3)
 					in = ft_strdup(node->next->content);
 				else if (node->flag == 5)
 					in = node->in;
-				else if (node->flag == 4)
+				else if (node->flag == 4 || node->flag == 6)
 					out = ft_strdup(node->next->content);
 			}
 			ft_check_next(&node);

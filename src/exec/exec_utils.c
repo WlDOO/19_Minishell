@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 22:10:17 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:01:25 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,24 @@ int	ft_countcmd(t_stack *stack)
 
 void	ft_use_bultin(t_node *node, t_env *env)
 {
-	if (ft_strncmp(node->content, "echo", 4) == 0)
+	if (ft_strcmp(node->content, "echo") == 0)
 	{
 		if (node->full_cmd[1] == NULL)
 			printf("\n");
 		else
 			ft_echo(node);
 	}
-	else if (ft_strncmp(node->content, "cd", 2) == 0)
+	else if (ft_strcmp(node->content, "cd") == 0)
 		ft_cd(env, node);
-	else if (ft_strncmp(node->content, "pwd", 3) == 0)
+	else if (ft_strcmp(node->content, "pwd") == 0)
 		ft_pwd();
-	else if (ft_strncmp(node->content, "export", 6) == 0)
+	else if (ft_strcmp(node->content, "export") == 0)
 		ft_export(env, node, 1);
-	else if (ft_strncmp(node->content, "unset", 5) == 0)
+	else if (ft_strcmp(node->content, "unset") == 0)
 		ft_unset(env, node);
-	else if (ft_strncmp(node->content, "env", 3) == 0)
+	else if (ft_strcmp(node->content, "env") == 0)
 		printf_env(env);
-	else if (ft_strncmp(node->content, "exit", 4) == 0)
+	else if (ft_strcmp(node->content, "exit") == 0)
 		ft_exit(node->full_cmd, 0);
 }
 

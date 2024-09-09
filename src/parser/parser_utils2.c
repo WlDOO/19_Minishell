@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/04 19:01:18 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:38:18 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_clear_all(t_stack *stack)
 	tmp = NULL;
 	tmp3 = NULL;
 	node = stack->up;
+	ft_look_append(stack);
 	while (node != NULL)
 	{
 		node->full_cmd = NULL;
@@ -90,8 +91,7 @@ void	ft_checknode(t_stack *stack)
 	while (node != NULL)
 	{
 		node->flag = 0;
-		if (check_sep(node->content[0], "|<>") == 0)
-			node = ft_flagcheck(node);
+		node = ft_flagcheck(node);
 		node = node->next;
 	}
 }

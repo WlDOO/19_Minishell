@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/05 22:02:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:53:16 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_checkpath(char **str)
 void	ft_bultincheck(t_node *node)
 {
 	node->bultin = 0;
-	if (ft_strncmp(node->content, "echo", 4) == 0)
+	if (ft_strcmp(node->content, "echo") == 0)
 	{
 		node->flag = 8;
 		node->bultin = 1;
@@ -51,12 +51,12 @@ void	ft_bultincheck(t_node *node)
 		node->flag = 8;
 		node->bultin = 1;
 	}
-	else if (ft_strncmp(node->content, "pwd", 3) == 0)
+	else if (ft_strcmp(node->content, "pwd") == 0)
 	{
 		node->flag = 8;
 		node->bultin = 1;
 	}
-	else if (ft_strncmp(node->content, "export", 6) == 0)
+	else if (ft_strcmp(node->content, "export") == 0)
 	{
 		node->flag = 8;
 		node->bultin = 1;
@@ -72,10 +72,12 @@ t_node	*ft_flagcheck(t_node *node)
 	else if (node->content[0] == '&')
 		node->flag = 2;
 	else if (ft_strcmp(node->content, "<<") == 0
-		|| ft_strcmp(node->prev->content, "<<") == 0)
+		|| (node->prev != NULL && ft_strcmp(node->prev->content, "<<") == 0))
 	{
 		node->flag = 5;
 	}
+	else if (ft_strcmp(node->content, ">>") == 0)
+		node->flag = 6;
 	else if (node->content[0] == '<')
 		node->flag = 3;
 	else if (node->content[0] == '>')
@@ -102,8 +104,10 @@ void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 					node->in = ft_strdup(in);
 				if (out != NULL)
 					node->out = ft_strdup(out);
-				free (in);
-				free (out);
+				if (!in)
+					free (in);
+				if (!out)
+					free (out);
 			}
 			else
 				i--;

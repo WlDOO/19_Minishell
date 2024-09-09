@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:39:46 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/09 15:40:28 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:13:43 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,12 @@ char	*ft_strcpy2(char *str, char c)
 void	ft_print(t_stack *stack)
 {
 	t_node	*node;
-	
-	node =stack->up;
+
+	node = stack->up;
 	while (node != NULL)
 	{
-		printf("content = %s flag = %d %s\n", node->content, node->flag, node->out);
+		printf("content = %s flag = %d %s\n", node->content,
+			node->flag, node->out);
 		node = node->next;
 	}
 }

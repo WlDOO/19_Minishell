@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 15:50:03 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:16:52 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include "libft.h"
-# include "ft_printf.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -65,7 +64,6 @@ void	ft_multi_heredoc_suite(t_node *node, char *infile, int i,
 			t_stack *stack);
 int		ft_only_heredoc(t_stack *stack);
 
-
 /*--------*/
 
 /* parser */
@@ -90,7 +88,7 @@ void	ft_check_next(t_node **node);
 void	ft_look_cmd(t_stack *stack);
 void	ft_bultincheck2(t_node *node);
 void	ft_check_full_path(t_node *node);
-void	ft_look_append(t_stack	*stack);
+void	ft_look_append(t_stack	*stack, t_node *tmp);
 
 /*-------*/
 

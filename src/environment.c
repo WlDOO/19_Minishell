@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:43:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 15:32:44 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:16:32 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,9 @@ void	ft_cd_home(t_env *env)
 	return ;
 }
 
-void	ft_look_append(t_stack	*stack)
+void	ft_look_append(t_stack	*stack, t_node *tmp)
 {
 	t_node	*node;
-	t_node	*tmp;
 
 	node = stack->up;
 	while (node)
@@ -104,7 +103,8 @@ void	ft_look_append(t_stack	*stack)
 						break ;
 					tmp = tmp->next;
 				}
-				if (tmp != NULL && ft_strcmp(node->out, tmp->next->content) == 0)
+				if (tmp != NULL
+					&& ft_strcmp(node->out, tmp->next->content) == 0)
 					node->append = 1;
 			}
 			node = node->next;

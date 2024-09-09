@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:36:28 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:39:46 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,19 @@ void	ft_expend(t_stack *stack, t_env *env)
 		return ;
 	str = stack->up;
 	str = str->next;
-	if (verif_char_special(str->content, str->next) == 0)
+	while (str)
 	{
-		ft_expender_suite(str, env);
-		return ;
+		if (verif_char_special(str->content, str->next) == 0)
+		{
+			ft_expender_suite(str, env);
+			return ;
+		}
+		count = count_guillmet(str->content, 0, 0);
+		first_sep = check_first_sep(str->content);
+		expend_verif(env, count, str, first_sep);
+		free(first_sep);
+		str = str->next;
 	}
-	count = count_guillmet(str->content, 0, 0);
-	first_sep = check_first_sep(str->content);
-	expend_verif(env, count, str, first_sep);
-	free(first_sep);
 	g_exit_code = 0;
 	return ;
 }

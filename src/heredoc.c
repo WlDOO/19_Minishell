@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:12:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 14:16:01 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:09:37 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	multi_heredoc(t_stack *stack, char *infile, int i, int pipe)
 		{
 			if (node->flag == 5)
 			{
-				free(infile);
+				free (infile);
 				count_nbr = ft_itoa(++i);
 				infile = ft_strjoin(ft_strdup("/tmp/.tmp"), count_nbr);
 				create_here_doc(node->next->content, infile);
@@ -66,7 +66,7 @@ void	multi_heredoc2(t_stack *stack, char *infile, int i)
 			unlink(infile);
 		}
 	}
-	if (!infile)
+	if (infile != NULL)
 		free (infile);
 }
 
@@ -99,9 +99,14 @@ void	create_here_doc(char *str, char *infile)
 		if (line == NULL)
 			break ;
 		else if (ft_strcmp(line, str) == 0)
+		{
 			break ;
+		}
 		ft_putstr_fd(line, fd);
 		ft_putstr_fd("\n", fd);
+		free (line);
 	}
+	if (line != NULL)
+		free (line);
 	close (fd);
 }

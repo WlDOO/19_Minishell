@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 14:53:16 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:49:44 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ t_node	*ft_flagcheck(t_node *node)
 		node->flag = 1;
 	else if (node->content[0] == '&')
 		node->flag = 2;
-	else if (ft_strcmp(node->content, "<<") == 0
-		|| (node->prev != NULL && ft_strcmp(node->prev->content, "<<") == 0))
+	else if (ft_strcmp(node->content, "<<") == 0)
 	{
 		node->flag = 5;
 	}
@@ -104,9 +103,9 @@ void	ft_suite_node(t_stack *stack, char *in, char *out, int i)
 					node->in = ft_strdup(in);
 				if (out != NULL)
 					node->out = ft_strdup(out);
-				if (!in)
+				if (in != NULL)
 					free (in);
-				if (!out)
+				if (out != NULL)
 					free (out);
 			}
 			else

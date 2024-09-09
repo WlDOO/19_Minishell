@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 15:53:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:48:41 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int	exec(t_stack *stack, t_env *env, int status)
 	count = ft_countcmd(stack);
 	pid = 0;
 	ft_control(1);
-	ft_print(stack);
 	if (count == 1)
 	{
 		pid = fork();
+		while (node && node->flag != 8)
+			node = node->next;
 		if (node->bultin == 1)
 		{
 			if (pid == 0)
@@ -50,7 +51,7 @@ int	multi_cmd(t_stack *stack, t_env *env, int *pid)
 	node = stack->up;
 	while (node != NULL)
 	{
-		if (node->flag != 1)
+		if (node->flag != 1 && node->flag == 8)
 		{
 			pipe(pipee);
 			*pid = fork();

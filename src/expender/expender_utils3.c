@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:36:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/10 19:33:57 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:21:09 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ void	ft_split_cot(t_node *str)
 	free(str->content);
 	str->content = ft_strdup(tmp);
 	free(tmp);
-	printf("pitier = %s\n", str->content);
 }
 

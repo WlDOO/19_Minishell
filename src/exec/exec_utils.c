@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 14:01:25 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:14:51 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,32 @@ void	ft_wait(int pid, int status, int count)
 	while (count != 0)
 	{
 		if (wait(&status) == pid)
+		{
 			if (WIFEXITED(status))
 				g_exit_code = WEXITSTATUS(status);
+		}
 		count--;
 	}
 }
 
-void	ft_putstr_error(char *content)
+void	ft_check_out(t_node *node)
 {
-	write(2, "minishell: ", 12);
-	ft_putstr_fd(content, 2);
-	write(2, ": command not found\n", 21);
+	if (node->out != NULL)
+	{
+		if (node->append == 1)
+			node->out_fd = open(node->out, O_RDWR | O_CREAT | O_APPEND, 0644);
+		else
+			node->out_fd = open(node->out, O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (node->out_fd == -1)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(node->out, 2);
+			ft_putstr_fd("no such file or directory", 2);
+			ft_putstr_fd("\n", 2);
+			g_exit_code = 1;
+			exit(g_exit_code);
+		}
+	}
+	else
+		node->out_fd = -1;
 }

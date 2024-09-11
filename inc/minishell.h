@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/10 21:34:58 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:08:33 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include "libft.h"
+# include <sys/stat.h>
+# include <errno.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -98,12 +100,13 @@ int		exec(t_stack *stack, t_env *envp, int status);
 void	ft_check_fd(t_node *node);
 int		multi_cmd(t_stack *stack, t_env *env, int *pid);
 void	ft_use_bultin(t_node *node, t_env *env);
-int		simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
+void	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
 int		multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env);
 void	ft_perror(void);
-void	ft_putstr_error(char *content);
 void	ft_check_out(t_node *node);
 void	ft_wait(int pid, int status, int count);
+void	error_manage(char *cmd);
+void	parent_bultins(t_node *node, t_env *env);
 
 /*-------*/
 
@@ -162,28 +165,18 @@ void	expend_verif(t_env *env, int count, t_node	*str, char *first_sep);
 void	expend_if_dollard(t_env *env, t_node *str, char *first_sep, int count);
 void	expend_ifnot_dollard(t_env *env, t_node *str);
 void	verif_middle_guil(t_node *node, int i, int len);
-char	*ft_strjoin_expend(char *st1, char *st2);
-char	*ft_strcpy3(char *str);
-char	*ft_strrev(char *str);
-int		count_guillmet(char *str, int i, int len);
-int		last_compare(char *sep);
+
+
 t_env	*list_new(char **matrix, int i, t_env *tmp);
-int		sort_single_quote(char **dest, char *str, int *i, int *first);
-int		sort_double_quote(char **dest, char *str, int *i, int *first);
-char	*return_for_sort(int result, char *dest);
-char	*check_sort_guillmet(char *str, int i, int first, int result);
-char	*check_dollar(char *str, t_env *env, char *first_sep, int i);
-char	*return_env_if_dollar(char *str2, char *str, char *sep, int i);
-char	*check_dollar_interrogation(char *str);
-char	*check_first_sep(char *str);
+
 int		verif_char_special(char *str, t_node *next);
 int		verif_char_special2(char *str, t_node *next);
-int		count_char(char *str, char c);
-char	*copy_without_char(char *str, char c);
-void	expend_verif(t_env *env, int count, t_node *str, char *first_sep);
+
 int		ft_count_quote(t_node *str, int i, int len);
 void	ft_split_cot(t_node *str);
-
+void if_or_not_convert(t_node *str, t_env *env);
+int check_if_dollard(char *str);
+void convert_dollar(t_node *str, t_env *env);
 
 /*======================*/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:31:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:32:45 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:07:42 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,11 @@ int	verif(t_env *env, char *str)
 	if (str[0] == '$')
 		return (1);
 	if (ft_isdigit(str[0]) == 1 || verif_not_aldigit(str) == 1)
-		return (printf("minishell: export: `%s': not a valid identifier\n",
-				str), 1);
+	{
+		ft_putstr_fd("minishell: export: ", 2);
+		ft_putstr_fd(str, 2);
+		return (ft_putstr_fd(" : not a valid identifier\n", 2), 1);
+	}
 	if (check_sep2(str) == 0)
 	{
 		verif_suite(env, str);

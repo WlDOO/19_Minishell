@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/10 16:01:47 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:12:55 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	exec(t_stack *stack, t_env *env, int status)
 		{
 			if (pid == 0)
 				exit(g_exit_code);
-			ft_use_bultin(node, env);
+			return (parent_bultins(node, env), 0);
 		}
 		else if (pid == 0)
-			g_exit_code = simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
+			simple_cmd(node, STDOUT_FILENO, STDOUT_FILENO, env);
 	}
 	else if (count > 1)
-		g_exit_code = multi_cmd(stack, env, &pid);
+		multi_cmd(stack, env, &pid);
 	return (ft_wait(pid, status, count), delete_heredoc(stack, 0), 0);
 }
 
@@ -66,7 +66,7 @@ int	multi_cmd(t_stack *stack, t_env *env, int *pid)
 		}
 		node = node->next;
 	}
-	return (0);
+	return (g_exit_code);
 }
 
 int	multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env)
@@ -81,7 +81,7 @@ int	multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env)
 	return (g_exit_code);
 }
 
-int	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
+void	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 {
 	ft_check_fd(node);
 	if (node->in_fd != -1)
@@ -101,13 +101,12 @@ int	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 	else if (dup2(out_pipe, STDOUT_FILENO) == -1)
 		ft_perror();
 	if (node->bultin == 1)
-		ft_use_bultin(node, env);
-	else if (execve(node->cmd, node->full_cmd, list_to_matrix(env)) == -1)
 	{
-		ft_putstr_error(node->content);
-		exit(127);
+		ft_use_bultin(node, env);
+		exit(g_exit_code);
 	}
-	exit(g_exit_code);
+	execve(node->cmd, node->full_cmd, list_to_matrix(env));
+	error_manage(node->content);
 }
 
 void	ft_check_fd(t_node *node)
@@ -119,8 +118,12 @@ void	ft_check_fd(t_node *node)
 		node->in_fd = open(node->in, O_RDONLY);
 		if (node->in_fd == -1)
 		{
-			printf("zsh: no such file or directory: %s\n", node->in);
-			exit(1);
+			write(2, "minishell: ", 12);
+			write(2, node->in, ft_strlen(node->in));
+			write(2, "no such file or directory: ", 33);
+			write(2, "\n", 2);
+			g_exit_code = 1;
+			exit(g_exit_code);
 		}
 	}
 	else

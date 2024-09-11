@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:22 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:26:48 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:03:56 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void	not_alpha(char *str)
 		if (ft_isalpha(str[i]) == 1)
 		{
 			g_exit_code = 255;
-			printf("exit\nminishell: exit: %s: numeric argument required\n",
-				str);
+			ft_putstr_fd("minishell: exit: ", 2);
+			ft_putstr_fd(str, 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
 			exit(g_exit_code);
 		}
 		i++;
@@ -40,7 +41,7 @@ void	ft_exit(char **str, int i)
 	if (str[2] != NULL)
 	{
 		g_exit_code = 1;
-		printf("exit\nminishell: exit: too many arguments\n");
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		return ;
 	}
 	while (str[i])

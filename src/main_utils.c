@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:39:46 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/09 17:13:43 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:22:06 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_print(t_stack *stack)
 	while (node != NULL)
 	{
 		printf("content = %s flag = %d %s\n", node->content,
-			node->flag, node->out);
+			node->flag, node->in);
 		node = node->next;
 	}
 }

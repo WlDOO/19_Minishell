@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:36:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/11 19:40:27 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:36:27 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_split_cot(t_node *str)
 			tmp[len++] = str->content[i++];
 	}
 	tmp[len] = '\0';
+	
 	free(str->content);
 	str->content = ft_strdup(tmp);
 	free(tmp);

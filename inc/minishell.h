@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 20:17:14 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:21:36 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include "libft.h"
+# include <sys/stat.h>
+# include <errno.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -98,12 +100,13 @@ int		exec(t_stack *stack, t_env *envp, int status);
 void	ft_check_fd(t_node *node);
 int		multi_cmd(t_stack *stack, t_env *env, int *pid);
 void	ft_use_bultin(t_node *node, t_env *env);
-int		simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
+void	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env);
 int		multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env);
 void	ft_perror(void);
-void	ft_putstr_error(char *content);
 void	ft_check_out(t_node *node);
 void	ft_wait(int pid, int status, int count);
+void	error_manage(char *cmd);
+void	parent_bultins(t_node *node, t_env *env);
 
 /*-------*/
 

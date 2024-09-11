@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 22:14:49 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:05:30 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	find_env(t_env *env, char *str)
 		}
 		env = env->next;
 	}
-	g_exit_code = 1;
+	g_exit_code = 0;
 	return ;
 }
 

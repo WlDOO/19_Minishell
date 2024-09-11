@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 20:47:07 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:16:29 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ int	ft_lexer_expextion(char *line, int start, int i)
 	{
 		i++;
 		while (line[i] && line[i] != 39)
+		{
 			i++;
+		}
 		if (line[i + 1] != ' ')
 			while(line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
 				i++;
@@ -73,6 +75,12 @@ int	ft_lexer_expextion(char *line, int start, int i)
 		i++;
 		while (line[i] && line[i] != 34)
 			i++;
+		if (line[i + 1] == 34)
+		{
+			i++;
+			while (line[i + 1] && line[i + 1] != 34)
+				i++;
+		}
 		if (line[i + 1] != ' ')
 			while(line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
 				i++;
@@ -101,6 +109,7 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 			return ;
 		node = node->next;
 	}
+	ft_print(stack);
 	ft_expend(stack, envp);
 	if (g_exit_code == -1)
 	{

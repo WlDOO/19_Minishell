@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:31:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/11 21:09:40 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:24:39 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,17 @@ void	verif_suite(t_env *env, char *str)
 	verif_suite3(env, str);
 }
 
-void	verif_suite_2(t_env *env, char *str)
+int	verif_suite_2(t_env *env, char *str)
 {
 	while (env != NULL)
 	{
-		if (ft_strcmp_before_char(str, env->attribut, '=') == 0)
+		if (ft_strcmp(str, env->attribut) == 0)
 		{
-			env->content = ft_strchr2(str, '=');
-			if (env->content[0] == '"')
-				env->content = ft_strcpy2(env->content + 1, '"');
-			env->flag = 1;
-			return ;
+			return (1);
 		}
 		env = env->next;
 	}
+	return (0);
 }
 
 int	verif(t_env *env, char *str)
@@ -97,15 +94,27 @@ int	verif(t_env *env, char *str)
 	}
 	if (check_char(str, '=') == 1)
 	{
-		verif_suite_2(env, str);
+		while (env != NULL)
+		{
+			if (ft_strcmp_before_char(str, env->attribut, '=') == 0)
+			{
+				env->content = ft_strchr2(str, '=');
+				if (env->content[0] == '"')
+					env->content = ft_strcpy2(env->content + 1, '"');
+				env->flag = 1;
+				return (1);
+			}
+			env = env->next;
+		}
 		return (0);
 	}
-	while (env != NULL)
-	{
-		if (ft_strcmp(str, env->attribut) == 0)
-			return (1);
-		env = env->next;
-	}
+	
+	// while (env != NULL)
+	// {
+	// 	if (ft_strcmp(str, env->attribut) == 0)
+	// 		return (1);
+	// 	env = env->next;
+	// }
 	return (0);
 }
 

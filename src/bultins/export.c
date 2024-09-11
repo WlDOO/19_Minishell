@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:34:17 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:25:05 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,12 @@ void	ft_export(t_env *env, t_node *node, int i)
 		}
 		else
 		{
-			while (env->next != NULL)
-				env = env->next;
-			ft_export_last(env, node->full_cmd[i]);
+			if (verif_suite_2(env, node->full_cmd[i]) == 0)
+			{
+				while (env->next != NULL)
+					env = env->next;
+				ft_export_last(env, node->full_cmd[i]);
+			}
 		}
 		i++;
 	}

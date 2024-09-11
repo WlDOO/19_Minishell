@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 20:21:36 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 21:24:56 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int		ft_strrcmp(char *st1, char *st2);
 char	*malloc_dst(int len);
 void	verif_suite3(t_env *env, char *str);
 void	verif_suite(t_env *env, char *str);
-void	verif_suite_2(t_env *env, char *str);
+int	verif_suite_2(t_env *env, char *str);
 int		verif(t_env *env, char *str);
 void	not_export(t_env *env);
 char	check_sep2(char *str);

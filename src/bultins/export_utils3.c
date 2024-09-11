@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:31:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 20:32:45 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:35:38 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,11 @@ int	verif(t_env *env, char *str)
 	if (str[0] == '$')
 		return (1);
 	if (ft_isdigit(str[0]) == 1 || verif_not_aldigit(str) == 1)
-		return (printf("minishell: export: `%s': not a valid identifier\n",
-				str), 1);
+	{
+		g_exit_code = 1;
+		printf("minishell: export: `%s': not a valid identifier\n", str);
+		return (1);
+	}
 	if (check_sep2(str) == 0)
 	{
 		verif_suite(env, str);

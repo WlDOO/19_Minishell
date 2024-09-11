@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:43:12 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 17:43:36 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:24:16 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,17 @@ t_node	*ft_flagcheck(t_node *node)
 {
 	if (node->content[0] == '|')
 		node->flag = 1;
-	else if (node->content[0] == '&')
-		node->flag = 2;
 	else if (ft_strcmp(node->content, "<<") == 0)
 	{
 		node->flag = 5;
 	}
 	else if (ft_strcmp(node->content, ">>") == 0)
 		node->flag = 6;
-	else if (node->content[0] == '<')
+	else if (ft_strcmp(node->content, "<") == 0)
 		node->flag = 3;
-	else if (node->content[0] == '>')
+	else if (ft_strcmp(node->content, ">") == 0)
 		node->flag = 4;
-	else if (node->content[0] == ' ')
+	else if (ft_strcmp(node->content, " ") == 0)
 		node->flag = -1;
 	return (node);
 }

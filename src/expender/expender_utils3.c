@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:36:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/10 22:00:18 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:40:27 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,6 @@ int	verif_char_special2(char *str, t_node *next)
 		return (g_exit_code = 1, 0);
 	}
 	return (1);
-}
-
-int	ft_count_quote(t_node *str, int i, int len)
-{
-	while (str->content[i])
-	{
-		if (str->content[i] == '"')
-		{
-			i++;
-			while (str->content[i] && str->content[i++] != '"')
-				len++;
-			i++;
-		}
-		else if (str->content[i] == 39)
-		{
-			i++;
-			while (str->content[i] && str->content[i++] != 39)
-				len++;
-			i++;
-		}
-		else
-		{
-			i++;
-			len++;
-		}
-	}
-	return(len);
 }
 
 void	ft_split_cot(t_node *str)
@@ -103,7 +76,6 @@ void	ft_split_cot(t_node *str)
 	free(str->content);
 	str->content = ft_strdup(tmp);
 	free(tmp);
-	printf("pitier = %s\n", str->content);
 }
 
 void convert_dollar(t_node *str, t_env *env)
@@ -116,6 +88,8 @@ void convert_dollar(t_node *str, t_env *env)
 	tmp = NULL;
 	while (str->content[i] && str->content[i] != '$')
 		i++;
+	if (str->content[i] == '$' && (check_sep(str->content[i + 1], "\"' ") == 0 || !str->content[i + 1]))
+		return ;
 	if (str->content[i] && str->content[i] == '$')
 	{
 		end = i;
@@ -124,7 +98,6 @@ void convert_dollar(t_node *str, t_env *env)
 		tmp = ft_strcreate(str->content, i + 1, end);
 	}
 	i = 0;
-	printf("tmp = %s\n", tmp);
 	if (tmp[0] == '?')
 	{
 		tmp = ft_strjoin(ft_itoa(g_exit_code), &tmp[1]);
@@ -173,7 +146,6 @@ void if_or_not_convert(t_node *str, t_env *env)
 				if (str->content[i] == '$')
 				{
 					convert_dollar(str, env);
-					return ;
 				}
 				i++;
 			}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/10 19:28:08 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:19:26 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,55 +37,46 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 	{
 		while (line[i] && (line[i] == 32 || line[i] == '	'))
 			i++;
-		if (line[i] != ' ')
+		if (line[i] && check_sep(line[i], "<>|\"' ") == 1)
 		{
 			start = i;
-			while (line[i++] && line[i + 1] != ' ')
+			while (line[i] && check_sep(line[i], "<>| ") == 1)
 				i++;
+			dl_lstadd_back(stack, line, start, i);
+		}
+		if (check_sep(line[i], "<>|\"'") == 0)
+		{
+			start = i;
+			i = ft_lexer_expextion(line, start, i);
 			i++;
 			dl_lstadd_back(stack, line, start, i);
 		}
-		else
-			i = lexer_suite(stack, line, start, i);
+
 	}
 	ft_lexer2(line, stack, node, envp);
 }
 
-int	lexer_suite(t_stack *stack, char *line, int start, int i)
-{
-	if (line[i] && check_sep(line[i], "|&<>()`") == 1)
-	{
-		start = i;
-		while (line[i] && check_sep(line[i], "|&<>()` ") == 1
-			&& line[i] != '"')
-		{
-			i++;
-			if (line[i] == '"' && line[i] != 32
-				&& check_sep(line[i], "|&<>()`") == 1)
-			{
-				while (line[i] && line[i] != 34)
-				{
-					i++;
-				}
-				i++;
-			}
-		}
-		dl_lstadd_back(stack, line, start, i);
-	}
-	else if (line[i] && check_sep(line[i], "|&<>()`") == 0)
-		i = lexer_suite2(stack, line, start, i);
-	else
-		i++;
-	return (i);
-}
-
-int	lexer_suite2(t_stack *stack, char *line, int start, int i)
+int	ft_lexer_expextion(char *line, int start, int i)
 {
 	start = i;
-	while (line[i] && check_sep(line[i], "|&<>()`") == 0 && line[i] != '"')
+	if (line[i] == 39)
+	{
 		i++;
-	dl_lstadd_back(stack, line, start, i);
-	return (i);
+		while (line[i] && line[i] != 39)
+			i++;
+	}
+	if (line[i] == 34)
+	{
+		i++;
+		while (line[i] && line[i] != 34)
+			i++;
+	}
+	else
+	{
+		while (line[i] && line[start] == line[i])
+			i++;
+	}
+	return(i);
 }
 
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
@@ -110,7 +101,6 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 		printf("minishell: syntax error: unexpected end of file\n");
 		return ;
 	}
-	// ft_print(stack);
-	// ft_parser(stack, envp);
-	// exec(stack, envp, 0);
+	ft_parser(stack, envp);
+	exec(stack, envp, 0);
 }

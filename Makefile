@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+         #
+#    By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 17:24:32 by najeuneh          #+#    #+#              #
-#    Updated: 2024/09/09 17:18:33 by najeuneh         ###   ########.fr        #
+#    Updated: 2024/09/11 20:17:50 by sadegrae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,8 @@ MY_SOURCES = src/lexer.c src/main.c src/signal.c src/parser/parcer.c src/parser/
 			src/exec/exec.c src/exec/exec_utils.c src/bultins/echo.c src/bultins/bultins_utils.c \
 			src/bultins/cd.c src/bultins/env.c src/bultins/exit.c src/bultins/export.c src/bultins/pwd.c src/bultins/unset.c \
 			src/expender/expender.c src/heredoc2.c src/parser/parser_utils3.c \
-			src/expender/expender_utils.c src/expender/expender_utils2.c src/bultins/export_utils.c \
 			src/expender/expender_utils3.c src/bultins/export_utils2.c src/free.c src/signal_exec.c \
-			src/bultins/bultins_utils2.c src/bultins/export_utils3.c src/expender/expender_utils4.c \
+			src/bultins/bultins_utils2.c src/bultins/export_utils3.c  src/bultins/export_utils.c \
 			src/main_utils.c src/environment.c src/exec/exec_utils2.c \
 
 CFLAGS = -Wall -Wextra -Werror

@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/10 20:33:45 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:17:14 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	ft_print(t_stack *stack);
 char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
 void	lexer(t_stack *stack, char *line, int start, t_env *envp);
-int		lexer_suite(t_stack *stack, char *line, int start, int i);
+int		ft_lexer_expextion(char *line, int start, int i);
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp);
-int		lexer_suite2(t_stack *stack, char *line, int start, int i);
 void	ft_free_env(t_env *list_env);
 
 /*-------*/
@@ -159,22 +158,16 @@ void	add_pwd(t_env *env, char	*pwd);
 /*=======EXPENDER=======*/
 
 void	ft_expend(t_stack *stack, t_env *env);
-void	expend_verif(t_env *env, int count, t_node	*str, char *first_sep);
-void	expend_if_dollard(t_env *env, t_node *str, char *first_sep, int count);
-void	expend_ifnot_dollard(t_env *env, t_node *str);
-void	verif_middle_guil(t_node *node, int i, int len);
-
-
 t_env	*list_new(char **matrix, int i, t_env *tmp);
-
+char	**list_to_matrix(t_env *env);
 int		verif_char_special(char *str, t_node *next);
 int		verif_char_special2(char *str, t_node *next);
-
-int		ft_count_quote(t_node *str, int i, int len);
+int	ft_count_quote(t_node *str, int i, int len);
 void	ft_split_cot(t_node *str);
 void if_or_not_convert(t_node *str, t_env *env);
 int check_if_dollard(char *str);
 void convert_dollar(t_node *str, t_env *env);
+int check_quote_not_open(t_node *str);
 
 /*======================*/
 

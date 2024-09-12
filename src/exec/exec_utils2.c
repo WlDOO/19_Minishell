@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:44:44 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 18:00:20 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:25:06 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	error_manage(char *cmd)
 			is_directory(ft_strchr(cmd, '/') + 1);
 		else
 		{
-			printf("coucou\n");
 			exit(1);
 		}
 	}

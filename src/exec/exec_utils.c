@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:11:32 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 20:22:11 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:52:29 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void	ft_check_out(t_node *node)
 	if (node->out != NULL)
 	{
 		if (node->append == 1)
+		{
 			node->out_fd = open(node->out, O_RDWR | O_CREAT | O_APPEND, 0644);
+		}
 		else
 			node->out_fd = open(node->out, O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (node->out_fd == -1)

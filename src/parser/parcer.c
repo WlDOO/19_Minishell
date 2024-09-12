@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:11:40 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:57:29 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,10 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 			else if (node->flag == 5)
 				in = node->in;
 			else if (node->flag == 4 || node->flag == 6)
+			{
 				out = ft_strdup(node->next->content);
+				ft_create_out(node->next->content);
+			}
 			ft_check_next(&node);
 		}
 		ft_suite_node(stack, in, out, ++i);

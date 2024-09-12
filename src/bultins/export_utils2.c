@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:14:39 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 18:59:54 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:52:21 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	isaldigit(int c)
 		return (1);
 	else if (c >= 'a' && c <= 'z')
 		return (1);
-	else if (c == '+')
+	else if (c == '+'|| c == '-')
 		return (1);
 	return (0);
 }
@@ -33,7 +33,7 @@ int	isaldigit2(int c)
 		return (1);
 	else if (c >= 'a' && c <= 'z')
 		return (1);
-	else if (c == '+' || c == '-')
+	else if (c == '+')
 		return (1);
 	return (0);
 }

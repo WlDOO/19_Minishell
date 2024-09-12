@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 19:09:07 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:48:43 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,13 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 		node = node->next;
 	}
 	ft_expend(stack, envp);
-	if (g_exit_code == -1)
+	if (g_exit_code == -1 || stack->up->flag == -10)
 	{
+		if (stack->up->flag == -10)
+		{
+			g_exit_code = 0;
+			return ;
+		}
 		g_exit_code = 1;
 		printf("minishell: syntax error: unexpected end of file\n");
 		return ;

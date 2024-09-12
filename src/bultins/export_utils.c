@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:08:30 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/26 18:13:10 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:33:03 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	fill_matrix_cell(t_env *env, char *cell)
 	{
 		cell[j++] = '=';
 		cell[j++] = '"';
-		while (env->content[k] != '\0')
+		while (env->content && env->content[k] != '\0')
 			cell[j++] = env->content[k++];
 		cell[j++] = '"';
 		cell[j] = '\0';

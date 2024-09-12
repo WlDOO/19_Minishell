@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 19:07:13 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:51:11 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	ft_export(t_env *env, t_node *node, int i)
 	}
 	while (node->full_cmd[i] != NULL)
 	{
-		printf("node = %s\n", node->full_cmd[i]);
 		if (node->full_cmd[i][0] == '$')
 		{
 			export_dollard(env, node, i);

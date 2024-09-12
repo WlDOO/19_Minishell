@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 17:54:34 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:36:42 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 		j++;
 	}
 	dst[j] = '\0';
-	chdir(dst);
+	if (access(dst, F_OK) == 0)
+		chdir(dst);
 	pwd = getcwd(NULL, 0);
 	if (ft_strrcmp(pwd, next_pwd) != 0 && ft_strncmp(next_pwd, "..", 2) != 0
 		&& ft_strcmp(next_pwd, ".") != 0)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
-		//ft_putstr_fd(next_pwd, 2);
 		ft_putstr_fd("No such file or directory\n", 2);
 		g_exit_code = 1;
 	}

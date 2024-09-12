@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:51:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/27 16:40:30 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:18:01 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_pwd(void)
 	char		*pwd;
 	static char	*tmp;
 
+	pwd = NULL;
 	pwd = getcwd(NULL, 0);
 	if (pwd)
 	{

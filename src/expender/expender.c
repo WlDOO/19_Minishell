@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 19:06:32 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:49:26 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,39 @@ int check_quote_not_open(t_node *str)
 	return(1);
 }
 
+int	empty_dollard_first_place(t_env *env, char *str)
+{
+	while (env)
+	{
+		if (ft_strcmp(str + 1, env->attribut) == 0)
+			return (1);
+		env = env->next;
+	}
+	return (0);
+}
+
 void	ft_expend(t_stack *stack, t_env *env)
 {
 	t_node	*str;
 
 	str = stack->up;
+	if (str->content[0] == '$')
+	{
+		
+		if (empty_dollard_first_place(env, str->content) == 0)
+		{
+			if (str->next != NULL)
+			{
+				dl_lstdelnode(str, stack);
+				str = stack->up;
+			}
+			else
+			{
+				str->flag = -10;
+				return ;
+			}
+		}
+	}
 	while (str)
 	{
 		if (check_quote_not_open(str) == 0)

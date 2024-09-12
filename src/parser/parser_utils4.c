@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:52:33 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:52:50 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:43:56 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,49 @@ void	ft_create_out(char *content)
 		g_exit_code = 1;
 	}
 	close(fd);
+}
+
+static int	ft_count_world(t_node *node)
+{
+	int	i;
+
+	i = 0;
+	while (node && node->flag != 1)
+	{
+		if ((node->flag == 0 || node->flag == 8) && (node->prev == NULL || (node->prev->flag != 3 && node->prev->flag != 4
+				&& node->prev->flag != 5 && node->prev->flag != 6 && node)))
+			i++;
+		node = node->next;
+	}
+	return (i);
+}
+
+char	**ft_add_content(t_node *node)
+{
+	char	**strs;
+	int		count;
+	int		i;
+
+	count = 0;
+	i = 0;
+	strs = NULL;
+	count = ft_count_world(node);
+	if (count != 0)
+	{
+		strs = malloc(sizeof(char *) * (count + 1));
+		if (!strs)
+			return(NULL) ;
+		while (node != NULL && node->flag != 1 && i <= count)
+		{
+			if ((node->flag == 0 || node->flag == 8) && (node->prev == NULL || (node->prev->flag != 3 && node->prev->flag != 4
+				&& node->prev->flag != 5 && node->prev->flag != 6 && node)))
+			{
+				strs[i] = ft_strdup(node->content);
+				i++;
+			}
+			node = node->next;
+		}
+		strs[i] = NULL;	
+	}
+	return (strs);
 }

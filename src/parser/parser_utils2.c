@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:33:59 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:44:31 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@ void	ft_clear_all(t_stack *stack)
 	while (node != NULL)
 	{
 		node->full_cmd = NULL;
-		ft_clear_all_annexe(stack, tmp, tmp3, node);
+		if (node->flag == 8)
+		{
+			node->full_cmd = ft_add_content(node);
+			int i = 0;
+			while (node->full_cmd[i])
+			{
+				i++;
+			}
+			while (node && node->flag != 1)
+				node = node->next;
+		}
 		if (node != NULL)
 			node = node->next;
 	}

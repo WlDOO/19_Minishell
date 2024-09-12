@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 20:51:11 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:03:09 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	ft_export_last(t_env *env, char *node)
 	tmp = malloc(sizeof(t_env));
 	if (!tmp)
 		return ;
+	tmp->content = NULL;
+	tmp->attribut = NULL;
 	if (check_char(node, '=') == 1)
 	{
 		tmp->content = ft_strchr2(node, '=');

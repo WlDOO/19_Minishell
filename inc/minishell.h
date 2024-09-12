@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 18:57:52 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:07:53 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	ft_check_full_path(t_node *node);
 void	ft_look_append(t_stack	*stack, t_node *tmp);
 void	ft_infile_out_file(t_stack *stack);
 void	ft_create_out(char *content);
+char	**ft_add_content(t_node *node);
 
 /*-------*/
 

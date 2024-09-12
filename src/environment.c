@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:43:47 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/09 17:16:32 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:43:59 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	check_pwd(char **matrix, t_env *env)
 	t_env	*tmp;
 
 	i = 0;
+	tmp = NULL;
 	while (matrix[i])
 	{
 		if (ft_strncmp(matrix[i], "PWD", 3) == 0)
@@ -48,6 +49,7 @@ void	check__(char **matrix, t_env *env)
 	char	*tmp3;
 	t_env	*tmp;
 
+	tmp = NULL;
 	tmp2 = ft_strdup("/Users/najeuneh/Desktop/cursus");
 	tmp3 = ft_strdup("/minishell-42-sami-nat/./minishell");
 	i = -1;

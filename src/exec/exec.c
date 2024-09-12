@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 20:49:20 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:12:22 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	exec(t_stack *stack, t_env *env, int status)
 		pid = fork();
 		while (node && node->flag != 8)
 			node = node->next;
-		if (node->bultin == 1)
+		if (node->bultin == 1 && node->out == NULL)
 		{
 			if (pid == 0)
 				exit(g_exit_code);

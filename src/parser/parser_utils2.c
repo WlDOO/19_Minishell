@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/10 15:44:14 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:12:40 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	ft_clear_all(t_stack *stack)
 
 	tmp = NULL;
 	tmp3 = NULL;
-	node = stack->up;
 	ft_look_append(stack, NULL);
+	ft_infile_out_file(stack);
+	node = stack->up;
 	while (node != NULL)
 	{
 		node->full_cmd = NULL;

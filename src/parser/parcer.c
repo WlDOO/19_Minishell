@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:27:31 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/10 21:24:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:11:40 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ char	*ft_path2(char **str, char *str2)
 	cmp = NULL;
 	if (str != NULL)
 	{
+		if (ft_strncmp(str2, "./", 2) == 0 && access(str2, X_OK) == 0)
+		{
+			cmp = ft_strdup(str2);
+			return (ft_free_all(str), cmp);
+		}
 		while (str[++j] != NULL)
 		{
 			str[j] = ft_strjoin(str[j], "/");
@@ -44,11 +49,6 @@ char	*ft_path2(char **str, char *str2)
 				return (cmp);
 			}
 		}
-	}
-	if (access(str2, X_OK) == 0)
-	{
-		cmp = ft_strdup(str2);
-		return (ft_free_all(str), cmp);
 	}
 	return (ft_free_all(str), NULL);
 }
@@ -135,16 +135,12 @@ void	ft_finish_node(t_stack *stack, char *in, char *out, int i)
 		out = NULL;
 		while (node != NULL && node->content && node->flag != 1)
 		{
-			if (node->flag == 3 || node->flag == 4
-				|| node->flag == 5 || node->flag == 6)
-			{
-				if (node->flag == 3)
-					in = ft_strdup(node->next->content);
-				else if (node->flag == 5)
-					in = node->in;
-				else if (node->flag == 4 || node->flag == 6)
-					out = ft_strdup(node->next->content);
-			}
+			if (node->flag == 3)
+				in = ft_strdup(node->next->content);
+			else if (node->flag == 5)
+				in = node->in;
+			else if (node->flag == 4 || node->flag == 6)
+				out = ft_strdup(node->next->content);
 			ft_check_next(&node);
 		}
 		ft_suite_node(stack, in, out, ++i);

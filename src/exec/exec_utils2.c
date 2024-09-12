@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:44:44 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 20:08:21 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:27:05 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	error_manage(char *cmd)
 		if (errno == EACCES)
 			is_directory(ft_strchr(cmd, '/') + 1);
 		else
+		{
+			printf("coucou\n");
 			exit(1);
+		}
 	}
 	not_fount(cmd);
 }

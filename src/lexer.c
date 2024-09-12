@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 21:16:29 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:10:36 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 			return ;
 		node = node->next;
 	}
-	ft_print(stack);
 	ft_expend(stack, envp);
 	if (g_exit_code == -1)
 	{
@@ -118,6 +117,7 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 		return ;
 	}
 	ft_parser(stack, envp);
+	ft_print(stack);
 	exec(stack, envp, 0);
 	
 }

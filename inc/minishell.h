@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 20:07:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:47:40 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,8 @@ void	not_export(t_env *env);
 char	check_sep2(char *str);
 void	add_pwd(t_env *env, char	*pwd);
 char	check_sep_neg(char *str);
+int	verif_suite_final(t_env *env, char *str);
+void	not_export(t_env *env);
 /*-------------*/
 
 /*=======EXPENDER=======*/
@@ -172,7 +174,7 @@ int		verif_char_special(char *str, t_node *next);
 int		verif_char_special2(char *str, t_node *next);
 int	ft_count_quote(t_node *str, int i, int len);
 void	ft_split_cot(t_node *str);
-void if_or_not_convert(t_node *str, t_env *env);
+void if_or_not_convert(t_node *str, t_env *env, int i);
 int check_if_dollard(char *str);
 void convert_dollar(t_node *str, t_env *env);
 int check_quote_not_open(t_node *str);

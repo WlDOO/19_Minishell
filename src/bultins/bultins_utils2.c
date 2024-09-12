@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:30:21 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/05 21:19:10 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:43:06 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_strrcmp(char *st1, char *st2)
 
 	i = 0;
 	j = 0;
-	while (st1[i])
+	while (st1 && st1[i])
 		i++;
-	while (st2[j])
+	while (st2 && st2[j])
 		j++;
 	j--;
 	i--;
@@ -42,9 +42,9 @@ int	ft_strrcmp(char *st1, char *st2)
 		i--;
 		j--;
 	}
-	if (st1[i] > st2[j])
+	if (st1 && st2 && st1[i] > st2[j])
 		return (1);
-	else if (st1[i] < st2[j])
+	else if (st1 && st2 && st1[i] < st2[j])
 		return (-1);
 	else
 		return (0);

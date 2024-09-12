@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/08/30 14:01:34 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:48:21 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,22 @@ void	printf_env(t_env *list_env)
 		list_env = list_env->next;
 	}
 	g_exit_code = 0;
+}
+
+void	printf_export(t_env *list_env)
+{
+	char	**matrix;
+	int		i;
+
+	i = 0;
+	g_exit_code = 0;
+	matrix = list_to_matrix(list_env);
+	matrix = trie_asci(matrix);
+	while (matrix[i])
+	{
+		printf("declare -x %s\n", matrix[i]);
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix[i]);
 }

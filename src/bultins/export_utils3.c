@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:31:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 19:02:03 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:47:27 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ int	verif(t_env *env, char *str)
 		verif_suite(env, str);
 		return (1);
 	}
+	return (verif_suite_final(env, str));
+}
+
+int	verif_suite_final(t_env *env, char *str)
+{
 	if (check_sep_neg(str) == 0)
 	{
 		g_exit_code = 1;
@@ -115,18 +120,5 @@ int	verif(t_env *env, char *str)
 		}
 		return (0);
 	}
-	// while (env != NULL)
-	// {
-	// 	if (ft_strcmp(str, env->attribut) == 0)
-	// 		return (1);
-	// 	env = env->next;
-	// }
 	return (0);
-}
-
-void	not_export(t_env *env)
-{
-	printf_export(env);
-	g_exit_code = 0;
-	return ;
 }

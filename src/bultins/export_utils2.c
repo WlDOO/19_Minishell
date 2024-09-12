@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:14:39 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 18:00:48 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:59:54 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ int	isaldigit(int c)
 	return (0);
 }
 
+int	isaldigit2(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else if (c >= 'A' && c <= 'Z')
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
+	else if (c == '+' || c == '-')
+		return (1);
+	return (0);
+}
+
 int	verif_not_aldigit(char *str)
 {
 	int	i;
@@ -32,8 +45,7 @@ int	verif_not_aldigit(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=')
 	{
-		printf("char = %c\n", str[i]);
-		if (isaldigit(str[i]) == 0)
+		if (isaldigit2(str[i]) == 0)
 			return (1);
 		i++;
 	}

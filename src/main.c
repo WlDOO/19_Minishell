@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/11 17:49:00 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:01:48 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	main(int ac, char **av, char **env)
 
 	(void)av;
 	(void)ac;
-	g_exit_code = 0;
 	stack = NULL;
 	list_env = list_new(env, -1, NULL);
 	while (1)

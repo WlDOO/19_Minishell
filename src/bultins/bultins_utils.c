@@ -6,13 +6,13 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:52:01 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/10 15:20:07 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:00:47 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int		check_char(char *str, char c)
+int	check_char(char *str, char c)
 {
 	int	i;
 

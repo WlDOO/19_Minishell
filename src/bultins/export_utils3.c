@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:31:28 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 18:01:43 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:02:03 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ int	verif(t_env *env, char *str)
 		ft_putstr_fd(str, 2);
 		return (ft_putstr_fd(" : not a valid identifier\n", 2), 1);
 	}
-	printf("OKET = %s\n", str);
-	
 	if (ft_isdigit(str[0]) == 1 || verif_not_aldigit(str) == 1)
 	{
 		g_exit_code = 1;

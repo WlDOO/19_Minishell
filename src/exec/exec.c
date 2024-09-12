@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:26:58 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:12:22 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:56:00 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	multi_cmd2(t_node *node, int pipe[2], int prev_fd, t_env *env)
 
 void	simple_cmd(t_node *node, int in_pipe, int out_pipe, t_env *env)
 {
+	g_exit_code = 0;
 	ft_check_fd(node);
 	if (node->in_fd != -1 && node->full_cmd[1] == NULL)
 	{

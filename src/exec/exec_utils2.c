@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:44:44 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 15:27:05 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:00:20 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	is_directory(char *cmd)
 {
-	struct stat data;
+	struct stat	data;
 
 	if (stat(cmd, &data) == -1)
 	{
@@ -24,11 +24,12 @@ void	is_directory(char *cmd)
 	if ((data.st_mode & S_IFMT) == S_IFDIR)
 	{
 		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd , 2);
+		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		exit(126);
 	}
 }
+
 void	not_fount(char *cmd)
 {
 	write(2, "minishell: ", 12);
@@ -37,10 +38,9 @@ void	not_fount(char *cmd)
 	exit (127);
 }
 
-
 void	error_manage(char *cmd)
 {
-	if(ft_strncmp(cmd, "./",2) == 0)
+	if (ft_strncmp(cmd, "./", 2) == 0)
 	{
 		if (errno == EACCES)
 			is_directory(ft_strchr(cmd, '/') + 1);
@@ -52,10 +52,10 @@ void	error_manage(char *cmd)
 	}
 	not_fount(cmd);
 }
+
 void	parent_bultins(t_node *node, t_env *env)
 {
 	ft_use_bultin(node, env);
 	while (wait(NULL) > 0)
 		;
 }
-

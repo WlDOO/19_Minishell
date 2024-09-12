@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:47:39 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:57:52 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	check_sep(char c, char *charset);
 void	free_stack(t_stack *stack);
 void	lexer(t_stack *stack, char *line, int start, t_env *envp);
 int		ft_lexer_expextion(char *line, int start, int i);
+int		ft_lexer_expextion2(char *line, int start, int i);
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp);
 void	ft_free_env(t_env *list_env);
 
@@ -91,6 +92,7 @@ void	ft_bultincheck2(t_node *node);
 void	ft_check_full_path(t_node *node);
 void	ft_look_append(t_stack	*stack, t_node *tmp);
 void	ft_infile_out_file(t_stack *stack);
+void	ft_create_out(char *content);
 
 /*-------*/
 

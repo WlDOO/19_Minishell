@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:07:43 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:47:39 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ int		verif(t_env *env, char *str);
 void	not_export(t_env *env);
 char	check_sep2(char *str);
 void	add_pwd(t_env *env, char	*pwd);
+char	check_sep_neg(char *str);
 /*-------------*/
 
 /*=======EXPENDER=======*/

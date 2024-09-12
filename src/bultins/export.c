@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:25 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/11 21:25:05 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:53:15 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ char	check_sep2(char *str)
 	while (str[i])
 	{
 		if (str[i + 1] && str[i] == '+' && str[i + 1] == '=')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+char	check_sep_neg(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i + 1] && str[i] == '-' && str[i + 1] == '=')
 			return (0);
 		i++;
 	}
@@ -111,9 +125,9 @@ void	ft_export(t_env *env, t_node *node, int i)
 		{
 			export_dollard(env, node, i);
 		}
-		if (!node || verif(env, node->full_cmd[i]) == 1)
+		if (!node || verif(env, node->full_cmd[i]) >= 1)
 		{
-			g_exit_code = 1;
+			
 			if (node->full_cmd[i + 1] == NULL)
 				return ;
 		}

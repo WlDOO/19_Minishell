@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:49:08 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/11 15:05:44 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:54:34 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	copy_pwd(char *next_pwd, char *pwd, char *dst)
 		&& ft_strcmp(next_pwd, ".") != 0)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
-		ft_putstr_fd(next_pwd, 2);
-		ft_putstr_fd(" No such file or directory\n", 2);
+		//ft_putstr_fd(next_pwd, 2);
+		ft_putstr_fd("No such file or directory\n", 2);
 		g_exit_code = 1;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
+/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 17:10:36 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:02:35 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 		printf("minishell: syntax error: unexpected end of file\n");
 		return ;
 	}
-	ft_parser(stack, envp);
 	ft_print(stack);
+	ft_parser(stack, envp);
 	exec(stack, envp, 0);
 	
 }

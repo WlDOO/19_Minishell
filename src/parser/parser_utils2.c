@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:40:09 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 20:44:31 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:13:15 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 void	ft_clear_all(t_stack *stack)
 {
 	t_node	*node;
-	t_node	*tmp3;
-	char	*tmp;
 	int		only_heredoc;
 
-	tmp = NULL;
-	tmp3 = NULL;
 	only_heredoc = ft_only_heredoc(stack);
 	ft_look_append(stack, NULL);
 	ft_infile_out_file(stack);
@@ -30,12 +26,7 @@ void	ft_clear_all(t_stack *stack)
 		node->full_cmd = NULL;
 		if (node->flag == 8)
 		{
-			node->full_cmd = ft_add_content(node);
-			int i = 0;
-			while (node->full_cmd[i])
-			{
-				i++;
-			}
+			node->full_cmd = ft_add_content(node, 0, 0);
 			while (node && node->flag != 1)
 				node = node->next;
 		}

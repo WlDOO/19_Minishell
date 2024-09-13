@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expender_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 17:36:05 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/11 20:36:27 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:58:34 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ int	verif_char_special2(char *str, t_node *next)
 	if (ft_strncmp(str, "<<<", 3) == 0)
 		return (printf("minishell: syntax error near unexpected token `<<<'\n"),
 			g_exit_code = 1, 0);
-	if (ft_strncmp(str, ">>>>", 4) == 0)
+	else if (ft_strncmp(str, ">>>>", 4) == 0)
 	{
 		printf("minishell: syntax error near unexpected token `>>'\n");
 		return (g_exit_code = 1, 0);
 	}
-	if (ft_strncmp(str, ">>>", 3) == 0)
+	else if (ft_strncmp(str, ">>>", 3) == 0)
 	{
 		printf("minishell: syntax error near unexpected token `>'\n");
 		return (g_exit_code = 1, 0);
 	}
-	if (ft_strncmp(str, "<", 1) == 0 && next == NULL)
+	else if (ft_strncmp(str, "<", 1) == 0 && next == NULL)
 	{
 		printf("minishell: syntax error near unexpected token `newline'\n");
 		return (g_exit_code = 1, 0);
 	}
-	if (ft_strncmp(str, ">", 1) == 0 && next == NULL)
+	else if (ft_strncmp(str, ">", 1) == 0 && next == NULL)
 	{
 		printf("minishell: syntax error near unexpected token `newline'\n");
 		return (g_exit_code = 1, 0);

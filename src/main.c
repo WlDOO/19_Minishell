@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:14 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 19:17:54 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:16:08 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int ac, char **av, char **env)
 		{
 			ft_free_env(list_env);
 			printf("\rexit\n");
-			// free_stack(stack);
+			free_stack(stack);
 			exit(0);
 		}
 		lexer(stack, line, 0, list_env);

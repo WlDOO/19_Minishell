@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
+/*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:49:55 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 21:03:15 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:56:49 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,7 @@ void	lexer(t_stack *stack, char *line, int start, t_env *envp)
 		if (line[i] && check_sep(line[i], "<>|\"' ") == 1)
 		{
 			start = i;
-			while (line[i] && check_sep(line[i], "<>| ") == 1)
-			{
-				if (ft_lexer_expextion(line, start, i) != 0)
-					i += ft_lexer_expextion(line, start, i);
-				else
-					i++;
-			}
+			i = ft_lexer_normal(line, start, i);
 			dl_lstadd_back(stack, line, start, i);
 		}
 		if (check_sep(line[i], "<>|\"'") == 0)
@@ -81,36 +75,11 @@ int	ft_lexer_expextion2(char *line, int start, int i)
 				i++;
 		}
 		if (line[i + 1] != ' ')
-			while(line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
+			while (line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
 				i++;
 	}
-	if (line[i] == 34)
-	{
-		i++;
-		while (line[i] && line[i] != 34)
-			i++;
-		if (line[i + 1] == 34)
-		{
-			i++;
-			while (line[i + 1] && line[i + 1] != 34)
-				i++;
-		}
-		else if (line[i + 1] == 39)
-		{
-			i++;
-			while (line[i + 1] && line[i + 1] != 39)
-				i++;
-		}
-		if (line[i + 1] != ' ')
-			while(line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
-				i++;
-	}
-	else
-	{
-		while (line[i] && line[start] == line[i + 1])
-			i++;
-	}
-	return(i - start);
+	i = ft_lexer_expextion2_2(line, i, start);
+	return (i - start);
 }
 
 int	ft_lexer_expextion(char *line, int start, int i)
@@ -134,31 +103,11 @@ int	ft_lexer_expextion(char *line, int start, int i)
 				i++;
 		}
 		if (line[i + 1] != ' ')
-			while(line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
+			while (line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
 				i++;
 	}
-	if (line[i] == 34)
-	{
-		i++;
-		while (line[i] && line[i] != 34)
-			i++;
-		if (line[i + 1] == 34)
-		{
-			i++;
-			while (line[i + 1] && line[i + 1] != 34)
-				i++;
-		}
-		else if (line[i + 1] == 39)
-		{
-			i++;
-			while (line[i + 1] && line[i + 1] != 39)
-				i++;
-		}
-		if (line[i + 1] != ' ')
-			while(line[i + 1] && check_sep(line[i + 1], "<>| ") == 1)
-				i++;
-	}
-	return(i - start);
+	i = ft_lexer_expextion_2(line, i);
+	return (i - start);
 }
 
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
@@ -171,12 +120,8 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 		return ;
 	}
 	node = stack->up;
-	while (node != NULL)
-	{
-		if (verif_char_special2(node->content, node->next) == 0)
-			return ;
-		node = node->next;
-	}
+	if (ft_lexer_verif(node) == 1)
+		return ;
 	ft_expend(stack, envp);
 	if (g_exit_code == -1 || stack->up->flag == -10)
 	{
@@ -191,5 +136,4 @@ void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp)
 	}
 	ft_parser(stack, envp);
 	exec(stack, envp, 0);
-	
 }

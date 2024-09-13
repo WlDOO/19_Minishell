@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:36:27 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/12 20:07:53 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:02:06 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ int		ft_lexer_expextion(char *line, int start, int i);
 int		ft_lexer_expextion2(char *line, int start, int i);
 void	ft_lexer2(char *line, t_stack *stack, t_node *node, t_env *envp);
 void	ft_free_env(t_env *list_env);
+int		ft_lexer_expextion_2(char *line, int i);
+int		ft_lexer_expextion2_2(char *line, int i, int start);
+int		ft_lexer_normal(char *line, int start, int i);
+int		ft_lexer_verif(t_node *node);
 
 /*-------*/
 
@@ -93,7 +97,7 @@ void	ft_check_full_path(t_node *node);
 void	ft_look_append(t_stack	*stack, t_node *tmp);
 void	ft_infile_out_file(t_stack *stack);
 void	ft_create_out(char *content);
-char	**ft_add_content(t_node *node);
+char	**ft_add_content(t_node *node, int count, int i);
 
 /*-------*/
 
@@ -155,7 +159,7 @@ int		ft_strrcmp(char *st1, char *st2);
 char	*malloc_dst(int len);
 void	verif_suite3(t_env *env, char *str);
 void	verif_suite(t_env *env, char *str);
-int	verif_suite_2(t_env *env, char *str);
+int		verif_suite_2(t_env *env, char *str);
 int		verif(t_env *env, char *str);
 void	not_export(t_env *env);
 char	check_sep2(char *str);
@@ -170,12 +174,12 @@ t_env	*list_new(char **matrix, int i, t_env *tmp);
 char	**list_to_matrix(t_env *env);
 int		verif_char_special(char *str, t_node *next);
 int		verif_char_special2(char *str, t_node *next);
-int	ft_count_quote(t_node *str, int i, int len);
+int		ft_count_quote(t_node *str, int i, int len);
 void	ft_split_cot(t_node *str);
-void if_or_not_convert(t_node *str, t_env *env);
-int check_if_dollard(char *str);
-void convert_dollar(t_node *str, t_env *env);
-int check_quote_not_open(t_node *str);
+void	if_or_not_convert(t_node *str, t_env *env);
+int		check_if_dollard(char *str);
+void	convert_dollar(t_node *str, t_env *env);
+int		check_quote_not_open(t_node *str);
 
 /*======================*/
 

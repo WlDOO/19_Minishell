@@ -6,7 +6,7 @@
 /*   By: sadegrae <sadegrae@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:30:18 by sadegrae          #+#    #+#             */
-/*   Updated: 2024/09/12 22:32:09 by sadegrae         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:06:57 by sadegrae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	check_quote_not_open(t_node *str)
 			i++;
 		}
 	}
-	g_exit_code = 0;
 	return (1);
 }
 
